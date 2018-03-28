@@ -9,7 +9,6 @@ public class Vector {
 	public Vector(Vector v) {
 		_head = v.get();
 	}
-	
 	public Vector add(Vector v) {
 		double _x = v.get().getX().get() + (_head.getX().get());
 		double _y = v.get().getY().get() +(_head.getY().get());
@@ -25,21 +24,44 @@ public class Vector {
 		return new Vector(p);	
 	}
 	public Vector multiply(Vector v) {
-		
-		return null;
+		return new Vector(_multiply(v));	
 	}
+	private Point3D _multiply(Vector v) {
+		double _x = (_head.getY().get() * v.get().getZ().get()) - (_head.getZ().get() * v.get().getY().get());
+		double _y =  (_head.getZ().get() * v.get().getX().get()) - (_head.getX().get() * v.get().getZ().get());
+		double _z = (_head.getX().get() * v.get().getY().get()) - (_head.getY().get() * v.get().getX().get());
+		return new Point3D(_x,_y,_z);
+	}
+
 	public Vector multiply(double d) {
-		
-		return null;
+		return new Vector(_multiply(d));	
+	}
+	private Point3D _multiply(double d) {
+		double _x = _head.getX().get() * d;
+		double _y =  _head.getY().get() * d;
+		double _z = _head.getZ().get() * d;
+		return new Point3D(_x,_y,_z);
 	}
 	public double dot_product(Vector v) {
-		return 0;
+		double s = 0;
+		s += _head.getX().get() * v.get().getX().get();
+		s += _head.getY().get() * v.get().getY().get();
+		s += _head.getZ().get() * v.get().getZ().get();
+		//TODO: check again
+		return s;
 	}
 	public double length() {
-		return 0;
+		return Math.sqrt(Math.pow(_head.getX().get(), 2) + Math.pow(_head.getY().get(), 2) + Math.pow(_head.getZ().get(), 2));
 	}
 	public Vector normalization() {
-		return null;
+		return new Vector(_normalization());	
+	}
+	private Point3D _normalization() {
+		double len = length();
+		double _x = _head.getX().get()/len;
+		double _y = _head.getY().get()/len;
+		double _z = _head.getZ().get()/len;
+		return new Point3D(_x,_y,_z);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -64,5 +86,4 @@ public class Vector {
 	public Point3D get() {
 		return _head;
 	}
-
 }
