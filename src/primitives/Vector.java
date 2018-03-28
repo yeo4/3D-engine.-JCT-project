@@ -3,8 +3,6 @@ package primitives;
 public class Vector {
 	private Point3D _head;
 	
-	// ************** Helpers ***************/
-
 	// ***************** Constructors ********************** // 
 	public Vector(Point3D head) {
 		_head = head;
@@ -13,6 +11,7 @@ public class Vector {
 	/*public Vector(double x, double y, double z) {
 		_head = new Point3D(x,y,z);
 	}*/
+	
 	public Vector(Vector v) {
 		_head = v.get();
 	}
@@ -59,10 +58,9 @@ public class Vector {
 		return new Vector(_multiply(d));	
 	}
 	public double dot_product(Vector v) {
-		double s = 0;
-		s += _head.getX().get() * v.get().getX().get();
-		s += _head.getY().get() * v.get().getY().get();
-		s += _head.getZ().get() * v.get().getZ().get();
+		double s = _head.getX().multiply(v.get().getX()).get();
+		s += _head.getY().multiply(v.get().getY()).get();
+		s += _head.getZ().multiply(v.get().getZ()).get();
 		//TODO: test
 		return s;
 	}
@@ -76,30 +74,30 @@ public class Vector {
 	// ***************** Helpers ******************** // 
 
 	private Point3D _add(Vector v) {
-		double _x = v.get().getX().get() + (_head.getX().get());
-		double _y = v.get().getY().get() +(_head.getY().get());
-		double _z = v.get().getZ().get() + (_head.getZ().get());
+		Coordinate _x = v.get().getX().add(_head.getX());
+		Coordinate _y = v.get().getY().add(_head.getY());
+		Coordinate _z = v.get().getZ().add(_head.getZ());
 		return new Point3D(_x,_y,_z);
 	}
 
 	public Point3D _subtract(Vector v) {
-		double _x = _head.getX().get() - v.get().getX().get();
-		double _y =  _head.getY().get() - v.get().getY().get();
-		double _z = _head.getZ().get() - v.get().getZ().get();
+		Coordinate _x = _head.getX().subtract(v.get().getX());
+		Coordinate _y =  _head.getY().subtract(v.get().getY());
+		Coordinate _z = _head.getZ().subtract(v.get().getZ());
 		return new Point3D(_x,_y,_z);
 	}
 
 	private Point3D _multiply(Vector v) {
-		double _x = (_head.getY().get() * v.get().getZ().get()) - (_head.getZ().get() * v.get().getY().get());
-		double _y =  (_head.getZ().get() * v.get().getX().get()) - (_head.getX().get() * v.get().getZ().get());
-		double _z = (_head.getX().get() * v.get().getY().get()) - (_head.getY().get() * v.get().getX().get());
+		Coordinate _x = (_head.getY().multiply(v.get().getZ()).subtract(_head.getZ().multiply(v.get().getY())));
+		Coordinate _y =  (_head.getZ().multiply(v.get().getX())).subtract(_head.getX().multiply(v.get().getZ()));
+		Coordinate _z = (_head.getX().multiply(v.get().getY())).subtract(_head.getY().multiply(v.get().getX()));
 		return new Point3D(_x,_y,_z);
 	}
 
 	private Point3D _multiply(double d) {
-		double _x = _head.getX().get() * d;
-		double _y =  _head.getY().get() * d;
-		double _z = _head.getZ().get() * d;
+		Coordinate _x = _head.getX().scale(d);
+		Coordinate _y = _head.getY().scale(d);
+		Coordinate _z = _head.getZ().scale(d);
 		return new Point3D(_x,_y,_z);
 	}
 

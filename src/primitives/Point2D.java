@@ -3,11 +3,16 @@ package primitives;
 public class Point2D {
 	protected Coordinate _x;
 	protected Coordinate _y;
-	//Test.. :)
-	// ***************** Constructors ********************** // 
+
+	// ***************** Constructors ********************** //
+	
 	public Point2D(double x, double y) {
 		_x = new Coordinate(x);
 		_y = new Coordinate(y);
+	}
+	public Point2D(Coordinate x, Coordinate y) {
+		_x = x;
+		_y = y;
 	}
 	
 	public Point2D(Point2D other) {
