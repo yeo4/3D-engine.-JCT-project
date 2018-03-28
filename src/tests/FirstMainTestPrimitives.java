@@ -48,7 +48,7 @@ public class FirstMainTestPrimitives {
 		Point2D P1 = new Point2D(1,2);
 		Point2D P2 = new Point2D(P1);
 		Point2D P3 = new Point2D(9,8);
-
+		
 		if(P1.equals(P2)) {
 			System.out.println("Test successful: [1,2] == [1,2]");
 		}else {
