@@ -49,6 +49,6 @@ public class Point2D {
 		return "[" + _x + "," + _y + "]";
 	}
 	public double distance(Point2D P2D) {
-		return 0;
+		return Math.sqrt(Math.pow((_x.get()-P2D.getX().get()),2) + Math.pow((_y.get()-P2D.getY().get()),2));
 	}
 }
