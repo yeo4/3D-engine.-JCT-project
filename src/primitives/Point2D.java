@@ -24,10 +24,24 @@ public class Point2D {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Point2D))
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		Point2D oth = (Point2D)obj;
-		return _x.equals(oth._x) && _y.equals(oth._y);
+		if (getClass() != obj.getClass())
+			return false;
+		Point2D other = (Point2D) obj;
+		if (_x == null) {
+			if (other._x != null)
+				return false;
+		} else if (!_x.equals(other._x))
+			return false;
+		if (_y == null) {
+			if (other._y != null)
+				return false;
+		} else if (!_y.equals(other._y))
+			return false;
+		return true;
 	}
 
 	@Override
