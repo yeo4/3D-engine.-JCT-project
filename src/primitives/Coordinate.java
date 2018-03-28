@@ -1,12 +1,13 @@
 package primitives;
 
 public class Coordinate {
+	
 	private double _coord;
 	
 	// It is binary, equivalent to ~1/1,000,000 in decimal (6 digits)
 	private static final int ACCURACY = -20;
 
-
+	// ***************** Constructors ********************** // 
 	public Coordinate(double coord) {
 		// if it too close to zero make it zero
 		_coord = (getExp(coord) < ACCURACY) ? 0.0 : coord;
@@ -44,6 +45,13 @@ public class Coordinate {
 
 	public Coordinate add(Coordinate other) {
 		return new Coordinate(_add(other._coord));
+	}
+	
+	public Coordinate scale(double num) {
+		return new Coordinate(_scale(num));
+	}
+	public Coordinate multiply(Coordinate other) {
+		return new Coordinate(_scale(other._coord));
 	}
 	
 	/************** Helpers ***************/
@@ -103,12 +111,6 @@ public class Coordinate {
 	private double _scale(double num) {
 		int deltaExp = getExp(num - 1);
 		return deltaExp < ACCURACY ? _coord: _coord * num;
-	}
-	public Coordinate scale(double num) {
-		return new Coordinate(_scale(num));
-	}
-	public Coordinate multiply(Coordinate other) {
-		return new Coordinate(_scale(other._coord));
 	}
 	
 }

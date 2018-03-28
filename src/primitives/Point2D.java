@@ -4,6 +4,7 @@ public class Point2D {
 	protected Coordinate _x;
 	protected Coordinate _y;
 	
+	// ***************** Constructors ********************** // 
 	public Point2D(double x, double y) {
 		_x = new Coordinate(x);
 		_y = new Coordinate(y);
@@ -14,6 +15,8 @@ public class Point2D {
 		_y = new Coordinate(other._y);
 	}
 	
+	// ***************** Getters/Setters ********************** //
+	
 	public Coordinate getX() {
 		return _x;
 	}
@@ -21,6 +24,8 @@ public class Point2D {
 	public Coordinate getY() {
 		return _y;
 	}
+	
+	// ***************** Administration  ******************** //
 
 	@Override
 	public boolean equals(Object obj) {
@@ -48,6 +53,8 @@ public class Point2D {
 	public String toString() {
 		return "[" + _x + "," + _y + "]";
 	}
+
+	// ***************** Operations ******************** // 
 	public double distance(Point2D P2D) {
 		return Math.sqrt(Math.pow((_x.get()-P2D.getX().get()),2) + Math.pow((_y.get()-P2D.getY().get()),2));
 	}

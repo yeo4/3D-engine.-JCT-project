@@ -4,6 +4,7 @@ public class Ray {
 	private Point3D _P3D;
 	private Vector _direction;
 	
+	// ***************** Constructors ********************** // 
 	public Ray(Point3D P3D, Vector direction) {
 		_P3D = P3D;
 		_direction = direction;
@@ -12,6 +13,8 @@ public class Ray {
 		_P3D = ray.getP3D();
 		_direction = ray.getDirection();
 	}
+	// ***************** Getters/Setters ********************** //
+
 	public Point3D getP3D() {
 		return _P3D;
 	}
@@ -19,7 +22,9 @@ public class Ray {
 	public Vector getDirection() {
 		return _direction;
 	}
-
+	
+	// ***************** Administration  ******************** //
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
