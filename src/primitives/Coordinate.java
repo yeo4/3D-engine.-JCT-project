@@ -100,4 +100,15 @@ public class Coordinate {
 		return resultExp < ACCURACY ? 0.0 : result;
 	}
 	
+	private double _scale(double num) {
+		int deltaExp = getExp(num - 1);
+		return deltaExp < ACCURACY ? _coord: _coord * num;
+	}
+	public Coordinate scale(double num) {
+		return new Coordinate(_scale(num));
+	}
+	public Coordinate multiply(Coordinate other) {
+		return new Coordinate(_scale(other._coord));
+	}
+	
 }
