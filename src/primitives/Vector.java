@@ -10,19 +10,24 @@ public class Vector {
 		_head = v.get();
 	}
 	public Vector add(Vector v) {
+		return new Vector(_add(v));
+	}
+	private Point3D _add(Vector v) {
 		double _x = v.get().getX().get() + (_head.getX().get());
 		double _y = v.get().getY().get() +(_head.getY().get());
 		double _z = v.get().getZ().get() + (_head.getZ().get());
-		Point3D p = new Point3D(_x,_y,_z);
-		return new Vector(p);
+		return new Point3D(_x,_y,_z);
 	}
 	public Vector subtract(Vector v) {
+		return new Vector(_subtract(v));	
+	}
+	public Point3D _subtract(Vector v) {
 		double _x = _head.getX().get() - v.get().getX().get();
 		double _y =  _head.getY().get() - v.get().getY().get();
 		double _z = _head.getZ().get() - v.get().getZ().get();
-		Point3D p = new Point3D(_x,_y,_z);
-		return new Vector(p);	
+		return new Point3D(_x,_y,_z);
 	}
+
 	public Vector multiply(Vector v) {
 		return new Vector(_multiply(v));	
 	}
@@ -47,7 +52,7 @@ public class Vector {
 		s += _head.getX().get() * v.get().getX().get();
 		s += _head.getY().get() * v.get().getY().get();
 		s += _head.getZ().get() * v.get().getZ().get();
-		//TODO: check again
+		//TODO: test
 		return s;
 	}
 	public double length() {
