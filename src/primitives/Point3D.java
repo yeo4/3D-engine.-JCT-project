@@ -4,6 +4,10 @@ public class Point3D extends Point2D{
 	
 	private Coordinate _z;
 
+	public Coordinate getZ() {
+		return _z;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -44,5 +48,4 @@ public class Point3D extends Point2D{
 	public String toString() {
 		return "[" + super.toString()+"_z=" + _z + "]";
 	}
-
 }

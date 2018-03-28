@@ -4,11 +4,19 @@ public class Ray {
 	private Point3D _P3D;
 	private Vector _direction;
 	
-	public Point3D get_P3D() {
+	public Ray(Point3D P3D, Vector direction) {
+		_P3D = P3D;
+		_direction = direction;
+	}
+	public Ray(Ray ray) {
+		_P3D = ray.getP3D();
+		_direction = ray.getDirection();
+	}
+	public Point3D getP3D() {
 		return _P3D;
 	}
 
-	public Vector get_direction() {
+	public Vector getDirection() {
 		return _direction;
 	}
 
