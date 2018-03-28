@@ -6,6 +6,9 @@ public class Vector {
 	public Vector(Point3D head) {
 		_head = head;
 	}
+	public Vector(double x, double y, double z) {
+		_head = new Point3D(x,y,z);
+	}
 	public Vector(Vector v) {
 		_head = v.get();
 	}
