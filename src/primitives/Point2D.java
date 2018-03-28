@@ -3,7 +3,7 @@ package primitives;
 public class Point2D {
 	protected Coordinate _x;
 	protected Coordinate _y;
-	
+	//Test.. :)
 	// ***************** Constructors ********************** // 
 	public Point2D(double x, double y) {
 		_x = new Coordinate(x);
