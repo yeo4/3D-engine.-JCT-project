@@ -1,6 +1,7 @@
 package primitives;
 
 public class Vector {
+	
 	private Point3D _head;
 	
 	// ***************** Constructors ********************** // 
@@ -40,7 +41,7 @@ public class Vector {
 	}
 	@Override
 	public String toString() {
-		return "[_head=" + _head + "]";
+		return "[ " +_head.toString() + " ]";
 	}
 	
 	// ***************** Operations ******************** // 
