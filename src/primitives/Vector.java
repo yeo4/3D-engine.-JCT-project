@@ -64,7 +64,6 @@ public class Vector {
 		double s = _head.getX().multiply(v.get().getX()).get();
 		s += _head.getY().multiply(v.get().getY()).get();
 		s += _head.getZ().multiply(v.get().getZ()).get();
-		//TODO: test
 		return s;
 	}
 	public double length() {
