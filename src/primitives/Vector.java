@@ -1,7 +1,9 @@
 package primitives;
 
 public class Vector {
-	
+	// ***************** Varibles ********************** // 
+	final public static Vector ZeroVector = new Vector(new Point3D(0,0,0));
+	//public static boolean 
 	private Point3D _head;
 	
 	// ***************** Constructors ********************** // 
@@ -72,6 +74,9 @@ public class Vector {
 		return new Vector(_normalization());	
 	}
 	
+	public static boolean areCollinear(Vector v1,Vector v2,Vector v3) {
+		return (v2.subtract(v1)).multiply(v3.subtract(v1)).equals(Vector.ZeroVector);
+	}
 	// ***************** Helpers ******************** // 
 
 	private Point3D _add(Vector v) {
