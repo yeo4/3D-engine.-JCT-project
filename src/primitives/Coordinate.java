@@ -72,13 +72,13 @@ public class Coordinate {
 		int otherExp = getExp(other);
 		int thisExp = getExp(_coord);
 
-		// if other is too small relatively to our coordinate
-		// return the original coordinate
+		// if other is too small relatively to our Coordinate
+		// return the original Coordinate
 		if (otherExp - thisExp < ACCURACY)
 			return _coord;
 
-		// if our coordinate is too small relatively to other
-		// return negative of other coordinate
+		// if our Coordinate is too small relatively to other
+		// return negative of other Coordinate
 		if (thisExp - otherExp < ACCURACY)
 			return -other;
 
@@ -89,16 +89,16 @@ public class Coordinate {
 	}
 
 	private double _add(double other) {
-		int otherExp = getExp(_coord);
+		int otherExp = getExp(other);
 		int thisExp = getExp(_coord);
 
-		// if other is too small relatively to our coordinate
-		// return the original coordinate
+		// if other is too small relatively to our Coordinate
+		// return the original Coordinate
 		if (otherExp - thisExp < ACCURACY)
 			return _coord;
 
-		// if our coordinate is too small relatively to other
-		// return other coordinate
+		// if our Coordinate is too small relatively to other
+		// return other Coordinate
 		if (thisExp - otherExp < ACCURACY)
 			return other;
 
