@@ -45,7 +45,7 @@ public class Point3D extends Point2D{
 	}
 	@Override
 	public String toString() {
-		return "[" + super.toString()+"_z=" + _z + "]";
+		return "(" +_x + ","+ _y+"," + _z + ")";
 	}
 	
 	// ***************** Operations ******************** // 
@@ -66,7 +66,7 @@ public class Point3D extends Point2D{
 	
 	// ***************** Helpers ******************** // 	
 	
-	public Point3D _subtract(Point3D P3D) {
+	private Point3D _subtract(Point3D P3D) {
 		Coordinate x =this._x.subtract(P3D.getX());
 		Coordinate y =this._y.subtract(P3D.getY());
 		Coordinate z =this._z.subtract(P3D.getZ());

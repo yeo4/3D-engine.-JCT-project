@@ -56,7 +56,7 @@ public class Point2D {
 
 	@Override
 	public String toString() {
-		return "[" + _x + "," + _y + "]";
+		return "(" + _x + "," + _y + ")";
 	}
 
 	// ***************** Operations ******************** // 
