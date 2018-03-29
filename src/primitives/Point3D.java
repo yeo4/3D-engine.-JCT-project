@@ -51,9 +51,9 @@ public class Point3D extends Point2D{
 	// ***************** Operations ******************** // 
 
 	public Point3D add(Vector v) {
-		Coordinate x =this._x.add(v.get()._x);
-		Coordinate y =this._y.add(v.get()._y);
-		Coordinate z =this._z.add(v.get()._z);
+		Coordinate x = this._x.add(v.get()._x);
+		Coordinate y = this._y.add(v.get()._y);
+		Coordinate z = this._z.add(v.get()._z);
 		return new Point3D(x,y,z);
 	}
 	public Vector subtract(Point3D P3D) {
