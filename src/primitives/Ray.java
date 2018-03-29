@@ -49,6 +49,6 @@ public class Ray {
 
 	@Override
 	public String toString() {
-		return "[_P3D=" + _P3D + ", _direction=" + _direction + "]";
+		return "[Point=" + _P3D + ", Vector=" + _direction + "]";
 	}
 }
