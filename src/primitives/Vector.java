@@ -2,7 +2,7 @@ package primitives;
 
 public class Vector {
 	// ***************** Varibles ********************** // 
-	final public static Vector ZeroVector = new Vector(new Point3D(0,0,0));
+	public final static Vector ZeroVector = new Vector(new Point3D(0,0,0));
 	//public static boolean 
 	private Point3D _head;
 	
@@ -86,7 +86,7 @@ public class Vector {
 		return new Point3D(_x,_y,_z);
 	}
 
-	public Point3D _subtract(Vector v) {
+	private Point3D _subtract(Vector v) {
 		Coordinate _x = _head.getX().subtract(v.get().getX());
 		Coordinate _y =  _head.getY().subtract(v.get().getY());
 		Coordinate _z = _head.getZ().subtract(v.get().getZ());
