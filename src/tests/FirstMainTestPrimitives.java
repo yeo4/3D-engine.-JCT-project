@@ -174,10 +174,10 @@ public class FirstMainTestPrimitives {
 			return false;
 		}
 		 tmp = new Vector(new Point3D(-151.0,884.0,-769.0));
-		 if(v1.multiply(v3).equals(tmp)) {
-			System.out.println("Test successful: "+v1.multiply(v3)+" == " + tmp);
+		 if(v1.cross_product(v3).equals(tmp)) {
+			System.out.println("Test successful: "+v1.cross_product(v3)+" == " + tmp);
 		}else {
-			System.out.println("Test failed: "+v1.multiply(v3)+" != " + tmp);
+			System.out.println("Test failed: "+v1.cross_product(v3)+" != " + tmp);
 			return false;
 		}
 		tmp = new Vector(new Point3D(5.0,40.0,45.0));

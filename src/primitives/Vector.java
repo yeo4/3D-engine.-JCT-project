@@ -54,7 +54,7 @@ public class Vector {
 	public Vector subtract(Vector v) {
 		return new Vector(_subtract(v));	
 	}	
-	public Vector multiply(Vector v) {
+	public Vector cross_product(Vector v) {
 		return new Vector(_multiply(v));	
 	}
 	public Vector multiply(double d) {
@@ -74,8 +74,9 @@ public class Vector {
 	}
 	
 	public static boolean areCollinear(Vector v1,Vector v2,Vector v3) {
-		return (v2.subtract(v1)).multiply(v3.subtract(v1)).equals(Vector.ZeroVector);
+		return (v2.subtract(v1)).cross_product(v3.subtract(v1)).equals(Vector.ZeroVector);
 	}
+	
 	// ***************** Helpers ******************** // 
 
 	private Point3D _add(Vector v) {
