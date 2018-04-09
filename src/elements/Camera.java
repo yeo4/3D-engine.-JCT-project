@@ -3,11 +3,13 @@ package elements;
 import primitives.*;
 
 public class Camera { 
+	
 	private Point3D _p0;
 	private Vector _vUp;
 	private Vector _vTo;
 	private Vector _vRight;
 	
+	// ***************** Constructors ********************** //
 	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws Exception {
 		if(_vUp == Vector.ZeroVector || _vTo == Vector.ZeroVector)
 			throw new Exception("All vectors must not be zero");
@@ -18,6 +20,21 @@ public class Camera {
 		this._vTo = _vTo.normalization();
 		this._vRight = this._vTo.cross_product(this._vUp).normalization();
 		
+	}
+
+	// ***************** Administration  ******************** // 
+	
+	// ***************** Operations ******************** // 
+	public Ray constructRayThroughPixel(int Nx, int Ny, int i, int j, double screenDistance, double screenWidth, double screenHeight)
+	{
+		Point3D Pc = this._p0.add(_vTo.multiply(screenDistance));
+		double Ry = screenHeight/Ny;
+		double Rx = screenWidth/Nx;
+		double Yj= (j - Ny/2)*Ry-Ry/2;
+		double Xi= (i - Nx/2)*Rx-Rx/2;
+		Point3D Pij = Pc.add(_vRight.multiply(Xi).subtract(_vUp.multiply(Yj)));
+		Vector Vij = new Vector(Pij.subtract(this._p0));
+		return new Ray(new Point3D(this._p0), new Vector(Vij.normalization()));
 	}
 }
 
