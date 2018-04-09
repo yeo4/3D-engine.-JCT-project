@@ -1,11 +1,9 @@
 package unittests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import primitives.Point3D;
 import primitives.Vector;
