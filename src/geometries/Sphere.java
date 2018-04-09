@@ -53,11 +53,17 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Operations ******************** // 
 	
-	@Override
-	public Vector GetNormal(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean is_on_sphere(Point3D p1) {
+		if(this._radius == _center.distance(p1))
+			return true;
+		return false;
 	}
-
-
+	
+	@Override
+	public Vector GetNormal(Point3D p) throws Exception {
+		if(!is_on_sphere(p)) {
+			throw new Exception("this point is not on the Sphere");
+		}
+		return new Vector(p).subtract(new Vector(this._center)).normalization();
+	}
 }

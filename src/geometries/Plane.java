@@ -3,8 +3,8 @@ package geometries;
 import primitives.*;
 
 public class Plane extends Geometry {
-	private Point3D _p;
-	private Vector _normal;
+	protected Point3D _p;
+	protected Vector _normal;
 	
 	// ***************** Constructors ********************** //
 	
@@ -19,8 +19,13 @@ public class Plane extends Geometry {
 		this._p = p._p;
 		this._normal = p._normal;
 	}
-
-
+	
+	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
+		if(Vector.areCollinear(new Vector(_p1), new Vector(_p2), new Vector(_p3)))
+			throw new Exception("planes and triangles points must not be colliniar");
+		this._p = _p1;
+		this._normal = new Vector(_p1).calc_perpendicular(_p1, _p2, _p3);
+	}
 	
 	// ***************** Getters/Setters ********************** //
 
@@ -39,7 +44,11 @@ public class Plane extends Geometry {
 	/*public void set_normal(Vector _normal) {
 		this._normal = _normal;
 	}*/
-	
+	public boolean is_on_plane(Point3D p1) {
+		if(new Vector(p1.subtract(this._p)).dot_product(new Vector(this._p.add(_normal))) == 0)
+			return true;
+		return false;
+	}
 	// ***************** Administration  ******************** // 
 	
 		@Override
@@ -72,11 +81,9 @@ public class Plane extends Geometry {
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector GetNormal(Point3D p) throws Exception {
+		if(!this.is_on_plane(p))
+			throw new Exception("Point must be on plane");
+		return new Vector(p.add(this._normal)).normalization();
 	}
-	
-	
-
 }

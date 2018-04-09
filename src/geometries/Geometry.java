@@ -15,6 +15,6 @@ public abstract class Geometry {
 	
 	// ***************** Operations ******************** // 
 	
-	public abstract Vector GetNormal(Point3D p);
+	public abstract Vector GetNormal(Point3D p) throws Exception;
 
 }

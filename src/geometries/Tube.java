@@ -13,7 +13,7 @@ public class Tube extends RadialGeometry {
 		if(_axisDirection == Vector.ZeroVector)
 			throw new Exception("axis direction must not be the a zero vector");
 		this._axisPoint = _axisPoint;
-		this._axisDirection = _axisDirection;
+		this._axisDirection = _axisDirection.normalization();
 	}
 	
 	public Tube(Tube t) throws Exception {
@@ -71,10 +71,18 @@ public class Tube extends RadialGeometry {
 
 	// ***************** Operations ******************** // 
 	
+	public boolean is_on_tube(Point3D p1) {
+		/*if() {
+			return true;
+		}
+		return false;*/
+		return false;
+	}
+	
 	@Override
 	public Vector GetNormal(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
+		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).multiply(this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))))));
+		return new Vector(p.subtract(o)).normalization();
 	}
 
 }

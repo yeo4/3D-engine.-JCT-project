@@ -2,7 +2,7 @@ package geometries;
 
 import primitives.*;
 
-public class Triangle extends Geometry {
+public class Triangle extends Plane {
 	private Point3D _p1;
 	private Point3D _p2;
 	private Point3D _p3;
@@ -10,13 +10,10 @@ public class Triangle extends Geometry {
 	// ***************** Constructors ********************** // 
 	
 	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
-		if(Vector.areCollinear(new Vector(_p1), new Vector(_p2), new Vector(_p3)))
-			throw new Exception("triangles points must not be colliniar");
-		this._p1 = _p1;
-		this._p2 = _p2;
-		this._p3 = _p3;
+		super(_p1,_p2,_p3);
 	}
-		public Triangle(Triangle t) {
+	public Triangle(Triangle t) throws Exception {
+		super(t._p,t._normal);
 		this._p1 = t._p1;
 		this._p2 = t._p2;
 		this._p3 = t._p3;
@@ -78,15 +75,15 @@ public class Triangle extends Geometry {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Triangle [_p1=" + _p1 + ", _p2=" + _p2 + ", _p3=" + _p3 + "]";
+		return super.toString() + "△ [_p1=" + _p1 + ", _p2=" + _p2 + ", _p3=" + _p3 + "]";
 	}
 
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector GetNormal(Point3D p) throws Exception {
+		//TODO: must to add cheaks ?! (p is on the triangle)
+		return super.GetNormal(p);
 	}
 
 }
