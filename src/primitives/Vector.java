@@ -82,6 +82,7 @@ public class Vector {
 	
 	// ***************** Helpers ******************** // 
 
+	
 	private Point3D _add(Vector v) {
 		Coordinate _x = v.get().getX().add(_head.getX());
 		Coordinate _y = v.get().getY().add(_head.getY());
