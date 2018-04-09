@@ -4,6 +4,7 @@ import primitives.*;
 
 public class Camera { 
 	
+	
 	private Point3D _p0;
 	private Vector _vUp;
 	private Vector _vTo;

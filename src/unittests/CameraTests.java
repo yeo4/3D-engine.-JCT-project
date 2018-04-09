@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class CameraTests {
 
+	
 	@Test
 	public void testConstructRay() throws Exception {
 		int Nx = 150;
