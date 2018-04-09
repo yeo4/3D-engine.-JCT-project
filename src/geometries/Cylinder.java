@@ -4,7 +4,7 @@ import primitives.*;
 
 public class Cylinder extends Tube {
 	private double _hight;
-	//Test
+	//Test2
 	// ***************** Constructors ********************** //
 	
 	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight) throws Exception {
