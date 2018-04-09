@@ -16,11 +16,6 @@ public class Tube extends RadialGeometry {
 		this._axisDirection = _axisDirection;
 	}
 	
-	public Tube() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	public Tube(Tube t) throws Exception {
 		super(t._radius);
 		this._axisPoint = t._axisPoint;

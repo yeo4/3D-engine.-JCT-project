@@ -6,12 +6,6 @@ public abstract class Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Geometry() {}
-	
-	public Geometry(Geometry g) {
-		
-	}
-	
 	// ***************** Administration  ******************** // 
 	
 	@Override

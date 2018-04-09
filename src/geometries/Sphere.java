@@ -12,11 +12,6 @@ public class Sphere extends RadialGeometry {
 		this._center = _center;
 	}
 	
-	public Sphere() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	public Sphere(Sphere s) throws Exception {
 		super(s._radius);
 		this._center = s._center;

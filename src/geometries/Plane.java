@@ -15,11 +15,6 @@ public class Plane extends Geometry {
 		this._normal = _normal;
 	}
 
-	public Plane() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Plane(Plane p) {
 		this._p = p._p;
 		this._normal = p._normal;

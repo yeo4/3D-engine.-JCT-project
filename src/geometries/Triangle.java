@@ -16,13 +16,7 @@ public class Triangle extends Geometry {
 		this._p2 = _p2;
 		this._p3 = _p3;
 	}
-	
-	public Triangle() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Triangle(Triangle t) {
+		public Triangle(Triangle t) {
 		this._p1 = t._p1;
 		this._p2 = t._p2;
 		this._p3 = t._p3;

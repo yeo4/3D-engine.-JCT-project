@@ -6,17 +6,14 @@ public abstract class RadialGeometry extends Geometry {
 	// ***************** Constructors ********************** //
 	
 	public RadialGeometry(double r) throws Exception{
+		super();
 		if(r<=0)
 			throw new Exception("Radius must be positive");
 		_radius = r;
 	}
 	
-	public RadialGeometry() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	public RadialGeometry(RadialGeometry rg){
+		super();
 		_radius = rg._radius;
 	}
 
@@ -24,16 +21,6 @@ public abstract class RadialGeometry extends Geometry {
 	
 	public double get_radius() {
 		return _radius;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(_radius);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
 	}
 
 	/*public void set_radius(double _radius) {
