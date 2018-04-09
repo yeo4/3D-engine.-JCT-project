@@ -8,7 +8,6 @@ public class Camera {
 	private Vector _vTo;
 	private Vector _vRight;
 	
-	
 	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws Exception {
 		if(_vUp == Vector.ZeroVector || _vTo == Vector.ZeroVector)
 			throw new Exception("All vectors must not be zero");

@@ -8,14 +8,17 @@ import primitives.*;
 public class FirstMainTestPrimitives {
 
 	public static void main(String[] args) throws Exception {
-		Plane p =new Plane(new Point3D(0, 0, 0),new Vector(new Point3D(1,0,0)));
+		/*Plane p =new Plane(new Point3D(0, 0, 0),new Vector(new Point3D(1,0,0)));
 		System.out.println(p.is_on_plane(new Point3D(0,1,1)));
 		System.out.println(p.is_on_plane(new Point3D(2,1,1)));
 
 		System.out.println(p.is_on_plane(new Point3D(0,2,1)));
+*/
+		Tube tube = new Tube(1, new Point3D(0,0,0), new Vector(new Point3D(1,0,0)));
+		System.out.println(tube.GetNormal(new Point3D(0,0,1)));
+		System.out.println(tube.GetNormal(new Point3D(80,80,80)));
+		System.out.println(tube.GetNormal(new Point3D(0,1,0)));
 
-		
-		
 		boolean all_cheaks = true;
 		System.out.println("/********************CoordinateTest*****************/");
 		if(!CoordinateTest()) {

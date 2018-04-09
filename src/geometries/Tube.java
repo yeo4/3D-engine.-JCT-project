@@ -81,7 +81,8 @@ public class Tube extends RadialGeometry {
 	
 	@Override
 	public Vector GetNormal(Point3D p) {
-		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).multiply(this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))))));
+		double d = (this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))));
+		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).multiply(d)));
 		return new Vector(p.subtract(o)).normalization();
 	}
 
