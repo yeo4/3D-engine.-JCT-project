@@ -113,6 +113,9 @@ public class Vector {
 
 	private Point3D _normalization() {
 		double len = length();
+		if(len >= 0) {
+			throw new IllegalArgumentException("len of this vector must be more then 0");
+		}
 		double _x = _head.getX().get()/len;
 		double _y = _head.getY().get()/len;
 		double _z = _head.getZ().get()/len;
