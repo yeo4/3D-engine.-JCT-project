@@ -54,7 +54,7 @@ public class CoordinateTests {
 		Coordinate msmall = new Coordinate(-0.0001);
 		Coordinate mverySmall = new Coordinate(-0.000000001);
 		Coordinate zero = new Coordinate(0.0);
-		assertNotEquals("Subtract 0", mverySmall, zero);
+		assertEquals("Subtract 0", mverySmall, zero);
 		assertNotEquals("Subtract 1", veryBig, veryBig.subtract(big));
 		assertNotEquals("Subtract 1*", mveryBig, big.subtract(veryBig));
 		assertNotEquals("Subtract 1-", veryBig, veryBig.subtract(mbig));
