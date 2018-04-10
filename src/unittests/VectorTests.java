@@ -10,70 +10,6 @@ import primitives.Point3D;
 import primitives.Vector;
 
 public class VectorTests {	
-	public boolean tmp() {
-		Vector v1 = new Vector(new Point3D(1, 8, 9));
-		Vector v2 = new Vector(v1);
-		Vector v3 = new Vector(new Point3D(99, 23, 7));
-
-		Vector tmp = new Vector(new Point3D(-98,-15,2));
-		 tmp = new Vector(new Point3D(-151.0,884.0,-769.0));
-		 if(v1.cross_product(v3).equals(tmp)) {
-			System.out.println("Test successful: "+v1.cross_product(v3)+" == " + tmp);
-		}else {
-			System.out.println("Test failed: "+v1.cross_product(v3)+" != " + tmp);
-			return false;
-		}
-		tmp = new Vector(new Point3D(5.0,40.0,45.0));
-		if(v1.multiply(5).equals(tmp)) {
-			System.out.println("Test successful: "+v1.multiply(5)+" == " + tmp);
-		}else {
-			System.out.println("Test failed: "+v1.multiply(5)+" != " + tmp);
-			return false;
-		}
-		
-		
-		System.out.println("/**dot_product**/");
-		
-		if(round(v1.dot_product(v2),3)  == 146) {
-			System.out.println("Test successful: "+v1.dot_product(v2)+" == " + 146);
-		}else {
-			System.out.println("Test failed: "+v1.dot_product(v2)+" != " + 146);
-			return false;
-		}
-		tmp = new Vector(new Point3D(0, -4, 0));
-		if(round(tmp.dot_product(new Vector(new Point3D(0, 4, 0))),3) == -16) {
-			System.out.println("Test successful: "+tmp.dot_product(new Vector(new Point3D(0, 4, 0)))+" == " + -16);
-		}else {
-			System.out.println("Test failed: "+tmp.dot_product(new Vector(new Point3D(0, 4, 0)))+" != " + -16);
-			return false;
-		}
-		
-		tmp = new Vector(new Point3D(0, 1, 0));
-		if(round(tmp.dot_product(new Vector(new Point3D(1, 0, 0))),3) == 0) {
-			System.out.println("Test successful: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" == " + 0);
-		}else {
-			System.out.println("Test failed: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" != " + 0);
-			return false;
-		}
-		
-		tmp = new Vector(new Point3D(1, 1, 0));
-		if(round(tmp.dot_product(new Vector(new Point3D(1, 0, 0))),3) == 1) {
-			System.out.println("Test successful: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" == " + 1);
-		}else {
-			System.out.println("Test failed: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" != " + 1);
-			return false;
-		}
-
-		
-		tmp = new Vector(new Point3D(-1, 1, 0));
-		if(round(tmp.dot_product(new Vector(new Point3D(1, 0, 0))),3) == -1) {
-			System.out.println("Test successful: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" == " + -1);
-		}else {
-			System.out.println("Test failed: "+tmp.dot_product(new Vector(new Point3D(1, 0, 0)))+" != " + -1);
-			return false;
-		}
-		return false;
-	}
 	@Test
 	public void testAdd() {
 		
@@ -179,17 +115,24 @@ public class VectorTests {
 	}
 	@Test
 	public void testNormalize() {
+		Vector v1 = new Vector(new Point3D(1, 8, 9));
+		Vector 	v4 = new Vector(new Point3D(0, -4, 0));
+		Vector v5 = new Vector(new Point3D(0, 1, 0));
+		Vector v6 = new Vector(new Point3D(1, 1, 0));
+		Vector v7 = new Vector(new Point3D(-1, 1, 8));
+
+		assertEquals(v1.normalization(),new Vector(0.0827605888602368,0.6620847108818944,0.7448452997421311));
+		assertEquals(v4.normalization(),new Vector(0.0,-1.0,0.0));
+		assertEquals(v5.normalization(),new Vector(0.0,1.0,0.0));
+		assertEquals(v6.normalization(),new Vector(0.7071067811865475,0.7071067811865475,0.0));
+		assertEquals(v7.normalization(),new Vector(-0.12309149097933272,0.12309149097933272,0.9847319278346618));
+
+		assertNotEquals(v1.normalization(),new Vector(0.8,0.7,1.1));
+		assertNotEquals(v4.normalization(),new Vector(0.0,-1.0,1.0));
+
 	}
 	@Test
 	public void testCrossProduct() {
 	}
-	public double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-
-	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
-	}
-
 
 }
