@@ -140,12 +140,9 @@ public class VectorTests {
 		assertEquals(v7.cross_product(v6),new Vector(-8,8,-2));
 		assertEquals(v4.cross_product(v4),new Vector(0,0,0));
 
-		
 		assertNotEquals(v5.cross_product(v4),new Vector(0,5,0));
 		assertNotEquals(v1.cross_product(v5),new Vector(9,0,1.0));
-		assertNotEquals(v7.cross_product(v6),new Vector(8,8,-2));
-
-		
+		assertNotEquals(v7.cross_product(v6),new Vector(8,8,-2));		
 	}
 
 }
