@@ -4,8 +4,6 @@ public class Coordinate {
 	
 	private double _coord;
 	
-	//test
-	
 	// It is binary, equivalent to ~1/1,000,000 in decimal (6 digits)
 	private static final int ACCURACY = -20;
 
