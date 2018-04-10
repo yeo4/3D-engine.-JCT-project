@@ -1,11 +1,7 @@
 package unittests;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 import primitives.Point3D;
 import primitives.Vector;
 
@@ -45,7 +41,6 @@ public class VectorTests {
 		Vector v5 = new Vector(new Point3D(99.14289620008331, 33.205966061252724, 98.32520130644419));
 		Vector v6 = new Vector(new Point3D(41.071748604250644, 84.58979024175107, 34.86594461045808));
 		
-		
 		assertNotEquals(v1.subtract(v4),new Vector(new Point3D(98.62287282020971, 99.41815644944673, 51.949060534840065)));
 		assertNotEquals(v2.subtract(v5),new Vector(new Point3D(52.06751846619897, 96.77522361647556, 13.087110079289276)));
 		assertNotEquals(v4.subtract(v6),new Vector(new Point3D(41.99428706091619, 26.682322395630464, 58.195068177703305)));
@@ -54,15 +49,14 @@ public class VectorTests {
 	
 	@Test
 	public void testScalling() {
-		
 		Vector tmp = new Vector(new Point3D(5.0,40.0,45.0));
 		Vector v1 = new Vector(new Point3D(1, 8, 9));
 		Vector v2 = new Vector(v1);
-		Vector v3 = new Vector(new Point3D(99, 23, 7));
+//		Vector v3 = new Vector(new Point3D(99, 23, 7));
 		Vector v4 = new Vector(new Point3D(99, 23, 6));
-		Vector v5 = new Vector(new Point3D(43, 20, 2));
-		Vector v6 = new Vector(new Point3D(13, 16, 9));
-		Vector v7= new Vector(new Point3D(1, 8, 10));
+//		Vector v5 = new Vector(new Point3D(43, 20, 2));
+//		Vector v6 = new Vector(new Point3D(13, 16, 9));
+//		Vector v7= new Vector(new Point3D(1, 8, 10));
 
 		assertEquals(v1.multiply(5),tmp);
 		assertEquals(v1.multiply(1),v1);
