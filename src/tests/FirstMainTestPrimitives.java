@@ -8,6 +8,14 @@ import primitives.*;
 public class FirstMainTestPrimitives {
 
 	public static void main(String[] args) throws Exception {
+		
+		/*
+		Vector v100= new Vector(new Point3D(0, 0, 1));
+		Point3D p1 = new Point3D(0,0,0);
+		Cylinder c = new Cylinder(5, p1, v100, 3);
+		System.out.println(c.GetNormal(new Point3D(1.5, 0, -1.5)).toString());
+		*/
+		
 		/*Plane p =new Plane(new Point3D(0, 0, 0),new Vector(new Point3D(1,0,0)));
 		System.out.println(p.is_on_plane(new Point3D(0,1,1)));
 		System.out.println(p.is_on_plane(new Point3D(2,1,1)));

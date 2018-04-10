@@ -14,9 +14,9 @@ public class Triangle extends Plane {
 	}
 	public Triangle(Triangle t) throws Exception {
 		super(t._p,t._normal);
-		this._p1 = t._p1;
-		this._p2 = t._p2;
-		this._p3 = t._p3;
+		this._p1 = new Point3D (t._p1);
+		this._p2 = new Point3D (t._p2);
+		this._p3 = new Point3D (t._p3);
 	}
 	// ***************** Getters/Setters ********************** //  
 
@@ -81,8 +81,9 @@ public class Triangle extends Plane {
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) throws Exception {
-		//TODO: must to add cheaks ?! (p is on the triangle)
+	public Vector GetNormal(Point3D p) {
+		//if(p is not on the triangle)
+		//   throw new .....
 		return super.GetNormal(p);
 	}
 

@@ -12,14 +12,14 @@ public class Tube extends RadialGeometry {
 		super(r);
 		if(_axisDirection == Vector.ZeroVector)
 			throw new Exception("axis direction must not be the a zero vector");
-		this._axisPoint = _axisPoint;
-		this._axisDirection = _axisDirection.normalization();
+		this._axisPoint = new Point3D(_axisPoint);
+		this._axisDirection = new Vector(_axisDirection.normalization());
 	}
 	
 	public Tube(Tube t) throws Exception {
 		super(t._radius);
-		this._axisPoint = t._axisPoint;
-		this._axisDirection = t._axisDirection;
+		this._axisPoint = new Point3D(t._axisPoint);
+		this._axisDirection = new Vector(t._axisDirection);
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -81,8 +81,10 @@ public class Tube extends RadialGeometry {
 	
 	@Override
 	public Vector GetNormal(Point3D p) {
+		//if(is not on Tube)
+		//	throw new...
 		double d = (this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))));
-		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).multiply(d)));
+		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).normalization().multiply(d)));
 		return new Vector(p.subtract(o)).normalization();
 	}
 

@@ -11,20 +11,20 @@ public class Plane extends Geometry {
 	public Plane(Point3D _p, Vector _normal) throws Exception {
 		if(_normal == Vector.ZeroVector)
 			throw new Exception("Normal to plane must not be the a zero vector");
-		this._p = _p;
-		this._normal = _normal;
+		this._p = new Point3D(_p);
+		this._normal = new Vector(_normal);
 	}
 
 	public Plane(Plane p) {
-		this._p = p._p;
-		this._normal = p._normal;
+		this._p = new Point3D(p._p);
+		this._normal = new Vector(p._normal);
 	}
 	
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
 		if(Vector.areCollinear(new Vector(_p1), new Vector(_p2), new Vector(_p3)))
 			throw new Exception("planes and triangles points must not be colliniar");
 		this._p = _p1;
-		this._normal = new Vector(_p1).calc_perpendicular(_p1, _p2, _p3);
+		this._normal = new Vector(_p1).calc_perpendicular(_p1, _p2, _p3).normalization();
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -81,9 +81,9 @@ public class Plane extends Geometry {
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) throws Exception {
-		if(!this.is_on_plane(p))
-			throw new Exception("Point must be on plane");
+	public Vector GetNormal(Point3D p) {
+		//if(!this.is_on_plane(p))
+		//	throw new Exception("Point must be on plane");
 		return new Vector(p.add(this._normal)).normalization();
 	}
 }

@@ -3,17 +3,18 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import geometries.Cylinder;
 import primitives.Point3D;
 import primitives.Vector;
 
 public class MainForTests {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Vector v1 = new Vector(new Point3D(1, 8, 9));
 		Vector v2 = new Vector(v1);
 		Vector v3 = new Vector(new Point3D(99, 23, 7));
 		Vector v7= new Vector(new Point3D(1, 8, 10));
-
+	
 	//	System.out.println(v1.subtract(v2));
 	//	System.out.println(v1.subtract(v7));
 

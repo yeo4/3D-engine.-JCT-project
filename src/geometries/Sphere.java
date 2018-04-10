@@ -9,12 +9,12 @@ public class Sphere extends RadialGeometry {
 	
 	public Sphere(double _r, Point3D _center) throws Exception {
 		super(_r);
-		this._center = _center;
+		this._center = new Point3D (_center);
 	}
 	
 	public Sphere(Sphere s) throws Exception {
 		super(s._radius);
-		this._center = s._center;
+		this._center = new Point3D (s._center);
 	}
 	
 	// ***************** Getters/Setters ********************** // 
@@ -60,10 +60,10 @@ public class Sphere extends RadialGeometry {
 	}
 	
 	@Override
-	public Vector GetNormal(Point3D p) throws Exception {
-		if(!is_on_sphere(p)) {
-			throw new Exception("this point is not on the Sphere");
-		}
+	public Vector GetNormal(Point3D p) {
+		//if(!is_on_sphere(p)) 
+		//	throw new Exception("this point is not on the Sphere");
+		
 		return new Vector(p).subtract(new Vector(this._center)).normalization();
 	}
 }
