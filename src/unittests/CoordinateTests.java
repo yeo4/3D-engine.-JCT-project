@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import primitives.*;
 
-class CoordinateTests {
+public class CoordinateTests {
 
 	@Test
 	public void testEquals() {

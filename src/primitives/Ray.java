@@ -6,12 +6,12 @@ public class Ray {
 	
 	// ***************** Constructors ********************** // 
 	public Ray(Point3D P3D, Vector direction) {
-		_P3D = P3D;
-		_direction = direction;
+		_P3D = new Point3D(P3D);
+		_direction = new Vector(direction);
 	}
 	public Ray(Ray ray) {
-		_P3D = ray.getP3D();
-		_direction = ray.getDirection();
+		_P3D = new Point3D(ray.getP3D());
+		_direction = new Vector(ray.getDirection());
 	}
 	// ***************** Getters/Setters ********************** //
 

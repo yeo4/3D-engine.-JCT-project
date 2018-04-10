@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import primitives.Point3D;
 import primitives.Vector;
 
-class VectorTests {	
+public class VectorTests {	
 	public boolean tmp() {
 		Vector v1 = new Vector(new Point3D(1, 8, 9));
 		Vector v2 = new Vector(v1);

@@ -8,15 +8,15 @@ public class Vector {
 	
 	// ***************** Constructors ********************** // 
 	public Vector(Point3D head) {
-		_head = head;
+		_head = new Point3D(head);
 	}
 	
-	/*public Vector(double x, double y, double z) {
+	public Vector(double x, double y, double z) {
 		_head = new Point3D(x,y,z);
-	}*/
+	}
 	
 	public Vector(Vector v) {
-		_head = v.get();
+		_head = new Point3D(v.get());
 	}
 	// ***************** Getters/Setters ********************** //
 	public Point3D get() {
