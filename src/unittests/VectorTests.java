@@ -133,6 +133,25 @@ public class VectorTests {
 	}
 	@Test
 	public void testCrossProduct() {
+		Vector v1 = new Vector(new Point3D(1, 8, 9));
+		Vector 	v4 = new Vector(new Point3D(0, -4, 0));
+		Vector v5 = new Vector(new Point3D(0, 1, 0));
+		Vector v6 = new Vector(new Point3D(1, 1, 0));
+		Vector v7 = new Vector(new Point3D(-1, 1, 8));
+
+		assertEquals(v1.cross_product(v4),new Vector(36,0,-4));
+		assertEquals(v4.cross_product(v7),new Vector(-32,0,-4));
+		assertEquals(v5.cross_product(v4),new Vector(0,0,0));
+		assertEquals(v1.cross_product(v5),new Vector(-9,0,1.0));
+		assertEquals(v7.cross_product(v6),new Vector(-8,8,-2));
+		assertEquals(v4.cross_product(v4),new Vector(0,0,0));
+
+		
+		assertNotEquals(v5.cross_product(v4),new Vector(0,5,0));
+		assertNotEquals(v1.cross_product(v5),new Vector(9,0,1.0));
+		assertNotEquals(v7.cross_product(v6),new Vector(8,8,-2));
+
+		
 	}
 
 }
