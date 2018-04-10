@@ -147,36 +147,41 @@ public class VectorTests {
 		Vector v6 = new Vector(new Point3D(1, 1, 0));
 		Vector v7 = new Vector(new Point3D(-1, 1, 0));
 
-		assertEquals(v1.dot_product(v2),146.0);
-		assertEquals(v4.dot_product(new Vector(new Point3D(0, 4, 0))),-16.0);
-		assertEquals(v5.dot_product(new Vector(new Point3D(0, 1, 0))),0.0);
-		assertEquals(v6.dot_product(new Vector(new Point3D(1, 0, 0))),1.0);
-		assertEquals(v7.dot_product(new Vector(new Point3D(1, 0, 0))),-1.0);
+		assertEquals(v1.dot_product(v2),146.0,0);
+		assertEquals(v4.dot_product(new Vector(new Point3D(0, 4, 0))),-16.0,0);
+		assertEquals(v5.dot_product(new Vector(new Point3D(0, 1, 0))),1.0,0);
+		assertEquals(v6.dot_product(new Vector(new Point3D(1, 0, 0))),1.0,0);
+		assertEquals(v7.dot_product(new Vector(new Point3D(1, 0, 0))),-1.0,0);
 		
 		assertNotEquals(v5.dot_product(new Vector(new Point3D(0, 1, 2))),0.0);
-		assertNotEquals(v6.dot_product(new Vector(new Point3D(1, 0, 1))),1.0);
-		assertNotEquals(v7.dot_product(new Vector(new Point3D(1, 0, 1))),-1.0);
+		assertNotEquals(v6.dot_product(new Vector(new Point3D(1, 0, 1))),8.0);
+		assertNotEquals(v7.dot_product(new Vector(new Point3D(1, 0, 1))),-8.0);
 	}
 	
 	@Test
 	public void testLength() {
 		Vector v1 = new Vector(new Point3D(1, 8, 9));
-		Vector v2 = new Vector(v1);
 		Vector 	v4 = new Vector(new Point3D(0, -4, 0));
 		Vector v5 = new Vector(new Point3D(0, 1, 0));
 		Vector v6 = new Vector(new Point3D(1, 1, 0));
-		Vector v7 = new Vector(new Point3D(-1, 1, 0));
+		Vector v7 = new Vector(new Point3D(-1, 1, 8));
 
-		assertEquals(v1.dot_product(v2),146.0);
-		assertEquals(v4.dot_product(new Vector(new Point3D(0, 4, 0))),-16.0);
-		assertEquals(v5.dot_product(new Vector(new Point3D(0, 1, 0))),0.0);
-		assertEquals(v6.dot_product(new Vector(new Point3D(1, 0, 0))),1.0);
-		assertEquals(v7.dot_product(new Vector(new Point3D(1, 0, 0))),-1.0);
+		assertEquals(v1.length(),12.083045973594572,0.001);
+		assertEquals(v4.length(),4.0,0);
+		assertEquals(v5.length(),1.0,0);
+		assertEquals(v6.length(),1.4142135623730951,0.001);
+		assertEquals(v7.length(),8.12403840463596,0.001);
 		
-		assertNotEquals(v5.dot_product(new Vector(new Point3D(0, 1, 2))),0.0);
-		assertNotEquals(v6.dot_product(new Vector(new Point3D(1, 0, 1))),1.0);
-		assertNotEquals(v7.dot_product(new Vector(new Point3D(1, 0, 1))),-1.0);
+		assertNotEquals(v5.length(),1.1,0);
+		assertNotEquals(v6.length(),7,0.001);
+		assertNotEquals(v7.length(),99,0.001);
 		
+	}
+	@Test
+	public void testNormalize() {
+	}
+	@Test
+	public void testCrossProduct() {
 	}
 	public double round(double value, int places) {
 	    if (places < 0) throw new IllegalArgumentException();
