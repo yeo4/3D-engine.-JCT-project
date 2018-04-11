@@ -40,10 +40,6 @@ public class Camera {
 		double Rx = screenWidth/Nx;
 		double Yj = ((double)j - (double)Ny/2)*Ry - Ry/2;
 		double Xi = ((double)i - (double)Nx/2)*Rx - Rx/2;
-		/*System.out.println(Ny/2 );
-		System.out.println(Ny);
-		System.out.println(Ry);
-		System.out.println(Yj);*/
 		Point3D Pij = Pc.add(_vRight.multiply(Xi).subtract(_vUp.multiply(Yj)));
 		Vector Vij = new Vector(Pij.subtract(this._p0));
 		return new Ray(new Point3D(this._p0), new Vector(Vij));
