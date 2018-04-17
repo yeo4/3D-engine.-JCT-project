@@ -3,15 +3,18 @@ package primitives;
 public class Ray {
 	private Point3D _P3D;
 	private Vector _direction;
+	private double _t;
 	
 	// ***************** Constructors ********************** // 
 	public Ray(Point3D P3D, Vector direction) {
 		_P3D = new Point3D(P3D);
-		_direction = new Vector(direction);
+		_direction = new Vector(direction).normalization();
+		_t = direction.length();
 	}
 	public Ray(Ray ray) {
 		_P3D = new Point3D(ray.getP3D());
 		_direction = new Vector(ray.getDirection());
+		_t = ray._t;
 	}
 	// ***************** Getters/Setters ********************** //
 
@@ -21,6 +24,10 @@ public class Ray {
 
 	public Vector getDirection() {
 		return _direction;
+	}
+	
+	public double getT() {
+		return _t;
 	}
 	
 	// ***************** Administration  ******************** //

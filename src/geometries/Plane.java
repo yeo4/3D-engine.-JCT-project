@@ -45,7 +45,7 @@ public class Plane extends Geometry {
 		this._normal = _normal;
 	}*/
 	public boolean is_on_plane(Point3D p1) {
-		if(new Vector(p1.subtract(this._p)).dot_product(new Vector(this._p.add(_normal))) == 0)
+		if(Coordinate.ZERO.equals(new Coordinate(new Vector(p1.subtract(this._p)).dot_product(new Vector(this._p.add(_normal))))))
 			return true;
 		return false;
 	}

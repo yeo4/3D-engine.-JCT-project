@@ -60,7 +60,7 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap1(Point3D p) {
 		
-		if(p.subtract(this._Pcenter1).dot_product(this._axisDirection) == 0 && p.distance(this._Pcenter1) < this._radius)
+		if(Coordinate.ZERO.equals(new Coordinate(p.subtract(this._Pcenter1).dot_product(this._axisDirection))) && p.distance(this._Pcenter1) < this._radius)
 			return true;
 		return false;
 			
@@ -68,7 +68,7 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap2(Point3D p) {
 		
-		if(p.subtract(this._Pcenter2).dot_product(this._axisDirection) == 0 && p.distance(this._Pcenter2) < this._radius)
+		if(Coordinate.ZERO.equals(new Coordinate(p.subtract(this._Pcenter2).dot_product(this._axisDirection))) && p.distance(this._Pcenter2) < this._radius)
 			return true;
 		return false;
 			

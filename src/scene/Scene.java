@@ -11,7 +11,8 @@ import primitives.*;
 public class Scene {
 	private String _sceneName;
 	private Color _background;
-	private List<Geometry> _geometries;
+//	private List<Geometry> _geometries;
+	//Add Geometry
 	private Camera _camera;
 	private double _screenDistance;
 	
@@ -21,7 +22,7 @@ public class Scene {
 		_background = new Color(255, 255, 255);
 		_camera = new Camera(new Point3D(0,	 0, 0), new Vector(0,0,0),new Vector(0,1,0));
 		_screenDistance = 10;
-		_geometries = new ArrayList<>();
+		//_geometries = new ArrayList<>();
 	}
 
 	public String get_sceneName() {

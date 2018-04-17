@@ -23,11 +23,11 @@ public class CameraTests {
 		{
 			for (int j = 1; j < WIDTH + 1; j++)
 			{
-				Ray ray = camera.constructRayThroughPixel(WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
+				Ray ray = camera.constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
 				
-				screen[i][j] = ray.getP3D().add(ray.getDirection());
-				System.out.print(screen[i][j]);
-				System.out.println(ray.getDirection());
+				screen[i][j] = ray.getP3D().add(ray.getDirection().multiply(ray.getT()));
+				//System.out.print(screen[i][j]);
+				//System.out.println(ray.getDirection());
 				
 				//Checking z-coordinate
 				if(Double.compare(screen[i][j].getZ().get(), -1.0) == 0)
@@ -36,11 +36,11 @@ public class CameraTests {
 					fail("Wrong z coordinate" + screen[i][j].getZ().get() );
 				
 				// Checking all options
-				double x = screen[i][j].getX().get();
-				double y = screen[i][j].getX().get();
+				//double x = screen[i][j].getX().get();
+				//double y = screen[i][j].getY().get();
 				
-				if (Double.compare(x, 3) == 0 || Double.compare(x, 0) == 0 || Double.compare(x, -3) == 0){
-					if (Double.compare(y, 3) == 0 || Double.compare(y, 0) == 0 || Double.compare(y, -3) == 0){
+				if (screen[i][j].getX().equals(new Coordinate(3)) || screen[i][j].getX().equals(new Coordinate(0))|| screen[i][j].getX().equals(new Coordinate(-3))){
+					if (screen[i][j].getY().equals(new Coordinate(3)) || screen[i][j].getY().equals(new Coordinate(0)) || screen[i][j].getY().equals(new Coordinate(-3))){
 						assertTrue(true);
 					}
 					else

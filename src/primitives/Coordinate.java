@@ -1,6 +1,7 @@
 package primitives;
 
 public class Coordinate {
+	public static final Coordinate ZERO = new Coordinate(0);
 	
 	private double _coord;
 	
