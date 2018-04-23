@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.ArrayList;
+
 import primitives.*;
 
 public class Tube extends RadialGeometry {
@@ -7,10 +9,9 @@ public class Tube extends RadialGeometry {
 	protected Vector _axisDirection;
 	
 	// ***************** Constructors ********************** // 
-
 	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) throws Exception {
 		super(r);
-		if(_axisDirection == Vector.ZeroVector)
+		if(_axisDirection.equals(Vector.ZeroVector))
 			throw new Exception("axis direction must not be the a zero vector");
 		this._axisPoint = new Point3D(_axisPoint);
 		this._axisDirection = new Vector(_axisDirection.normalization());
@@ -86,6 +87,12 @@ public class Tube extends RadialGeometry {
 		double d = (this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))));
 		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).normalization().multiply(d)));
 		return new Vector(p.subtract(o)).normalization();
+	}
+
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.ArrayList;
+
 import primitives.*;
 
 public class Sphere extends RadialGeometry {
@@ -54,7 +56,7 @@ public class Sphere extends RadialGeometry {
 	// ***************** Operations ******************** // 
 	
 	public boolean is_on_sphere(Point3D p1) {
-		if(this._radius == _center.distance(p1))
+		if(new Coordinate(this._radius - _center.distance(p1)).equals(Coordinate.ZERO))
 			return true;
 		return false;
 	}
@@ -65,5 +67,26 @@ public class Sphere extends RadialGeometry {
 		//	throw new Exception("this point is not on the Sphere");
 		
 		return new Vector(p).subtract(new Vector(this._center)).normalization();
+	}
+
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		
+		ArrayList<Point3D> arrPoints = new ArrayList<>();
+		Vector u = new Vector(this._center.subtract(r.getP3D()));
+		double tm = r.getDirection().dot_product(u);
+		double dSquared = u.dot_product(u) - (tm*tm);
+		if(dSquared - this._radius*this._radius > 0){
+			return arrPoints;
+		}
+		double th = Math.sqrt(this._radius*this._radius - dSquared);
+		double t1 = tm+th;
+		double t2 = tm-th;
+		if(t1>0)
+			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t1))));
+		if(t2>0)
+			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t2))));
+		
+		return arrPoints;
 	}
 }

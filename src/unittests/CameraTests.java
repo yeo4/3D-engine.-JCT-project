@@ -1,6 +1,8 @@
 package unittests;
 import elements.*;
 import primitives.*;
+import scene.Scene;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -15,15 +17,14 @@ public class CameraTests {
 		
 		Point3D[][] screen = new Point3D [HEIGHT+1][WIDTH+1];
 		
-		Camera camera = new Camera(new Point3D(0.0 ,0.0 ,0.0), new Vector (0.0, 1.0, 0.0), new Vector (0.0, 0.0, -1.0));
-		
-		System.out.println("Camera:\n" + camera);
+		Scene scene = new Scene("TestScene");
+		System.out.println("Camera:\n" + scene.get_camera());
 		
 		for (int i = 1; i < HEIGHT + 1; i++)
 		{
 			for (int j = 1; j < WIDTH + 1; j++)
 			{
-				Ray ray = camera.constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
+				Ray ray = scene.get_camera().constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
 				
 				screen[i][j] = ray.getP3D().add(ray.getDirection().multiply(ray.getT()));
 				//System.out.print(screen[i][j]);

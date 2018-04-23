@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.ArrayList;
+
 import primitives.*;
 
 public class Triangle extends Plane {
@@ -11,6 +13,9 @@ public class Triangle extends Plane {
 	
 	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
 		super(_p1,_p2,_p3);
+		this._p1 = new Point3D (_p1);
+		this._p2 = new Point3D (_p2);
+		this._p3 = new Point3D (_p3);
 	}
 	public Triangle(Triangle t) throws Exception {
 		super(t._p,t._normal);
@@ -86,5 +91,23 @@ public class Triangle extends Plane {
 		//   throw new .....
 		return super.GetNormal(p);
 	}
-
+	
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		ArrayList<Point3D> arrPoints = super.findIntersections(r);
+		for (int i=0;i<arrPoints.size();i++) {
+			Vector v1 = new Vector(this._p1.subtract(r.getP3D()));
+			Vector v2 = new Vector(this._p2.subtract(r.getP3D()));
+			Vector v3 = new Vector(this._p3.subtract(r.getP3D()));
+			Vector N1 = v1.cross_product(v2).normalization();
+			Vector N2 = v2.cross_product(v3).normalization();
+			Vector N3 = v3.cross_product(v1).normalization();
+			boolean b1 = !(r.getDirection().dot_product(N1) >= 0 && r.getDirection().dot_product(N2) >= 0 && r.getDirection().dot_product(N3) >= 0);
+			boolean b2 = !(r.getDirection().dot_product(N1) <= 0 && r.getDirection().dot_product(N2) <= 0 && r.getDirection().dot_product(N3) <= 0);
+				if(b1 && b2)
+					arrPoints.remove(arrPoints.get(i));
+		}
+		
+		return arrPoints;
+	}
 }

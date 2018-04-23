@@ -11,18 +11,34 @@ import primitives.*;
 public class Scene {
 	private String _sceneName;
 	private Color _background;
-//	private List<Geometry> _geometries;
-	//Add Geometry
+	private Geometries _geometries;
 	private Camera _camera;
 	private double _screenDistance;
+
+	public Scene(String _sceneName) throws Exception  {
+		this._sceneName = _sceneName;
+		this._background = new Color(255, 255, 255);
+		this._geometries = new Geometries();
+		this._camera = new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1));
+		this._screenDistance = 50;
+	}
 	
-	public Scene(String _sceneName) throws Exception {
+	public Scene(String _sceneName, Color _background, Geometries _geometries, Camera _camera, double _screenDistance) throws Exception {
 		super();
 		this._sceneName = _sceneName;
-		_background = new Color(255, 255, 255);
-		_camera = new Camera(new Point3D(0,	 0, 0), new Vector(0,0,0),new Vector(0,1,0));
-		_screenDistance = 10;
-		//_geometries = new ArrayList<>();
+		this._background = _background;
+		_geometries = new Geometries(_geometries);
+		this._camera = _camera;
+		this._screenDistance = _screenDistance;
+	}
+	
+	public Scene(Scene s) throws Exception {
+		super();
+		this._sceneName = s._sceneName;
+		this._background = s._background;
+		this._geometries = new Geometries(s._geometries);
+		this._camera = s._camera;
+		this._screenDistance = s._screenDistance;
 	}
 
 	public String get_sceneName() {
@@ -55,9 +71,6 @@ public class Scene {
 
 	public void addGeometry(Geometry g) {
 		_geometries.add(g);
-		render();
 	}
-	private void render() {
-		
-	}
+
 }

@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CameraTests.class, CoordinateTests.class, VectorTests.class })
+@SuiteClasses({ CameraTests.class, CoordinateTests.class, PlaneTests.class, SphereTests.class, TriangleTests.class,
+		VectorTests.class })
 public class AllTests {
 
 }

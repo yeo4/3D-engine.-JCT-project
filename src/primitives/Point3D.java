@@ -1,6 +1,6 @@
 package primitives;
 
-public class Point3D extends Point2D{
+public class Point3D extends Point2D {
 	
 	private Coordinate _z;
 
@@ -72,5 +72,6 @@ public class Point3D extends Point2D{
 		Coordinate z =this._z.subtract(P3D.getZ());
 		return new Point3D(x,y,z);
 	}
+
 
 }

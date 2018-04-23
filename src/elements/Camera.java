@@ -3,9 +3,7 @@ package elements;
 import primitives.*;
 
 public class Camera { 
-	
-	//TEST123
-	
+		
 	private Point3D _p0;
 	private Vector _vUp;
 	private Vector _vTo;
@@ -13,7 +11,7 @@ public class Camera {
 	
 	// ***************** Constructors ********************** //
 	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws Exception {
-		if(_vUp == Vector.ZeroVector || _vTo == Vector.ZeroVector)
+		if(_vUp.equals(Vector.ZeroVector) || _vTo.equals(Vector.ZeroVector))
 			throw new Exception("All vectors must not be zero");
 		if(_vUp.dot_product(_vTo) != 0)
 			throw new Exception("Vectors must be perpendicular");

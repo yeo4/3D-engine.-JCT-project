@@ -48,7 +48,7 @@ public class Vector {
 	
 	// ***************** Operations ******************** // 
 	
-	public Vector calc_perpendicular(Point3D _p1, Point3D _p2, Point3D _p3) {
+	public static Vector calc_perpendicular(Point3D _p1, Point3D _p2, Point3D _p3) {
 		return new Vector(_p2.subtract(_p1)).cross_product(new Vector(_p3.subtract(_p1)));
 	}
 	public Vector add(Vector v) {

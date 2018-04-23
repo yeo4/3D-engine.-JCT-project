@@ -1,4 +1,4 @@
-//Things to check:
-1. 
-2. 
+Things to check:
+1. להוסיף מקרה קצה לכל הבדיקות 
+2. findIntercnte ללצילנדר וטוב
 3. 

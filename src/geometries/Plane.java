@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.ArrayList;
+
 import primitives.*;
 
 public class Plane extends Geometry {
@@ -9,10 +11,10 @@ public class Plane extends Geometry {
 	// ***************** Constructors ********************** //
 	
 	public Plane(Point3D _p, Vector _normal) throws Exception {
-		if(_normal == Vector.ZeroVector)
+		if(_normal.equals(Vector.ZeroVector))
 			throw new Exception("Normal to plane must not be the a zero vector");
 		this._p = new Point3D(_p);
-		this._normal = new Vector(_normal);
+		this._normal = new Vector(_normal).normalization();
 	}
 
 	public Plane(Plane p) {
@@ -23,8 +25,8 @@ public class Plane extends Geometry {
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
 		if(Vector.areCollinear(new Vector(_p1), new Vector(_p2), new Vector(_p3)))
 			throw new Exception("planes and triangles points must not be colliniar");
-		this._p = _p1;
-		this._normal = new Vector(_p1).calc_perpendicular(_p1, _p2, _p3).normalization();
+		this._p = new Point3D(_p1);
+		this._normal = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -44,8 +46,9 @@ public class Plane extends Geometry {
 	/*public void set_normal(Vector _normal) {
 		this._normal = _normal;
 	}*/
+	
 	public boolean is_on_plane(Point3D p1) {
-		if(Coordinate.ZERO.equals(new Coordinate(new Vector(p1.subtract(this._p)).dot_product(new Vector(this._p.add(_normal))))))
+		if(Coordinate.ZERO.equals(new Coordinate(new Vector(p1.subtract(this._p)).dot_product(_normal))))
 			return true;
 		return false;
 	}
@@ -84,6 +87,27 @@ public class Plane extends Geometry {
 	public Vector GetNormal(Point3D p) {
 		//if(!this.is_on_plane(p))
 		//	throw new Exception("Point must be on plane");
-		return new Vector(p.add(this._normal)).normalization();
+		return new Vector(this._normal);
+	}
+
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		
+		ArrayList<Point3D> arrPoints = new ArrayList<>();
+		
+		
+		double mechane = (this._normal.dot_product(r.getDirection()));
+		
+		if(mechane == 0)
+			return arrPoints;
+		
+		double mone = this._normal.dot_product(this._p.subtract(r.getP3D()));
+		double t = mone/mechane;
+		
+		if(t < 0)
+			return arrPoints;
+		
+		arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t))));
+		return arrPoints;
 	}
 }

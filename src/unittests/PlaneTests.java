@@ -13,9 +13,10 @@ import geometries.Plane;
 import primitives.*;
 
 public class PlaneTests {
-	/*** Plane test ***/
+	/*** Plane test 
+	 * @throws Exception ***/
 	@Test
-	public void testIntersectionPoints(){
+	public void testIntersectionPoints() throws Exception{
 		final int WIDTH = 3;
 		final int HEIGHT = 3;
 		Ray[][] rays = new Ray[HEIGHT][WIDTH];
@@ -32,8 +33,8 @@ public class PlaneTests {
 		for (int i = 0; i < HEIGHT; i++) {
 		 for (int j = 0; j < WIDTH; j++) {
 		  rays[i][j] = camera.constructRayThroughPixel(WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
-		  List < Point3D > rayIntersectionPoints = plane.FindIntersections(rays[i][j]);
-		  List < Point3D > rayIntersectionPoints2 = plane2.FindIntersections(rays[i][j]);
+		  List < Point3D > rayIntersectionPoints = plane.findIntersections(rays[i][j]);
+		  List < Point3D > rayIntersectionPoints2 = plane2.findIntersections(rays[i][j]);
 		  for (Point3D iPoint: rayIntersectionPoints)
 		   intersectionPointsPlane.add(iPoint);
 		  for (Point3D iPoint: rayIntersectionPoints2)
