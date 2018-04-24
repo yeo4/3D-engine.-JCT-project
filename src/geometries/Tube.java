@@ -16,7 +16,7 @@ public class Tube extends RadialGeometry {
 		this._axisPoint = new Point3D(_axisPoint);
 		this._axisDirection = new Vector(_axisDirection.normalization());
 	}
-	
+	 
 	public Tube(Tube t) throws Exception {
 		super(t._radius);
 		this._axisPoint = new Point3D(t._axisPoint);
