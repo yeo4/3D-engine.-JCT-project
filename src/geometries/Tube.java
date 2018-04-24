@@ -91,8 +91,33 @@ public class Tube extends RadialGeometry {
 
 	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Point3D> arrPoints = new ArrayList<>();
+
+		Vector deltaP = r.getP3D().subtract(this._axisPoint);
+		double dotProduct1 = r.getDirection().dot_product(this.get_axisDirection());
+		double dotProduct2 = deltaP.dot_product(this.get_axisDirection());
+		Vector temp1 = r.getDirection().subtract(this._axisDirection.multiply(dotProduct1));
+		Vector temp2 = deltaP.subtract(this._axisDirection.multiply(dotProduct2));
+				
+		double A = temp1.dot_product(temp1);
+		double B = 2 * (temp1.dot_product(temp2));
+		double C = temp2.dot_product(temp2) - this._radius * this._radius;
+		double discriminant = B*B - 4*A*C;
+		
+		if(new Coordinate( discriminant).equals(Coordinate.ZERO))
+			discriminant = 0;
+		if(discriminant < 0)
+			return arrPoints;
+		
+		double discriminantRoot = Math.sqrt(discriminant);
+		double t1 = (-B + discriminantRoot)/(2*A);
+		double t2 = (-B - discriminantRoot)/(2*A);
+		
+		if(t1 > 0)
+			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
+		if(t2 > 0 && discriminant!=0)
+			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
+		return arrPoints;
 	}
 
 }

@@ -21,8 +21,7 @@ public class TriangleTests {
             Ray[][] rays = new Ray[HEIGHT][WIDTH];
             Camera camera = new Camera(new Point3D(0.0, 0.0, 0.0),
                 new Vector(0.0, 1.0, 0.0),
-                new Vector(0.0, 0.0, -
-                    1.0));
+                new Vector(0.0, 0.0, -1.0));
             Point3D a = new Point3D(0, 1, -2);
             Point3D b = new Point3D(1, -1, -2);
             Point3D c = new Point3D(-1, -1, -2);

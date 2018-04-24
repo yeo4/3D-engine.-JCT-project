@@ -42,7 +42,6 @@ public class SphereTests {
 	    }
 
 	    assertTrue(intersectionPointsSphere.size() == 2);
-	    System.out.println(intersectionPointsSphere2.size());
 	     assertTrue(intersectionPointsSphere2.size() == 9);
 	     
 	     System.out.println("Intersection Points:");
