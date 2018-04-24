@@ -27,7 +27,7 @@ public class TubeTests {
 		  Tube tube2 = new Tube(10, new Point3D(0.0, 0.0, -3.0), new Vector(0,0,1));
 		  Tube tube3 = new Tube(1, new Point3D(0.0, 0.0, -3.0), new Vector(1,0,0));
 		  Tube tube4 = new Tube(5, new Point3D(0.0, 0.0, 0), new Vector(1,0,0));
-		  //tangent case
+		  //special case: tangent to cylinder
 		  Tube tube5 = new Tube(1, new Point3D(4, 1, 0), new Vector(0,0,1));
 		  
 		  List <Point3D> intersectionPointsTube = new ArrayList <Point3D> ();
@@ -63,11 +63,6 @@ public class TubeTests {
 		    assertTrue(intersectionPointsTube3.size() == 6);
 		    assertTrue(intersectionPointsTube4.size() == 9);
 		    assertTrue(intersectionPointsTube5.size() == 1);
-		     System.out.println("Intersection Points:");
-		     for (Point3D iPoint: intersectionPointsTube5) {
-		     //assertTrue(iPoint.equals(new Point3D(0.0, 0.0, -2.0)) || iPoint.equals(new Point3D(0.0, 0.0, -4.0)));
-		      System.out.println(iPoint);
-		     }
 	}
 
 }
