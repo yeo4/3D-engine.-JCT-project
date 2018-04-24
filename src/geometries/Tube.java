@@ -7,7 +7,7 @@ import primitives.*;
 public class Tube extends RadialGeometry {
 	protected Point3D _axisPoint;
 	protected Vector _axisDirection;
-	
+
 	// ***************** Constructors ********************** // 
 	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) throws Exception {
 		super(r);
