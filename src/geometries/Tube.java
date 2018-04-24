@@ -27,8 +27,9 @@ public class Tube extends RadialGeometry {
 	
 	public Point3D get_axisPoint() {
 		return _axisPoint;
-	}
+	} 
 
+	
 	/*public void set_axisPoint(Point3D _axisPoint) {
 		this._axisPoint = _axisPoint;
 	}*/
