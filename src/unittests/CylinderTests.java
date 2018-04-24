@@ -25,6 +25,7 @@ public class CylinderTests {
 		   new Vector(0.0, 0.0, -1.0));
 		  Cylinder c = new Cylinder(15,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),5);
 		  
+		  //TODO: 
 		  //only one ray intersects and it goes through both caps
 		  Cylinder c1 = new Cylinder(1,new Point3D(-4.5, 0.0, -1.5),new Vector(-3,0,-1),3);
 		  //special case test: ray intersects between cylinder and cap

@@ -76,15 +76,21 @@ public class Sphere extends RadialGeometry {
 		Vector u = new Vector(this._center.subtract(r.getP3D()));
 		double tm = r.getDirection().dot_product(u);
 		double dSquared = u.dot_product(u) - (tm*tm);
-		if(dSquared - this._radius*this._radius > 0){
-			return arrPoints;
+		double temp = dSquared - this._radius*this._radius;
+		double th;
+		if(!(new Coordinate(temp).equals(Coordinate.ZERO))){
+			if(dSquared - this._radius*this._radius > 0)
+				return arrPoints;
+			th = Math.sqrt(this._radius*this._radius - dSquared);
+		}else{
+			th = 0;
 		}
-		double th = Math.sqrt(this._radius*this._radius - dSquared);
 		double t1 = tm+th;
 		double t2 = tm-th;
+		
 		if(t1>0)
 			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t1))));
-		if(t2>0)
+		if(t2>0 && !(new Coordinate(t2 - t1).equals(Coordinate.ZERO)))
 			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t2))));
 		
 		return arrPoints;
