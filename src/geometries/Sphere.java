@@ -6,31 +6,31 @@ import primitives.*;
 
 public class Sphere extends RadialGeometry {
 	private Point3D _center;
-	
-	// ***************** Constructors ********************** // 
-	
+
+	// ***************** Constructors ********************** //
+
 	public Sphere(double _r, Point3D _center) throws Exception {
 		super(_r);
-		this._center = new Point3D (_center);
+		this._center = new Point3D(_center);
 	}
-	
+
 	public Sphere(Sphere s) throws Exception {
 		super(s._radius);
-		this._center = new Point3D (s._center);
+		this._center = new Point3D(s._center);
 	}
-	
-	// ***************** Getters/Setters ********************** // 
-	
+
+	// ***************** Getters/Setters ********************** //
+
 	public Point3D get_center() {
 		return _center;
 	}
 
-	/*public void set_center(Point3D _center) {
-		this._center = _center;
-	}*/
+	/*
+	 * public void set_center(Point3D _center) { this._center = _center; }
+	 */
 
 	// ***************** Administration ******************** //
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,52 +47,49 @@ public class Sphere extends RadialGeometry {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return super.toString() + "Sphere [_center=" + _center + "]";
 	}
 
-	// ***************** Operations ******************** // 
-	
+	// ***************** Operations ******************** //
+
 	public boolean is_on_sphere(Point3D p1) {
-		if(new Coordinate(this._radius - _center.distance(p1)).equals(Coordinate.ZERO))
+		if (new Coordinate(this._radius - _center.distance(p1)).equals(Coordinate.ZERO))
 			return true;
 		return false;
 	}
-	
+
 	@Override
-	public Vector GetNormal(Point3D p) {
-		//if(!is_on_sphere(p)) 
-		//	throw new Exception("this point is not on the Sphere");
-		
+	public Vector getNormal(Point3D p) {
+		// if(!is_on_sphere(p))
+		// throw new Exception("this point is not on the Sphere");
+
 		return new Vector(p).subtract(new Vector(this._center)).normalization();
 	}
 
 	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
-		
 		ArrayList<Point3D> arrPoints = new ArrayList<>();
 		Vector u = new Vector(this._center.subtract(r.getP3D()));
 		double tm = r.getDirection().dot_product(u);
-		double dSquared = u.dot_product(u) - (tm*tm);
-		double temp = dSquared - this._radius*this._radius;
-		double th;
-		if(!(new Coordinate(temp).equals(Coordinate.ZERO))){
-			if(dSquared - this._radius*this._radius > 0)
-				return arrPoints;
-			th = Math.sqrt(this._radius*this._radius - dSquared);
-		}else{
-			th = 0;
+		double dSquared = u.dot_product(u) - (tm * tm);
+		double temp = this._radius * this._radius - dSquared;
+		if (temp < 0)
+			return arrPoints;
+		double th = Math.sqrt(temp);
+
+		if (Coordinate.ZERO.equals(th)) {
+			arrPoints.add(r.getP3D().add(r.getDirection().multiply(tm)));
+		} else {
+			double t1 = tm + th;
+			double t2 = tm - th;
+			if (t1 > 0)
+				arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t1))));
+			if (t2 > 0)
+				arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t2))));
 		}
-		double t1 = tm+th;
-		double t2 = tm-th;
-		
-		if(t1>0)
-			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t1))));
-		if(t2>0 && !(new Coordinate(t2 - t1).equals(Coordinate.ZERO)))
-			arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t2))));
-		
 		return arrPoints;
 	}
 }

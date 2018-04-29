@@ -23,10 +23,10 @@ public class Plane extends Geometry {
 	}
 	
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
-		if(Vector.areCollinear(new Vector(_p1), new Vector(_p2), new Vector(_p3)))
-			throw new Exception("planes and triangles points must not be colliniar");
-		this._p = new Point3D(_p1);
-		this._normal = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
+		Vector v1 = _p2.subtract(_p1);
+		Vector v2 = _p3.subtract(_p1);
+		_normal = v1.cross_product(v2).normalization();
+		_p = _p1;
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -84,7 +84,7 @@ public class Plane extends Geometry {
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
+	public Vector getNormal(Point3D p) {
 		//if(!this.is_on_plane(p))
 		//	throw new Exception("Point must be on plane");
 		return new Vector(this._normal);
@@ -98,13 +98,13 @@ public class Plane extends Geometry {
 		
 		double mechane = (this._normal.dot_product(r.getDirection()));
 		
-		if(mechane == 0)
+		if(Coordinate.ZERO.equals(mechane))
 			return arrPoints;
 		
 		double mone = this._normal.dot_product(this._p.subtract(r.getP3D()));
 		double t = mone/mechane;
 		
-		if(t < 0)
+		if(t <= 0)
 			return arrPoints;
 		
 		arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t))));

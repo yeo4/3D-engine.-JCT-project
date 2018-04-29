@@ -1,4 +1,8 @@
 Things to check:
 1. להוסיף מקרה קצה לכל הבדיקות 
-2. findIntercnte ללצילנדר וטוב
+2. 
 3. 
+
+
+
+////***** ask if b3 is needed in triangle get intersections and same for other objects

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.AfterClass;
 import org.junit.Test;
 
 import elements.*;
@@ -27,26 +26,42 @@ public class PlaneTests {
 		Plane plane = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.0, -1.0));
 		// 45 degrees to the view plane
 		Plane plane2 = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.25, -1.0));
+		// special case: all points intersect at cameras point so i expect ZERO intersection points
+		Plane plane3 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 0, -1.0));
+		// rays either intersect at cameras point or are encompassed by the plane so i expect ZERO intersection points 
+		Plane plane4 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 1, 0));
 		List < Point3D > intersectionPointsPlane = new ArrayList < Point3D > ();
 		List < Point3D > intersectionPointsPlane2 = new ArrayList < Point3D > ();
+		List < Point3D > intersectionPointsPlane3 = new ArrayList < Point3D > ();
+		List < Point3D > intersectionPointsPlane4 = new ArrayList < Point3D > ();
+
+
 		System.out.println("Camera: \n" + camera);
 		for (int i = 0; i < HEIGHT; i++) {
-		 for (int j = 0; j < WIDTH; j++) {
-		  rays[i][j] = camera.constructRayThroughPixel(WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
-		  List < Point3D > rayIntersectionPoints = plane.findIntersections(rays[i][j]);
-		  List < Point3D > rayIntersectionPoints2 = plane2.findIntersections(rays[i][j]);
-		  for (Point3D iPoint: rayIntersectionPoints)
-		   intersectionPointsPlane.add(iPoint);
-		  for (Point3D iPoint: rayIntersectionPoints2)
-		   intersectionPointsPlane2.add(iPoint);
-		 }
+			for (int j = 0; j < WIDTH; j++) {
+				  rays[i][j] = camera.constructRayThroughPixel(WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
+				  List < Point3D > rayIntersectionPoints = plane.findIntersections(rays[i][j]);
+				  List < Point3D > rayIntersectionPoints2 = plane2.findIntersections(rays[i][j]);
+				  List < Point3D > rayIntersectionPoints3 = plane3.findIntersections(rays[i][j]);
+				  List < Point3D > rayIntersectionPoints4 = plane4.findIntersections(rays[i][j]);
+		
+		
+				  for (Point3D iPoint: rayIntersectionPoints)
+					  intersectionPointsPlane.add(iPoint);
+				  for (Point3D iPoint: rayIntersectionPoints2)
+					  intersectionPointsPlane2.add(iPoint);
+				  for (Point3D iPoint: rayIntersectionPoints3)
+					   intersectionPointsPlane3.add(iPoint);
+				  for (Point3D iPoint: rayIntersectionPoints4)
+					   intersectionPointsPlane4.add(iPoint);
+			 }
 		}
+		
+		
 		assertTrue(intersectionPointsPlane.size() == 9);
 		assertTrue(intersectionPointsPlane2.size() == 9);
-		for (Point3D iPoint: intersectionPointsPlane)
-		 System.out.println(iPoint);
-		System.out.println("---");
-		 for (Point3D iPoint: intersectionPointsPlane2)
-		  System.out.println(iPoint);
+		assertTrue(intersectionPointsPlane3.size() == 0);
+		assertTrue(intersectionPointsPlane4.size() == 0);
+
 		}
 }

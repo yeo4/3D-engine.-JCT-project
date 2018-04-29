@@ -32,7 +32,7 @@ public class SphereTests {
 	  List <Point3D> intersectionPointsSphere = new ArrayList <Point3D> ();
 	  // The sphere encapsulates the view plane - all rays intersect with the sphere once
 	  List < Point3D > intersectionPointsSphere2 = new ArrayList <Point3D> ();
-	  // Only the middle ray intersects the sphere and it does so in one point only
+	  // Special Case: tangent to sphere (only 1 intersection point is expected)
 	  List < Point3D > intersectionPointsSphere3 = new ArrayList <Point3D> ();
 	  // No ray intersects this sphere
 	  List < Point3D > intersectionPointsSphere4 = new ArrayList <Point3D> ();
@@ -63,6 +63,7 @@ public class SphereTests {
 	     assertTrue(intersectionPointsSphere2.size() == 9);
 	     assertTrue(intersectionPointsSphere3.size() == 1);
 	     assertTrue(intersectionPointsSphere4.size() == 0);
+	     System.out.println(intersectionPointsSphere3);
 
 	}
 }

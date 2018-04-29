@@ -86,13 +86,6 @@ public class Triangle extends Plane {
 	// ***************** Operations ******************** //
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
-		//if(p is not on the triangle)
-		//   throw new .....
-		return super.GetNormal(p);
-	}
-	
-	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
 		ArrayList<Point3D> arrPoints = super.findIntersections(r);
 		for (int i=0;i<arrPoints.size();i++) {
@@ -109,7 +102,7 @@ public class Triangle extends Plane {
 			boolean b1 = !(r.getDirection().dot_product(N1) > 0 && r.getDirection().dot_product(N2) > 0 && r.getDirection().dot_product(N3) > 0);
 			boolean b2 = !(r.getDirection().dot_product(N1) < 0 && r.getDirection().dot_product(N2) < 0 && r.getDirection().dot_product(N3) < 0);
 				if((b1 && b2) || b3)
-					arrPoints.remove(arrPoints.get(i));
+					arrPoints.clear();
 		}		
 		return arrPoints;
 	}

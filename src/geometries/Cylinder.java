@@ -109,7 +109,7 @@ public class Cylinder extends Tube {
 	}
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
+	public Vector getNormal(Point3D p) {
 		//if(is not on Cylinder)
 		//	throw new...
 		
@@ -118,7 +118,7 @@ public class Cylinder extends Tube {
 		if(this.is_on_cap2(p))
 			return p.subtract(this._axisPoint.add(new Vector(p.subtract(this._Pcenter2)))).normalization();
 		
-		return super.GetNormal(p);
+		return super.getNormal(p);
 	}
 
 	@Override

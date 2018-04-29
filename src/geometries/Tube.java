@@ -84,7 +84,7 @@ public class Tube extends RadialGeometry {
 	}
 	
 	@Override
-	public Vector GetNormal(Point3D p) {
+	public Vector getNormal(Point3D p) {
 		//if(is not on Tube)
 		//	throw new...
 		double d = (this._axisDirection.dot_product(new Vector(p.subtract(this._axisPoint))));
