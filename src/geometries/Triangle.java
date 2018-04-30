@@ -89,9 +89,9 @@ public class Triangle extends Plane {
 	public ArrayList<Point3D> findIntersections(Ray r) {
 		ArrayList<Point3D> arrPoints = super.findIntersections(r);
 		for (int i=0;i<arrPoints.size();i++) {
-			Vector v1 = new Vector(this._p1.subtract(r.getP3D()));
-			Vector v2 = new Vector(this._p2.subtract(r.getP3D()));
-			Vector v3 = new Vector(this._p3.subtract(r.getP3D()));
+			Vector v1 = this._p1.subtract(r.getP3D());
+			Vector v2 = this._p2.subtract(r.getP3D());
+			Vector v3 = this._p3.subtract(r.getP3D());
 			Vector N1 = v1.cross_product(v2).normalization();
 			Vector N2 = v2.cross_product(v3).normalization();
 			Vector N3 = v3.cross_product(v1).normalization();

@@ -8,7 +8,7 @@ public class Ray {
 	// ***************** Constructors ********************** // 
 	public Ray(Point3D P3D, Vector direction) {
 		_P3D = new Point3D(P3D);
-		_direction = new Vector(direction).normalization();
+		_direction = direction.normalization();
 		_t = direction.length();
 	}
 	public Ray(Ray ray) {

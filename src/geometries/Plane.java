@@ -107,7 +107,7 @@ public class Plane extends Geometry {
 		if(t <= 0)
 			return arrPoints;
 		
-		arrPoints.add(new Point3D(r.getP3D().add(r.getDirection().multiply(t))));
+		arrPoints.add(r.getP3D().add(r.getDirection().multiply(t)));
 		return arrPoints;
 	}
 }

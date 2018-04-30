@@ -57,8 +57,7 @@ public class Point3D extends Point2D {
 		return new Point3D(x,y,z);
 	}
 	public Vector subtract(Point3D P3D) {
-		Vector v = new Vector(_subtract(P3D));
-		return v;
+		return new Vector(_subtract(P3D));
 	}
 	public double distance(Point3D P3D) {
 		double dx = _x.get()-P3D.getX().get();

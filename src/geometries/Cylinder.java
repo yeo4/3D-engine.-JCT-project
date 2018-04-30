@@ -18,8 +18,8 @@ public class Cylinder extends Tube {
 		if(_hight <= 0)
 			throw new Exception("Hight must be positive");
 		this._hight = _hight;
-		this._Pcenter1 = new Point3D(this._axisPoint.add(this._axisDirection.multiply(this._hight / 2)));
-		this._Pcenter2 = new Point3D(this._axisPoint.add(this._axisDirection.multiply(-this._hight / 2)));
+		this._Pcenter1 = this._axisPoint.add(this._axisDirection.multiply(this._hight / 2));
+		this._Pcenter2 = this._axisPoint.add(this._axisDirection.multiply(-this._hight / 2));
 		this._plane1 = new Plane(this._Pcenter1, this._axisDirection);
 		this._plane2 = new Plane(this._Pcenter2, this._axisDirection);
 	}
@@ -67,7 +67,7 @@ public class Cylinder extends Tube {
 	// ***************** Operations ******************** // 
 	
 	public boolean is_on_cap1(Point3D p) {
-		Vector v = new Vector(p.subtract(_Pcenter1));
+		Vector v = p.subtract(_Pcenter1);
 		if(Coordinate.ZERO.equals(new Coordinate(p.subtract(this._Pcenter1).dot_product(this._axisDirection))) && v.dot_product(v) < this._radius * this._radius)
 			return true;
 		return false;
@@ -75,7 +75,7 @@ public class Cylinder extends Tube {
 	}
 	
 	public boolean is_on_cap2(Point3D p) {
-		Vector v = new Vector(p.subtract(_Pcenter2));
+		Vector v = p.subtract(_Pcenter2);
 		if(Coordinate.ZERO.equals(new Coordinate(p.subtract(this._Pcenter2).dot_product(this._axisDirection))) && v.dot_product(v) < this._radius * this._radius)
 			return true;
 		return false;
@@ -83,7 +83,7 @@ public class Cylinder extends Tube {
 	}
 	
 	public boolean is_on_cap1_given_on_plane(Point3D p) {
-		Vector v = new Vector(p.subtract(_Pcenter1));
+		Vector v = p.subtract(_Pcenter1);
 		double a = v.dot_product(v);
 		double rSquare = this._radius * this._radius;
 		
@@ -96,7 +96,7 @@ public class Cylinder extends Tube {
 	}
 	
 	public boolean is_on_cap2_given_on_plane(Point3D p) {
-		Vector v = new Vector(p.subtract(_Pcenter2));
+		Vector v = p.subtract(_Pcenter2);
 		double a = v.dot_product(v);
 		double rSquare = this._radius * this._radius;
 		
@@ -114,9 +114,9 @@ public class Cylinder extends Tube {
 		//	throw new...
 		
 		if(this.is_on_cap1(p))
-			return p.subtract(this._axisPoint.add(new Vector(p.subtract(this._Pcenter1)))).normalization();
+			return p.subtract(this._axisPoint.add(p.subtract(this._Pcenter1))).normalization();
 		if(this.is_on_cap2(p))
-			return p.subtract(this._axisPoint.add(new Vector(p.subtract(this._Pcenter2)))).normalization();
+			return p.subtract(this._axisPoint.add(p.subtract(this._Pcenter2))).normalization();
 		
 		return super.getNormal(p);
 	}
