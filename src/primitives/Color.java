@@ -34,11 +34,47 @@ public class Color {
 		}
 		scale(1/d);
 	}
+	
+	public int getRed() {
+		return red;
+	}
+	public void setRed(int red) {
+		this.red = red;
+	}
+	public int getGreen() {
+		return green;
+	}
+	public void setGreen(int green) {
+		this.green = green;
+	}
+	public int getBlue() {
+		return blue;
+	}
+	public void setBlue(int blue) {
+		this.blue = blue;
+	}
 	public java.awt.Color getColor() {
 		int r,g,b;
 		r = (red > 255) ? red : 255;
 		g = (green > 255) ? green : 255;
 		b = (blue > 255) ? blue : 255;
 		return new java.awt.Color(r, g, b);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Color other = (Color) obj;
+		if (blue != other.blue)
+			return false;
+		if (green != other.green)
+			return false;
+		if (red != other.red)
+			return false;
+		return true;
 	}
 }
