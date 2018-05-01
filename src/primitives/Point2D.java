@@ -11,8 +11,8 @@ public class Point2D {
 		_y = new Coordinate(y);
 	}
 	public Point2D(Coordinate x, Coordinate y) {
-		_x = x;
-		_y = y;
+		_x = new Coordinate(x);
+		_y = new Coordinate(y);
 	}
 	
 	public Point2D(Point2D other) {
@@ -61,6 +61,8 @@ public class Point2D {
 
 	// ***************** Operations ******************** // 
 	public double distance(Point2D P2D) {
-		return Math.sqrt(Math.pow((_x.get()-P2D.getX().get()),2) + Math.pow((_y.get()-P2D.getY().get()),2));
+		double dx = _x.get()-P2D.getX().get();
+		double dy = _y.get()-P2D.getY().get();
+		return Math.sqrt(dx*dx + dy*dy);
 	}
 }

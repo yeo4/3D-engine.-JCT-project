@@ -23,10 +23,12 @@ public class Plane extends Geometry {
 	}
 	
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
-		Vector v1 = _p2.subtract(_p1);
-		Vector v2 = _p3.subtract(_p1);
-		_normal = v1.cross_product(v2).normalization();
-		_p = _p1;
+		
+		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
+		if(v.equals(Vector.ZeroVector))
+			throw new Exception("planes and triangles points must not be colliniar");
+		this._p = new Point3D(_p1);
+		this._normal = new Vector(v);
 	}
 	
 	// ***************** Getters/Setters ********************** //

@@ -88,7 +88,7 @@ public class Tube extends RadialGeometry {
 		//if(is not on Tube)
 		//	throw new...
 		double d = (this._axisDirection.dot_product(p.subtract(this._axisPoint)));
-		Point3D o = new Point3D(this._axisPoint.add(p.subtract(this._axisPoint).normalization().multiply(d)));
+		Point3D o = this._axisPoint.add(p.subtract(this._axisPoint).normalization().multiply(d));
 		return p.subtract(o).normalization();
 	}
 
@@ -107,7 +107,7 @@ public class Tube extends RadialGeometry {
 		double C = temp2.dot_product(temp2) - this._radius * this._radius;
 		double discriminant = B*B - 4*A*C;
 		
-		if(new Coordinate( discriminant).equals(Coordinate.ZERO))
+		if(Coordinate.ZERO.equals(discriminant))
 			discriminant = 0;
 		if(discriminant < 0)
 			return arrPoints;

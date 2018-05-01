@@ -96,9 +96,9 @@ public class Triangle extends Plane {
 			Vector N2 = v2.cross_product(v3).normalization();
 			Vector N3 = v3.cross_product(v1).normalization();
 			
-			boolean b3 = (new Coordinate(r.getDirection().dot_product(N1)).equals(Coordinate.ZERO) ||
-					new Coordinate(r.getDirection().dot_product(N2)).equals(Coordinate.ZERO) ||
-					new Coordinate(r.getDirection().dot_product(N3)).equals(Coordinate.ZERO));
+			boolean b3 = (Coordinate.ZERO.equals(r.getDirection().dot_product(N1)) ||
+					Coordinate.ZERO.equals(r.getDirection().dot_product(N2)) ||
+					Coordinate.ZERO.equals(r.getDirection().dot_product(N3)));
 			boolean b1 = !(r.getDirection().dot_product(N1) > 0 && r.getDirection().dot_product(N2) > 0 && r.getDirection().dot_product(N3) > 0);
 			boolean b2 = !(r.getDirection().dot_product(N1) < 0 && r.getDirection().dot_product(N2) < 0 && r.getDirection().dot_product(N3) < 0);
 				if((b1 && b2) || b3)

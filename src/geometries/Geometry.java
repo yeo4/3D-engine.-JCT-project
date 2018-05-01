@@ -17,9 +17,7 @@ public abstract class Geometry {
 
 	// ***************** Operations ******************** //
 
-	public Vector getNormal(Point3D p) throws Exception {
-		return null;
-	}
+	public abstract Vector getNormal(Point3D p);
 
 	public abstract List<Point3D> findIntersections(Ray r);
 }

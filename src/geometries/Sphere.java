@@ -56,7 +56,7 @@ public class Sphere extends RadialGeometry {
 	// ***************** Operations ******************** //
 
 	public boolean is_on_sphere(Point3D p1) {
-		if (new Coordinate(this._radius - _center.distance(p1)).equals(Coordinate.ZERO))
+		if (Coordinate.ZERO.equals(this._radius - _center.distance(p1)))
 			return true;
 		return false;
 	}

@@ -3,6 +3,7 @@ package geometries;
 import java.util.*;
 
 import primitives.*;
+import primitives.Vector;
 
 public class Geometries extends Geometry {
 	private List<Geometry> _geometries = new ArrayList<>();
@@ -37,6 +38,12 @@ public class Geometries extends Geometry {
 
 	public String toString() {
 		return _geometries.toString();
+	}
+
+	@Override
+	public Vector getNormal(Point3D p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

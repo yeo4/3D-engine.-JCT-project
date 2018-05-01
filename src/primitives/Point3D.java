@@ -8,7 +8,7 @@ public class Point3D extends Point2D {
 	
 	public Point3D(Coordinate x, Coordinate y , Coordinate z) {
 		super(x, y);
-		_z = z;
+		_z = new Coordinate(z);
 	}
 	public Point3D(double x, double y, double z) {
 		super(x, y);
@@ -57,21 +57,20 @@ public class Point3D extends Point2D {
 		return new Point3D(x,y,z);
 	}
 	public Vector subtract(Point3D P3D) {
-		return new Vector(_subtract(P3D));
+		Coordinate x =this._x.subtract(P3D.getX());
+		Coordinate y =this._y.subtract(P3D.getY());
+		Coordinate z =this._z.subtract(P3D.getZ());
+		return new Vector(new Point3D(x,y,z));
 	}
 	public double distance(Point3D P3D) {
 		double dx = _x.get()-P3D.getX().get();
-		return Math.sqrt(dx*dx + Math.pow((_y.get()-P3D.getY().get()),2) + Math.pow((_z.get()-P3D.getZ().get()),2));
+		double dy = _y.get()-P3D.getY().get();
+		double dz = _z.get()-P3D.getZ().get();
+		return Math.sqrt(dx*dx + dy*dy + dz*dz);
 	}
 	
 	// ***************** Helpers ******************** // 	
 	
-	private Point3D _subtract(Point3D P3D) {
-		Coordinate x =this._x.subtract(P3D.getX());
-		Coordinate y =this._y.subtract(P3D.getY());
-		Coordinate z =this._z.subtract(P3D.getZ());
-		return new Point3D(x,y,z);
-	}
 
 
 }
