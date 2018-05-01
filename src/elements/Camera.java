@@ -24,6 +24,22 @@ public class Camera {
 
 	// ***************** Administration  ******************** // 
 	
+	public Point3D get_p0() {
+		return _p0;
+	}
+
+	public Vector get_vUp() {
+		return _vUp;
+	}
+
+	public Vector get_vTo() {
+		return _vTo;
+	}
+
+	public Vector get_vRight() {
+		return _vRight;
+	}
+
 	@Override
 	public String toString()
 	{

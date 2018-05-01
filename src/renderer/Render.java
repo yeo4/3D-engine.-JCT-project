@@ -27,8 +27,21 @@ public class Render {
 		return _scene.get_ambientLight().getIntensity();
 	}
 	private Point3D getClosestPoint(ArrayList<Point3D> Points3D) {
-		
-		return null;
+		if(Points3D.size() == 0) {
+			throw new NullPointerException("Array can't be null");
+		}
+		Point3D From = _scene.get_camera().get_p0();
+		Point3D Closest = new Point3D(Points3D.get(0));
+		double minDisSqre = From.distanceSquare(Closest);
+		for (int i = 1; i<Points3D.size();i++) {
+			if(Points3D.get(i) != null) {
+				if(From.distanceSquare(Points3D.get(i)) < minDisSqre) {
+					 Closest = new Point3D(Points3D.get(i));
+					 minDisSqre = From.distanceSquare(Closest);
+				}
+			}
+		}
+		return Closest;
 	}
 	public Scene get_scene() {
 		return _scene;
