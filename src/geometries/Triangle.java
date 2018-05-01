@@ -11,13 +11,13 @@ public class Triangle extends Plane {
 
 	// ***************** Constructors ********************** // 
 	
-	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) throws IllegalArgumentException {
+	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3){
 		super(_p1,_p2,_p3);
 		this._p1 = new Point3D (_p1);
 		this._p2 = new Point3D (_p2);
 		this._p3 = new Point3D (_p3);
 	}
-	public Triangle(Triangle t) throws IllegalArgumentException {
+	public Triangle(Triangle t) {
 		super(t._p,t._normal);
 		this._p1 = new Point3D (t._p1);
 		this._p2 = new Point3D (t._p2);
@@ -86,6 +86,11 @@ public class Triangle extends Plane {
 	// ***************** Operations ******************** //
 	
 	@Override
+	public Vector getNormal(Point3D p) {
+		return super.getNormal(p);
+	}
+	
+	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
 		ArrayList<Point3D> arrPoints = super.findIntersections(r);
 		for (int i=0;i<arrPoints.size();i++) {
@@ -96,9 +101,9 @@ public class Triangle extends Plane {
 			Vector N2 = v2.cross_product(v3).normalization();
 			Vector N3 = v3.cross_product(v1).normalization();
 			
-			boolean b3 = (Coordinate.ZERO.equals(r.getDirection().dot_product(N1)) ||
-					Coordinate.ZERO.equals(r.getDirection().dot_product(N2)) ||
-					Coordinate.ZERO.equals(r.getDirection().dot_product(N3)));
+			boolean b3 = (Coordinate.isToCloseToZero(r.getDirection().dot_product(N1)) ||
+					Coordinate.isToCloseToZero(r.getDirection().dot_product(N2)) ||
+					Coordinate.isToCloseToZero(r.getDirection().dot_product(N3)));
 			boolean b1 = !(r.getDirection().dot_product(N1) > 0 && r.getDirection().dot_product(N2) > 0 && r.getDirection().dot_product(N3) > 0);
 			boolean b2 = !(r.getDirection().dot_product(N1) < 0 && r.getDirection().dot_product(N2) < 0 && r.getDirection().dot_product(N3) < 0);
 				if((b1 && b2) || b3)
