@@ -9,7 +9,7 @@ public class Render {
 	private Scene _scene;
 	private ImageWriter _imageWriter;
 	
-	public Render(Scene _scene,ImageWriter _imageWriter) {
+	public Render(ImageWriter _imageWriter,Scene _scene) {
 		this._scene = _scene;
 		this._imageWriter = _imageWriter;
 	}
