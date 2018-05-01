@@ -29,8 +29,8 @@ public class Render {
 	}
 	
 	public void printGrid(double interval) {
-        for (int i = 1; i <= _imageWriter.getWidth()-1; i++){
-            for (int j = _imageWriter.getHeight()-1; j > 0; j--){
+        for (int i = 0; i <= _imageWriter.getWidth()-1; i++){
+            for (int j = _imageWriter.getHeight()-1; j >= 0; j--){
                 if (i % interval == 0 || j % interval == 0) {
                 	System.out.println(i + "," + j);
                 	_imageWriter.writePixel(i,j, _scene.getBackground());
