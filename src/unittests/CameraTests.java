@@ -14,7 +14,7 @@ public class CameraTests {
 	public void testConstructRay() throws Exception  {
 		final int WIDTH = 3;
 		final int HEIGHT = 3;
-		
+		 
 		Point3D[][] screen = new Point3D [HEIGHT][WIDTH];
 		
 		Scene scene = new Scene("TestScene");
