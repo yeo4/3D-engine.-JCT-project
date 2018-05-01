@@ -18,13 +18,13 @@ public class CameraTests {
 		Point3D[][] screen = new Point3D [HEIGHT][WIDTH];
 		
 		Scene scene = new Scene("TestScene");
-		System.out.println("Camera:\n" + scene.get_camera());
+		System.out.println("Camera:\n" + scene.getCamera());
 		
 		for (int i = 0; i < HEIGHT; i++)
 		{
 			for (int j = 0; j < WIDTH; j++)
 			{
-				Ray ray = scene.get_camera().constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
+				Ray ray = scene.getCamera().constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
 				screen[i][j] = ray.getP3D().add(ray.getDirection().multiply(ray.getT()));
 				
 				//Checking z-coordinate

@@ -1,6 +1,6 @@
 package renderer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import primitives.*;
 import scene.*;
@@ -14,23 +14,42 @@ public class Render {
 		this._imageWriter = _imageWriter;
 	}
 	public void renderImage() {
-	//	for(int i=0;i<_scene.)
+		for(int i=0;i<_imageWriter.getHeight();i++) {
+			for(int j=0;j<_imageWriter.getWidth();j++) {
+                Ray r = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(),_imageWriter.getNy(), j, i, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight());
+                List<Point3D> intersectionPoints = _scene.getRayIntersections(r);
+                if(intersectionPoints.isEmpty()) {
+                	_imageWriter.writePixel(j, i, _scene.getBackground());
+                }else {
+                	Point3D closestPoint = getClosestPoint(intersectionPoints);
+                	_imageWriter.writePixel(j, i, calcColor(closestPoint));
+                }
+			}
+		}
 	}
 	
-	public void printGrid() {
-		
+	public void printGrid(double interval) {
+        for (int i = 1; i <= _imageWriter.getWidth()-1; i++){
+            for (int j = _imageWriter.getHeight()-1; j > 0; j--){
+                if (i % interval == 0 || j % interval == 0) {
+                	System.out.println(i + "," + j);
+                	_imageWriter.writePixel(i,j, _scene.getBackground());
+                }
+            }
+        }
+        System.out.println("Finish");
 	}
 	public void writeToImage() {
 		_imageWriter.writeToimage();
 	}
 	private Color calcColor(Point3D p3d) {
-		return _scene.get_ambientLight().getIntensity();
+		return _scene.getAmbientLight().getIntensity();
 	}
-	private Point3D getClosestPoint(ArrayList<Point3D> Points3D) {
+	private Point3D getClosestPoint(List<Point3D> Points3D) {
 		if(Points3D.size() == 0) {
 			throw new NullPointerException("Array can't be null");
 		}
-		Point3D From = _scene.get_camera().get_p0();
+		Point3D From = _scene.getCamera().get_p0();
 		Point3D Closest = new Point3D(Points3D.get(0));
 		double minDisSqre = From.distanceSquare(Closest);
 		for (int i = 1; i<Points3D.size();i++) {

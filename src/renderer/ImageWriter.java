@@ -1,11 +1,12 @@
 package renderer;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import primitives.Color;
 
 public class ImageWriter {
 
@@ -59,17 +60,17 @@ public class ImageWriter {
 	}
 	
 	public void writePixel(int xIndex, int yIndex, int r, int g, int b){
-		int rgb = new Color(r, g, b).getRGB();
+		int rgb = new Color(r, g, b).getColor().getRGB();
 		_image.setRGB(xIndex, yIndex, rgb);
 	}
 	
 	public void writePixel(int xIndex, int yIndex, int[] rgbArray){
-		int rgb = new Color(rgbArray[0], rgbArray[1], rgbArray[2]).getRGB();
+		int rgb = new Color(rgbArray[0], rgbArray[1], rgbArray[2]).getColor().getRGB();
 		_image.setRGB(xIndex, yIndex, rgb);
 	}
 	
 	public void writePixel(int xIndex, int yIndex, Color color){
-		_image.setRGB(xIndex, yIndex, color.getRGB());
+		_image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
 	
 }
