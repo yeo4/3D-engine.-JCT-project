@@ -26,8 +26,6 @@ public class CameraTests {
 			{
 				Ray ray = scene.get_camera().constructRayThroughPixel(WIDTH, HEIGHT, i, j, 1, 3 * WIDTH, 3 * HEIGHT);
 				screen[i][j] = ray.getP3D().add(ray.getDirection().multiply(ray.getT()));
-				System.out.print(screen[i][j]);
-				System.out.println(ray.getDirection());
 				
 				//Checking z-coordinate
 				if(Double.compare(screen[i][j].getZ().get(), -1.0) == 0)
