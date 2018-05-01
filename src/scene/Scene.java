@@ -1,16 +1,12 @@
 package scene;
-
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
 import elements.*;
 import geometries.*;
 import primitives.*;
 
 public class Scene {
 	private String _sceneName;
-	private Color _background;
+	private Color _background; // Need?
+	private AmbientLight _ambientLight;
 	private Geometries _geometries;
 	private Camera _camera;
 	private double _screenDistance;
@@ -67,6 +63,14 @@ public class Scene {
 
 	public void set_screenDistance(double _screenDistance) {
 		this._screenDistance = _screenDistance;
+	}
+
+	public AmbientLight get_ambientLight() {
+		return _ambientLight;
+	}
+
+	public void set_ambientLight(AmbientLight _ambientLight) {
+		this._ambientLight = _ambientLight;
 	}
 
 	public void addGeometry(Geometry g) {

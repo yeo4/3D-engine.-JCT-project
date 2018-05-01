@@ -22,10 +22,17 @@ public class Point2D {
 	
 	// ***************** Getters/Setters ********************** //
 	
+	/**
+	 * get the X value 
+	 * @return Coordinate
+	 */
 	public Coordinate getX() {
 		return _x;
 	}
-	
+	/**
+	 * get the Y value 
+	 * @return Coordinate
+	 */
 	public Coordinate getY() {
 		return _y;
 	}
@@ -60,6 +67,11 @@ public class Point2D {
 	}
 
 	// ***************** Operations ******************** // 
+	/**
+	 * Calculate the distance between 2 Points2D
+	 * @param P2D
+	 * @return
+	 */
 	public double distance(Point2D P2D) {
 		double dx = _x.get()-P2D.getX().get();
 		double dy = _y.get()-P2D.getY().get();

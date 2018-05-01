@@ -9,21 +9,35 @@ public class Coordinate {
 	private static final int ACCURACY = -20;
 
 	// ***************** Constructors ********************** // 
+	/**
+	 * @param double coord
+	 */
 	public Coordinate(double coord) {
 		// if it too close to zero make it zero
 		_coord = (getExp(coord) < ACCURACY) ? 0.0 : coord;
 	}
-
+	/**
+	 * @param Coordinate other
+	 */
 	public Coordinate(Coordinate other) {
 		_coord = other._coord;
 	}
 
 	/************** Getters/Setters *******/
+	/**
+	 * get Coordinate
+	 * @return double
+	 */
 	public double get() {
 		return _coord;
 	}
 
 	/*************** Admin *****************/
+	/**
+	 * Check if the object is equals this Coordinate
+	 * @param Object obj
+	 * @return boolean
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -43,17 +57,39 @@ public class Coordinate {
 	}
 
 	/************** Operations ***************/
+	
+	/**
+	 * subtract Coordinate from this coordinate object
+	 * @param Coordinate other
+	 * @return new Coordinate
+	 */
 	public Coordinate subtract(Coordinate other) {
 		return new Coordinate(_subtract(other._coord));
 	}
-
+	
+	/**
+	 * add Coordinate from this coordinate object
+	 * @param Coordinate other
+	 * @return new Coordinate
+	 */
 	public Coordinate add(Coordinate other) {
 		return new Coordinate(_add(other._coord));
 	}
 	
+	/**
+	 * scale Coordinate with scalar
+	 * @param Coordinate other
+	 * @return new Coordinate
+	 */
 	public Coordinate scale(double num) {
 		return new Coordinate(_scale(num));
 	}
+	
+	/**
+	 * multiply Coordinate from this coordinate object
+	 * @param Coordinate other
+	 * @return new Coordinate
+	 */
 	public Coordinate multiply(Coordinate other) {
 		return new Coordinate(_scale(other._coord));
 	}

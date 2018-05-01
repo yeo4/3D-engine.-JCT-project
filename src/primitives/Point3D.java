@@ -21,6 +21,10 @@ public class Point3D extends Point2D {
 
 	
 	// ***************** Getters/Setters ********************** //
+	/**
+	 * get the Z value 
+	 * @return Coordinate
+	 */	
 	public Coordinate getZ() {
 		return _z;
 	}
@@ -49,19 +53,34 @@ public class Point3D extends Point2D {
 	}
 	
 	// ***************** Operations ******************** // 
-
+	/**
+	 * return new point + vector param
+	 * @param vector
+	 * @return new Point3D
+	 */
 	public Point3D add(Vector v) {
 		Coordinate x = this._x.add(v.get()._x);
 		Coordinate y = this._y.add(v.get()._y);
 		Coordinate z = this._z.add(v.get()._z);
 		return new Point3D(x,y,z);
 	}
+	/**
+	 * return new point - points param
+	 * @param vector
+	 * @return new Vector
+	 */
 	public Vector subtract(Point3D P3D) {
 		Coordinate x =this._x.subtract(P3D.getX());
 		Coordinate y =this._y.subtract(P3D.getY());
 		Coordinate z =this._z.subtract(P3D.getZ());
 		return new Vector(new Point3D(x,y,z));
 	}
+	/**
+	 * return distance between 2 points
+	 * @param vector
+	 * @return new Point3D
+	 */
+	
 	public double distance(Point3D P3D) {
 		double dx = _x.get()-P3D.getX().get();
 		double dy = _y.get()-P3D.getY().get();
