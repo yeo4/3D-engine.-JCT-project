@@ -79,7 +79,7 @@ public class Vector {
 		double s = _head.getX().multiply(v.get().getX()).get();
 		s += _head.getY().multiply(v.get().getY()).get();
 		s += _head.getZ().multiply(v.get().getZ()).get();
-		return s;
+		return s; 
 	}
 	public double length() {
 		return Math.sqrt(_head.getX().get()*_head.getX().get() + _head.getY().get()*_head.getY().get() + _head.getZ().get()*_head.getZ().get());
