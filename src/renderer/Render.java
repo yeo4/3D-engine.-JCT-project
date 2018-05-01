@@ -21,7 +21,7 @@ public class Render {
 		
 	}
 	public void writeToImage() {
-		
+		_imageWriter.writeToimage();
 	}
 	private Color calcColor(Point3D p3d) {
 		return _scene.get_ambientLight().getIntensity();
