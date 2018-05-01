@@ -17,15 +17,21 @@ public class Ray {
 		_t = ray._t;
 	}
 	// ***************** Getters/Setters ********************** //
-
+	/**
+	 * @return the 3DPoint
+	 */
 	public Point3D getP3D() {
 		return _P3D;
 	}
-
+	/**
+	 * @return the Vector
+	 */
 	public Vector getDirection() {
 		return _direction;
 	}
-	
+	/**
+	 * @return the size of vector
+	 */
 	public double getT() {
 		return _t;
 	}

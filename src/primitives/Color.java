@@ -6,11 +6,20 @@ public class Color {
 	private int blue;
 	
 	// ***************** Constructors ********************** //
+	/**
+	 * Default Constructors
+	 */
 	public Color() {
 		red = 0;
 		green = 0;
 		blue = 0;
 	}
+	/**
+	 * Constructors that get red green and blue
+	 * @param r
+	 * @param g
+	 * @param b
+	 */
 	public Color(int r,int g,int b) {
 		red = r;
 		green = g;
