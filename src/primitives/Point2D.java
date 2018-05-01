@@ -6,15 +6,28 @@ public class Point2D {
 
 	// ***************** Constructors ********************** //
 	
+	/**
+	 * Constructors with 2 doubles
+	 * @param x
+	 * @param y
+	 */
 	public Point2D(double x, double y) {
 		_x = new Coordinate(x);
 		_y = new Coordinate(y);
 	}
+	/**
+	 * Constructors with 2 Coordinate
+	 * @param x
+	 * @param y
+	 */
 	public Point2D(Coordinate x, Coordinate y) {
 		_x = new Coordinate(x);
 		_y = new Coordinate(y);
 	}
-	
+	/**
+	 * copy Constructors  
+	 * @param Point2D other
+	 */
 	public Point2D(Point2D other) {
 		_x = new Coordinate(other._x);
 		_y = new Coordinate(other._y);

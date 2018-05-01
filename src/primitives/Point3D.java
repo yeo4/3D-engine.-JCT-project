@@ -6,14 +6,30 @@ public class Point3D extends Point2D {
 
 	// ***************** Constructors ********************** // 
 	
+	/**
+	 * Constructors with 3 Coordinate
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	public Point3D(Coordinate x, Coordinate y , Coordinate z) {
 		super(x, y);
 		_z = new Coordinate(z);
 	}
+	/**
+	 * Constructors with 3 doubles
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	public Point3D(double x, double y, double z) {
 		super(x, y);
 		_z = new Coordinate(z);
 	}
+	/**
+	 * copy Constructors
+	 * @param other
+	 */
 	public Point3D(Point3D other) {
 		super(other);
 		_z = new Coordinate(other._z);
@@ -86,6 +102,19 @@ public class Point3D extends Point2D {
 		double dy = _y.get()-P3D.getY().get();
 		double dz = _z.get()-P3D.getZ().get();
 		return Math.sqrt(dx*dx + dy*dy + dz*dz);
+	}
+	
+	/**
+	 * return distance Square between 2 points
+	 * @param vector
+	 * @return new Point3D
+	 */
+	
+	public double distanceSquare(Point3D P3D) {
+		double dx = _x.get()-P3D.getX().get();
+		double dy = _y.get()-P3D.getY().get();
+		double dz = _z.get()-P3D.getZ().get();
+		return dx*dx + dy*dy + dz*dz;
 	}
 	
 	// ***************** Helpers ******************** // 	

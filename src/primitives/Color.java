@@ -5,6 +5,7 @@ public class Color {
 	private int green;
 	private int blue;
 	
+	// ***************** Constructors ********************** //
 	public Color() {
 		red = 0;
 		green = 0;
@@ -35,6 +36,7 @@ public class Color {
 		scale(1/d);
 	}
 	
+	// ***************** Getters/Setters ********************** //
 	public int getRed() {
 		return red;
 	}
