@@ -30,4 +30,16 @@ public class Render {
 		
 		return null;
 	}
+	public Scene get_scene() {
+		return _scene;
+	}
+	public void set_scene(Scene _scene) {
+		this._scene = _scene;
+	}
+	public ImageWriter get_imageWriter() {
+		return _imageWriter;
+	}
+	public void set_imageWriter(ImageWriter _imageWriter) {
+		this._imageWriter = _imageWriter;
+	}
 }
