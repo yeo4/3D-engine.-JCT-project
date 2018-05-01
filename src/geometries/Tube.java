@@ -9,15 +9,15 @@ public class Tube extends RadialGeometry {
 	protected Vector _axisDirection;
   
 	// ***************** Constructors ********************** // 
-	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) throws Exception {
+	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) throws IllegalArgumentException {
 		super(r);
 		if(_axisDirection.equals(Vector.ZeroVector))
-			throw new Exception("axis direction must not be the a zero vector");
+			throw new IllegalArgumentException("axis direction must not be the a zero vector");
 		this._axisPoint = new Point3D(_axisPoint);
 		this._axisDirection = _axisDirection.normalization();
 	}
 	 
-	public Tube(Tube t) throws Exception {
+	public Tube(Tube t) throws IllegalArgumentException {
 		super(t._radius);
 		this._axisPoint = new Point3D(t._axisPoint);
 		this._axisDirection = new Vector(t._axisDirection);

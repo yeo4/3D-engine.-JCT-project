@@ -11,13 +11,13 @@ public class Triangle extends Plane {
 
 	// ***************** Constructors ********************** // 
 	
-	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
+	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) throws IllegalArgumentException {
 		super(_p1,_p2,_p3);
 		this._p1 = new Point3D (_p1);
 		this._p2 = new Point3D (_p2);
 		this._p3 = new Point3D (_p3);
 	}
-	public Triangle(Triangle t) throws Exception {
+	public Triangle(Triangle t) throws IllegalArgumentException {
 		super(t._p,t._normal);
 		this._p1 = new Point3D (t._p1);
 		this._p2 = new Point3D (t._p2);

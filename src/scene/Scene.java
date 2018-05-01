@@ -11,7 +11,7 @@ public class Scene {
 	private Camera _camera;
 	private double _screenDistance;
 
-	public Scene(String _sceneName) throws Exception  {
+	public Scene(String _sceneName) throws IllegalArgumentException  {
 		this._sceneName = _sceneName;
 		this._background = new Color(255, 255, 255);
 		this._geometries = new Geometries();
@@ -28,7 +28,7 @@ public class Scene {
 		this._screenDistance = _screenDistance;
 	}
 	
-	public Scene(Scene s) throws Exception {
+	public Scene(Scene s) throws IllegalArgumentException {
 		super();
 		this._sceneName = s._sceneName;
 		this._background = s._background;

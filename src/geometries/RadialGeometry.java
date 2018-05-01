@@ -5,10 +5,10 @@ public abstract class RadialGeometry extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public RadialGeometry(double r) throws Exception{
+	public RadialGeometry(double r) throws IllegalArgumentException{
 		super();
 		if(r<=0)
-			throw new Exception("Radius must be positive");
+			throw new IllegalArgumentException("Radius must be positive");
 		_radius = r;
 	}
 	

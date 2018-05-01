@@ -10,11 +10,11 @@ public class Camera {
 	private Vector _vRight;
 	
 	// ***************** Constructors ********************** //
-	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws Exception {
+	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws IllegalArgumentException {
 		if(_vUp.equals(Vector.ZeroVector) || _vTo.equals(Vector.ZeroVector))
-			throw new Exception("All vectors must not be zero");
+			throw new IllegalArgumentException("All vectors must not be zero");
 		if(_vUp.dot_product(_vTo) != 0)
-			throw new Exception("Vectors must be perpendicular");
+			throw new IllegalArgumentException("Vectors must be perpendicular");
 		this._p0 = _p0;
 		this._vUp = _vUp.normalization();
 		this._vTo = _vTo.normalization();

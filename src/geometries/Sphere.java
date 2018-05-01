@@ -9,12 +9,12 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Constructors ********************** //
 
-	public Sphere(double _r, Point3D _center) throws Exception {
+	public Sphere(double _r, Point3D _center) throws IllegalArgumentException {
 		super(_r);
 		this._center = new Point3D(_center);
 	}
 
-	public Sphere(Sphere s) throws Exception {
+	public Sphere(Sphere s) throws IllegalArgumentException {
 		super(s._radius);
 		this._center = new Point3D(s._center);
 	}

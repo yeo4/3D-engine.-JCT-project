@@ -13,10 +13,10 @@ public class Cylinder extends Tube {
 	
 	// ***************** Constructors ********************** //
 	
-	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight) throws Exception {
+	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight) throws IllegalArgumentException {
 		super(r, _axisPoint, _axisDirection);
 		if(_hight <= 0)
-			throw new Exception("Hight must be positive");
+			throw new IllegalArgumentException("Hight must be positive");
 		this._hight = _hight;
 		this._Pcenter1 = this._axisPoint.add(this._axisDirection.multiply(this._hight / 2));
 		this._Pcenter2 = this._axisPoint.add(this._axisDirection.multiply(-this._hight / 2));
@@ -24,7 +24,7 @@ public class Cylinder extends Tube {
 		this._plane2 = new Plane(this._Pcenter2, this._axisDirection);
 	}
 		
-	public Cylinder(Cylinder c) throws Exception {
+	public Cylinder(Cylinder c) throws IllegalArgumentException {
 		super(c._radius, c._axisPoint, c._axisDirection);
 		this._hight = c._hight;
 		this._Pcenter1 = new Point3D (c._Pcenter1);

@@ -10,9 +10,9 @@ public class Plane extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Plane(Point3D _p, Vector _normal) throws Exception {
+	public Plane(Point3D _p, Vector _normal) throws IllegalArgumentException {
 		if(_normal.equals(Vector.ZeroVector))
-			throw new Exception("Normal to plane must not be the a zero vector");
+			throw new IllegalArgumentException("Normal to plane must not be the a zero vector");
 		this._p = new Point3D(_p);
 		this._normal = new Vector(_normal).normalization();
 	}
@@ -22,11 +22,11 @@ public class Plane extends Geometry {
 		this._normal = new Vector(p._normal);
 	}
 	
-	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws Exception {
+	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws IllegalArgumentException {
 		
 		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 		if(v.equals(Vector.ZeroVector))
-			throw new Exception("planes and triangles points must not be colliniar");
+			throw new IllegalArgumentException("planes and triangles points must not be colliniar");
 		this._p = new Point3D(_p1);
 		this._normal = new Vector(v);
 	}

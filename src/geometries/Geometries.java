@@ -16,9 +16,9 @@ public class Geometries extends Geometry {
 	 * @param g
 	 * @throws Exception
 	 */
-	public Geometries(Geometries g) throws Exception {
+	public Geometries(Geometries g) throws NullPointerException {
 		if (g == null) {
-			throw new Exception("list can't be null");
+			throw new NullPointerException("list can't be null");
 		} else {
 			this._geometries = g._geometries;
 		}
