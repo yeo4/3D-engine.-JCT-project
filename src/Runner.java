@@ -6,6 +6,7 @@ import primitives.*;
 import java.util.Date;
 
 import elements.AmbientLight;
+import elements.Camera;
 import geometries.*;
 
 public class Runner {
@@ -16,9 +17,10 @@ public class Runner {
 		ImageWriter _imageWriter = new ImageWriter("Test6", X, Y, X, Y);
 		Scene _scene = new Scene("s");
 		_scene.setBackground(new Color(30,255,80));
+		_scene.setCamera(new Camera(new Point3D(-1,0,20), new Vector(0,1,0), new Vector(0,0,-1)));
 		_scene.setAmbientLight(new AmbientLight(new Color(200,50,88), 1));
 	//	_scene.addGeometry(new Triangle(new Triangle(new Point3D(0, 2, -2),new Point3D(1, -8, -8),new Point3D(-1, -1, -2))));
-		_scene.addGeometry(new Tube(0.001, new Point3D(0, 0, 0),new Vector(0, 0, 1)));
+		_scene.addGeometry(new Tube(0.01, new Point3D(0, 0, 0),new Vector(0, 0, 1)));
 
 		Render r = new Render(_imageWriter,_scene);
 
