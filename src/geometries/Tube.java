@@ -9,7 +9,7 @@ public class Tube extends RadialGeometry {
 	protected Vector _axisDirection;
   
 	// ***************** Constructors ********************** // 
-	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) throws IllegalArgumentException {
+	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) {
 		super(r);
 		if(_axisDirection.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("axis direction must not be the a zero vector");
@@ -17,7 +17,7 @@ public class Tube extends RadialGeometry {
 		this._axisDirection = _axisDirection.normalization();
 	}
 	 
-	public Tube(Tube t) throws IllegalArgumentException {
+	public Tube(Tube t) {
 		super(t._radius);
 		this._axisPoint = new Point3D(t._axisPoint);
 		this._axisDirection = new Vector(t._axisDirection);
@@ -107,7 +107,7 @@ public class Tube extends RadialGeometry {
 		double C = temp2.dot_product(temp2) - this._radius * this._radius;
 		double discriminant = B*B - 4*A*C;
 		
-		if(Coordinate.ZERO.equals(discriminant))
+		if(Coordinate.isToCloseToZero(discriminant))
 			discriminant = 0;
 		if(discriminant < 0)
 			return arrPoints;

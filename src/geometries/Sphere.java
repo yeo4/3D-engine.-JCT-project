@@ -9,12 +9,12 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Constructors ********************** //
 
-	public Sphere(double _r, Point3D _center) throws IllegalArgumentException {
+	public Sphere(double _r, Point3D _center) {
 		super(_r);
 		this._center = new Point3D(_center);
 	}
 
-	public Sphere(Sphere s) throws IllegalArgumentException {
+	public Sphere(Sphere s) {
 		super(s._radius);
 		this._center = new Point3D(s._center);
 	}
@@ -56,7 +56,7 @@ public class Sphere extends RadialGeometry {
 	// ***************** Operations ******************** //
 
 	public boolean is_on_sphere(Point3D p1) {
-		if (Coordinate.ZERO.equals(this._radius - _center.distance(p1)))
+		if (Coordinate.isToCloseToZero(this._radius - _center.distance(p1)))
 			return true;
 		return false;
 	}
@@ -80,7 +80,7 @@ public class Sphere extends RadialGeometry {
 			return arrPoints;
 		double th = Math.sqrt(temp);
 
-		if (Coordinate.ZERO.equals(th)) {
+		if (Coordinate.isToCloseToZero(th)) {
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(tm)));
 		} else {
 			double t1 = tm + th;

@@ -73,8 +73,7 @@ public class CylinderTests {
 		    assertTrue(intersectionPointsC1.size() == 2);
 		    assertTrue(intersectionPointsC2.size() == 9);
 			assertTrue(intersectionPointsC3.size() == 0);
-			System.out.println(intersectionPointsC4.size());
-			System.out.println(intersectionPointsC4);
+			assertTrue(intersectionPointsC4.size() == 2);
 
 	}
 

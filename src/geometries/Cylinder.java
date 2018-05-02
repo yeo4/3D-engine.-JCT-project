@@ -13,7 +13,7 @@ public class Cylinder extends Tube {
 	
 	// ***************** Constructors ********************** //
 	
-	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight) throws IllegalArgumentException {
+	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight){
 		super(r, _axisPoint, _axisDirection);
 		if(_hight <= 0)
 			throw new IllegalArgumentException("Hight must be positive");
@@ -24,7 +24,7 @@ public class Cylinder extends Tube {
 		this._plane2 = new Plane(this._Pcenter2, this._axisDirection);
 	}
 		
-	public Cylinder(Cylinder c) throws IllegalArgumentException {
+	public Cylinder(Cylinder c) {
 		super(c._radius, c._axisPoint, c._axisDirection);
 		this._hight = c._hight;
 		this._Pcenter1 = new Point3D (c._Pcenter1);
@@ -68,7 +68,7 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap1(Point3D p) {
 		Vector v = p.subtract(_Pcenter1);
-		if(Coordinate.ZERO.equals(p.subtract(this._Pcenter1).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
+		if(Coordinate.isToCloseToZero(p.subtract(this._Pcenter1).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
 			return true;
 		return false;
 			
@@ -76,7 +76,7 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap2(Point3D p) {
 		Vector v = p.subtract(_Pcenter2);
-		if(Coordinate.ZERO.equals(p.subtract(this._Pcenter2).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
+		if(Coordinate.isToCloseToZero(p.subtract(this._Pcenter2).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
 			return true;
 		return false;
 			
@@ -84,12 +84,11 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap1_given_on_plane(Point3D p) {
 		Vector v = p.subtract(_Pcenter1);
-		double a = v.dot_product(v);
-		double rSquare = this._radius * this._radius;
+		double a = Math.sqrt(v.dot_product(v));
 		
-		if(Coordinate.ZERO.equals(a - rSquare))
+		if(Coordinate.isToCloseToZero((a - this._radius)))
 			return false;
-		if(a < rSquare)
+		if(a < this._radius)
 			return true;
 		return false;
 			
@@ -97,12 +96,11 @@ public class Cylinder extends Tube {
 	
 	public boolean is_on_cap2_given_on_plane(Point3D p) {
 		Vector v = p.subtract(_Pcenter2);
-		double a = v.dot_product(v);
-		double rSquare = this._radius * this._radius;
+		double a = Math.sqrt(v.dot_product(v));
 		
-		if(Coordinate.ZERO.equals(a - rSquare))
+		if(Coordinate.isToCloseToZero((a - this._radius)))
 			return false;
-		if(a < rSquare)
+		if(a < this._radius)
 			return true;
 		return false;
 			
@@ -141,7 +139,7 @@ public class Cylinder extends Tube {
 			double d2 = this.get_axisDirection().dot_product(tubePoints.get(i).subtract(this._Pcenter2));
 			if(d1 <= 0 && d2 >= 0)
 				arrPoints.add(tubePoints.get(i));
-			else if(new Coordinate(d1).equals(Coordinate.ZERO) && new Coordinate(d2).equals(Coordinate.ZERO))
+			else if(Coordinate.isToCloseToZero(d1) && Coordinate.isToCloseToZero(d2))
 				arrPoints.add(tubePoints.get(i));
 		}
 		

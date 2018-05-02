@@ -66,9 +66,9 @@ public class Color {
 	}
 	public java.awt.Color getColor() {
 		int r,g,b;
-		r = (red > 255) ? red : 255;
-		g = (green > 255) ? green : 255;
-		b = (blue > 255) ? blue : 255;
+		r = (red > 255) ? 255 : red;
+		g = (green > 255) ? 255 : green;
+		b = (blue > 255) ? 255 : blue;
 		return new java.awt.Color(r, g, b);
 	}
 	@Override

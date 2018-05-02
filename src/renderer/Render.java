@@ -14,15 +14,16 @@ public class Render {
 		this._imageWriter = _imageWriter;
 	}
 	public void renderImage() {
-		for(int i=0;i<_imageWriter.getHeight();i++) {
-			for(int j=0;j<_imageWriter.getWidth();j++) {
-                Ray r = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(),_imageWriter.getNy(), j, i, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight());
+		for(int i=0;i<_imageWriter.getNx();i++) {
+			for(int j=0;j<_imageWriter.getNx();j++) {
+                Ray r = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(),_imageWriter.getNy(), i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight());
                 List<Point3D> intersectionPoints = _scene.getRayIntersections(r);
                 if(intersectionPoints.isEmpty()) {
-                	_imageWriter.writePixel(j, i, _scene.getBackground());
+                	System.out.println("A");
+                	_imageWriter.writePixel(i, j, _scene.getBackground());
                 }else {
                 	Point3D closestPoint = getClosestPoint(intersectionPoints);
-                	_imageWriter.writePixel(j, i, calcColor(closestPoint));
+                	_imageWriter.writePixel(i, j, calcColor(closestPoint));
                 }
 			}
 		}

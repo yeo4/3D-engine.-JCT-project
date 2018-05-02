@@ -107,7 +107,7 @@ public class Ellipsoid extends Geometry {
 		
 		double discriminant = B*B - 4*A*C;
 		
-		if(Coordinate.ZERO.equals(discriminant))
+		if(Coordinate.isToCloseToZero(discriminant))
 			discriminant = 0;
 		if(discriminant < 0)
 			return arrPoints;

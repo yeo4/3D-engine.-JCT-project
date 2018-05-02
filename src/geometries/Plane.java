@@ -10,7 +10,7 @@ public class Plane extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Plane(Point3D _p, Vector _normal) throws IllegalArgumentException {
+	public Plane(Point3D _p, Vector _normal) {
 		if(_normal.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("Normal to plane must not be the a zero vector");
 		this._p = new Point3D(_p);
@@ -22,7 +22,7 @@ public class Plane extends Geometry {
 		this._normal = new Vector(p._normal);
 	}
 	
-	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) throws IllegalArgumentException {
+	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) {
 		
 		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 		if(v.equals(Vector.ZeroVector))
@@ -50,7 +50,7 @@ public class Plane extends Geometry {
 	}*/
 	
 	public boolean is_on_plane(Point3D p1) {
-		if(Coordinate.ZERO.equals(new Coordinate(new Vector(p1.subtract(this._p)).dot_product(_normal))))
+		if(Coordinate.isToCloseToZero(new Vector(p1.subtract(this._p)).dot_product(_normal)))
 			return true;
 		return false;
 	}
@@ -100,7 +100,7 @@ public class Plane extends Geometry {
 		
 		double mechane = (this._normal.dot_product(r.getDirection()));
 		
-		if(Coordinate.ZERO.equals(mechane))
+		if(Coordinate.isToCloseToZero(mechane))
 			return arrPoints;
 		
 		double mone = this._normal.dot_product(this._p.subtract(r.getP3D()));
