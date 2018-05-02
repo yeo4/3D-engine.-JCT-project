@@ -16,7 +16,7 @@ public class Scene {
 	public Scene(String _sceneName) throws IllegalArgumentException  {
 		this._ambientLight = new AmbientLight();
 		this._sceneName = _sceneName;
-		this._background = new Color(25, 255, 100);
+		this._background = new Color(100, 100, 100);
 		this._geometries = new Geometries();
 		this._camera = new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1));
 		this._screenDistance = 50;

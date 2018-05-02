@@ -71,6 +71,7 @@ public class Color {
 		b = (blue > 255) ? 255 : blue;
 		return new java.awt.Color(r, g, b);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

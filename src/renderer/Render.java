@@ -1,5 +1,6 @@
 package renderer;
 
+import java.util.Date;
 import java.util.List;
 
 import primitives.*;
@@ -15,18 +16,20 @@ public class Render {
 	}
 	public void renderImage() {
 		for(int i=0;i<_imageWriter.getNx();i++) {
-			for(int j=0;j<_imageWriter.getNx();j++) {
+			for(int j=0;j<_imageWriter.getNy();j++) {
                 Ray r = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(),_imageWriter.getNy(), i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight());
                 List<Point3D> intersectionPoints = _scene.getRayIntersections(r);
+				
                 if(intersectionPoints.isEmpty()) {
-                	System.out.println("A");
                 	_imageWriter.writePixel(i, j, _scene.getBackground());
                 }else {
                 	Point3D closestPoint = getClosestPoint(intersectionPoints);
                 	_imageWriter.writePixel(i, j, calcColor(closestPoint));
                 }
 			}
+			System.out.println(i + "/" + _imageWriter.getNx());
 		}
+		System.out.println("Finish Render()");
 	}
 	
 	public void printGrid(double interval) {

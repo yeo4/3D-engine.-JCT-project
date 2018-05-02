@@ -10,7 +10,7 @@ public class AmbientLight extends Light{
 		this.Ka = ka;
 	}
 	public AmbientLight() {
-		super(new Color(125,125,125));
+		super(new Color(25,100,100));
 		this.Ka = 0.8;
 	}
 	
