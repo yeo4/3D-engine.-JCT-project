@@ -81,13 +81,16 @@ public class Sphere extends RadialGeometry {
 		double th = Math.sqrt(temp);
 
 		if (Coordinate.isToCloseToZero(th)) {
+			if(!Coordinate.isToCloseToZero(tm))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(tm)));
+			else
+				return arrPoints;
 		} else {
 			double t1 = tm + th;
 			double t2 = tm - th;
-			if (t1 > 0)
+			if (t1 > 0 && !Coordinate.isToCloseToZero(t1))
 				arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
-			if (t2 > 0)
+			if (t2 > 0 && !Coordinate.isToCloseToZero(t2))
 				arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
 		}
 		return arrPoints;

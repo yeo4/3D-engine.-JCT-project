@@ -62,7 +62,7 @@ public class Coordinate {
 	{
 		// if it too close to zero make it zero
 		
-		return (getExp(coord) < ACCURACY);
+		return (ZERO.getExp(coord) < ACCURACY);
 	}
 	/**
 	 * subtract Coordinate from this coordinate object
@@ -106,7 +106,7 @@ public class Coordinate {
 	// 1 bit sign, 11 bits exponent, 53 bits (52 stored) normalized mantissa
 	// the number is m+2^e where 1<=m<2
 	// NB: exponent is stored "normalized" (i.e. always positive by adding 1023)
-	private static int getExp(double num) {
+	private int getExp(double num) {
 		// 1. doubleToRawLongBits: "convert" the stored number to set of bits
 		// 2. Shift all 52 bits to the right (removing mantissa)
 		// 3. Zero the sign of number bit by mask 0x7FF
