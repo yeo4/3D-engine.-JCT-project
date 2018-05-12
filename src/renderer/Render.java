@@ -58,7 +58,7 @@ public class Render {
 		/*if(Points3D.size() == 0) {
 			throw new NullPointerException("Array can't be null");
 		}*/
-		double d[] = {Integer.MAX_VALUE};
+		//double d[] = {Integer.MAX_VALUE};
 		Point3D From = _scene.getCamera().get_p0();
 	    minDisSquare = Integer.MAX_VALUE;
 		Map<Geometry, Point3D> closest = new HashMap<>();
