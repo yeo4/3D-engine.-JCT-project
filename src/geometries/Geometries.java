@@ -27,34 +27,20 @@ public class Geometries extends Geometry {
 	}
 	
 	
-	List<Point3D> _intersections = null;
-	int i;
-	public List<Point3D> findIntersections(Ray r) {
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {
 		//_intersections = new CopyOnWriteArrayList<>();
-		_intersections = new ArrayList<>();
-		 
-		for (int i = 0; i < _geometries.size(); i++) {
-			_intersections.addAll(_geometries.get(i).findIntersections(r));
-		}
-		//*/
 		
-		/*_intersections = new ArrayList<>();
-		int size = _geometries.size();
-		if(size > 0) {
-			_intersections.addAll(_geometries.get(0).findIntersections(r));
-		}
-
+		Map<Geometry,List<Point3D>> intersectionPoints = new HashMap<Geometry,List<Point3D>>();
 		
-		for (i = 1; i < size ; i++) {
-			new Thread()
-			{
-			    public void run() {
-					_intersections.addAll(_geometries.get(i).findIntersections(r));
-			    }
-			}.start();
+		for (Geometry geometry : _geometries) {
+			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry,List<Point3D>>(geometry.findIntersections(r));
+			
+			geometryIntersectionPoints.forEach((g,list) -> {
+				if(list.size() > 0)
+					intersectionPoints.put(g, list);
+			});
 		}
-		//*/
-		return _intersections;
+		return intersectionPoints;
 	}
 	public boolean add(Geometry e) {
 		return _geometries.add(e);

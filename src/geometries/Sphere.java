@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 import primitives.*;
@@ -9,13 +12,13 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Constructors ********************** //
 
-	public Sphere(double _r, Point3D _center) {
-		super(_r);
+	public Sphere(double _r, Point3D _center, Color emission) {
+		super(_r, emission);
 		this._center = new Point3D(_center);
 	}
 
 	public Sphere(Sphere s) {
-		super(s._radius);
+		super(s._radius, s._emission);
 		this._center = new Point3D(s._center);
 	}
 
@@ -70,21 +73,22 @@ public class Sphere extends RadialGeometry {
 	}
 
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>();
 		ArrayList<Point3D> arrPoints = new ArrayList<>();
 		Vector u = this._center.subtract(r.getP3D());
 		double tm = r.getDirection().dot_product(u);
 		double dSquared = u.dot_product(u) - (tm * tm);
 		double temp = this._radius * this._radius - dSquared;
 		if (temp < 0)
-			return arrPoints;
+			return new HashMap<Geometry,List<Point3D>>();
 		double th = Math.sqrt(temp);
 
 		if (Coordinate.isToCloseToZero(th)) {
 			if(!Coordinate.isToCloseToZero(tm))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(tm)));
 			else
-				return arrPoints;
+				return intersections;
 		} else {
 			double t1 = tm + th;
 			double t2 = tm - th;
@@ -93,6 +97,10 @@ public class Sphere extends RadialGeometry {
 			if (t2 > 0 && !Coordinate.isToCloseToZero(t2))
 				arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
 		}
-		return arrPoints;
+		
+		if(arrPoints.size() != 0)
+			intersections.put(this, arrPoints);
+
+		return intersections;
 	}
 }

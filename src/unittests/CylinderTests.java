@@ -1,14 +1,17 @@
 package unittests;
 
 import static org.junit.Assert.*;
+import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import elements.Camera;
 import geometries.Cylinder;
+import geometries.Geometry;
 import geometries.Tube;
 import primitives.Point3D;
 import primitives.Ray;
@@ -25,15 +28,15 @@ public class CylinderTests {
 		   new Vector(0.0, 1.0, 0.0),
 		   new Vector(0.0, 0.0, -1.0));
 		  
-		  Cylinder c = new Cylinder(15,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),5);
+		  Cylinder c = new Cylinder(15,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),5, new Color(0,0,0));
 		  //only one ray intersects and it goes through both caps
-		  Cylinder c1 = new Cylinder(1,new Point3D(-4.5, 0.0, -1.5),new Vector(-3,0,-1),3);
+		  Cylinder c1 = new Cylinder(1,new Point3D(-4.5, 0.0, -1.5),new Vector(-3,0,-1),3, new Color(0,0,0));
 		  //special case test: ray intersects between cylinder and cap
-		  Cylinder c2 = new Cylinder(3,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),2);
+		  Cylinder c2 = new Cylinder(3,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),2, new Color(0,0,0));
 		  //special case: middle ray is encompassed in side of cylinder 
 		  //so ZERO intersection points are expected (because no other rays intersect the cylinder)
-		  Cylinder c3 = new Cylinder(1, new Point3D(1, 0, -6), new Vector(0,0,1), 2);
-		  Cylinder c4 = new Cylinder(1, new Point3D(1, 0, -8), new Vector(1,0,0),2);
+		  Cylinder c3 = new Cylinder(1, new Point3D(1, 0, -6), new Vector(0,0,1), 2, new Color(0,0,0));
+		  Cylinder c4 = new Cylinder(1, new Point3D(1, 0, -8), new Vector(1,0,0),2, new Color(0,0,0));
 
 		  List <Point3D> intersectionPointsC = new ArrayList <Point3D> ();
 		  List <Point3D> intersectionPointsC1 = new ArrayList <Point3D> ();
@@ -49,23 +52,27 @@ public class CylinderTests {
 				      rays[i][j] = camera.constructRayThroughPixel(
 				       WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
 				      
-				      List < Point3D > rayIntersectionPoints = c.findIntersections(rays[i][j]);
-				      List < Point3D > rayIntersectionPoints1 = c1.findIntersections(rays[i][j]);
-				      List < Point3D > rayIntersectionPoints2 = c2.findIntersections(rays[i][j]);
-				      List < Point3D > rayIntersectionPoints3 = c3.findIntersections(rays[i][j]);
-				      List < Point3D > rayIntersectionPoints4 = c4.findIntersections(rays[i][j]);
+				      Map<Geometry, List<Point3D>> rayIntersectionPoints = c.findIntersections(rays[i][j]);
+				      Map<Geometry, List<Point3D>> rayIntersectionPoints1 = c1.findIntersections(rays[i][j]);
+				      Map<Geometry, List<Point3D>> rayIntersectionPoints2 = c2.findIntersections(rays[i][j]);
+				      Map<Geometry, List<Point3D>> rayIntersectionPoints3 = c3.findIntersections(rays[i][j]);
+				      Map<Geometry, List<Point3D>> rayIntersectionPoints4 = c4.findIntersections(rays[i][j]);
 
-				      
-				      for (Point3D iPoint: rayIntersectionPoints)
-					       intersectionPointsC.add(iPoint);
-				      for (Point3D iPoint: rayIntersectionPoints1)
-					       intersectionPointsC1.add(iPoint);
-				      for (Point3D iPoint: rayIntersectionPoints2)
-					       intersectionPointsC2.add(iPoint);
-				      for (Point3D iPoint: rayIntersectionPoints3)
-					       intersectionPointsC3.add(iPoint);
-				      for (Point3D iPoint: rayIntersectionPoints4)
-					       intersectionPointsC4.add(iPoint);
+				      if(rayIntersectionPoints.size() !=0)
+				    	  for (Point3D iPoint: rayIntersectionPoints.get(c))
+				    		  intersectionPointsC.add(iPoint);
+				      if(rayIntersectionPoints1.size() !=0)
+					      for (Point3D iPoint: rayIntersectionPoints1.get(c1))
+						       intersectionPointsC1.add(iPoint);
+				      if(rayIntersectionPoints2.size() !=0)
+					      for (Point3D iPoint: rayIntersectionPoints2.get(c2))
+						       intersectionPointsC2.add(iPoint);
+				      if(rayIntersectionPoints3.size() !=0)
+					      for (Point3D iPoint: rayIntersectionPoints3.get(c3))
+						       intersectionPointsC3.add(iPoint);
+				      if(rayIntersectionPoints4.size() !=0)
+					      for (Point3D iPoint: rayIntersectionPoints4.get(c4))
+						       intersectionPointsC4.add(iPoint);
 			     }
 		    }
 

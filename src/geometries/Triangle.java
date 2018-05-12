@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 import primitives.*;
@@ -11,14 +14,14 @@ public class Triangle extends Plane {
 
 	// ***************** Constructors ********************** // 
 	
-	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3){
-		super(_p1,_p2,_p3);
+	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3, Color emission){
+		super(_p1,_p2,_p3, emission);
 		this._p1 = new Point3D (_p1);
 		this._p2 = new Point3D (_p2);
 		this._p3 = new Point3D (_p3);
 	}
 	public Triangle(Triangle t) {
-		super(t._p,t._normal);
+		super(t._p,t._normal, t._emission);
 		this._p1 = new Point3D (t._p1);
 		this._p2 = new Point3D (t._p2);
 		this._p3 = new Point3D (t._p3);
@@ -91,9 +94,9 @@ public class Triangle extends Plane {
 	}
 	
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
-		ArrayList<Point3D> arrPoints = super.findIntersections(r);
-		for (int i=0;i<arrPoints.size();i++) {
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersections = super.findIntersections(r);
+		for (int i=0; i < intersections.size(); i++) {
 			Vector v1 = this._p1.subtract(r.getP3D());
 			Vector v2 = this._p2.subtract(r.getP3D());
 			Vector v3 = this._p3.subtract(r.getP3D());
@@ -107,8 +110,12 @@ public class Triangle extends Plane {
 			boolean b1 = !(r.getDirection().dot_product(N1) > 0 && r.getDirection().dot_product(N2) > 0 && r.getDirection().dot_product(N3) > 0);
 			boolean b2 = !(r.getDirection().dot_product(N1) < 0 && r.getDirection().dot_product(N2) < 0 && r.getDirection().dot_product(N3) < 0);
 				if((b1 && b2) || b3)
-					arrPoints.clear();
+				{
+					intersections.clear();
+					return intersections;
+				}
 		}		
-		return arrPoints;
+		
+		return intersections;
 	}
 }

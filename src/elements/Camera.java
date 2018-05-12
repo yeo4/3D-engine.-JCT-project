@@ -21,7 +21,15 @@ public class Camera {
 		this._vRight = this._vTo.cross_product(this._vUp).normalization();
 		
 	}
-
+	
+	public Camera(Camera c)
+	{
+		this._p0 = c._p0;
+		this._vRight = c._vRight;
+		this._vTo = c._vTo;
+		this._vUp = c._vUp;
+	}
+	
 	// ***************** Administration  ******************** // 
 	
 	public Point3D get_p0() {

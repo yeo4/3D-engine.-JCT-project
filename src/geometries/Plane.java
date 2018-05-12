@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 import primitives.*;
@@ -10,25 +13,28 @@ public class Plane extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Plane(Point3D _p, Vector _normal) {
+	public Plane(Point3D _p, Vector _normal, Color emission) {
 		if(_normal.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("Normal to plane must not be the a zero vector");
 		this._p = new Point3D(_p);
 		this._normal = new Vector(_normal).normalization();
+		this._emission = emission;
 	}
 
 	public Plane(Plane p) {
 		this._p = new Point3D(p._p);
 		this._normal = new Vector(p._normal);
+		this._emission = new Color(p._emission);
 	}
 	
-	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) {
+	public Plane(Point3D _p1, Point3D _p2, Point3D _p3, Color emission) {
 		
 		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 		if(v.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("planes and triangles points must not be colliniar");
 		this._p = new Point3D(_p1);
 		this._normal = new Vector(v);
+		this._emission = new Color(emission);
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -93,23 +99,28 @@ public class Plane extends Geometry {
 	}
 
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
-		
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>();
 		ArrayList<Point3D> arrPoints = new ArrayList<>();
 		
 		
 		double mechane = (this._normal.dot_product(r.getDirection()));
 		
-		if(Coordinate.isToCloseToZero(mechane))
-			return arrPoints;
+		if(Coordinate.isToCloseToZero(mechane)) 		// Dan said to check but maybe unnecessary???
+			return intersections;
 		
 		double mone = this._normal.dot_product(this._p.subtract(r.getP3D()));
 		double t = mone/mechane;
 		
 		if(t <= 0)
-			return arrPoints;
+			return intersections;
 		
 		arrPoints.add(r.getP3D().add(r.getDirection().multiply(t)));
-		return arrPoints;
+		
+		if(arrPoints.size() != 0)
+			intersections.put(this, arrPoints);
+
+		return intersections;
+
 	}
 }

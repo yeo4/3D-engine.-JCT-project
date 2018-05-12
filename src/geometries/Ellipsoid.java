@@ -1,7 +1,9 @@
 package geometries;
 
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 
 import primitives.*;
 
@@ -15,7 +17,7 @@ public class Ellipsoid extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Ellipsoid(Point3D center, double a, double b, double c) {
+	public Ellipsoid(Point3D center, double a, double b, double c, Color emission) {
 		super();
 		if(a <= 0 || b <= 0 || c <= 0)
 			throw new IllegalArgumentException("Radius must be positive");
@@ -24,6 +26,7 @@ public class Ellipsoid extends Geometry {
 		this._b = b;
 		this._c = c;
 		this._inverses = new Point3D(1/this._a, 1/this._b, 1/this._c);
+		this._emission = new Color(emission);
 	}
 	
 	public Ellipsoid(Ellipsoid e) {
@@ -33,6 +36,7 @@ public class Ellipsoid extends Geometry {
 		this._b = e._b;
 		this._c = e._c;
 		this._inverses = new Point3D(e._inverses);
+		this._emission = new Color(e._emission);
 	}
 	
 	// ***************** Getters/Setters ********************** //
@@ -94,7 +98,8 @@ public class Ellipsoid extends Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray r) {
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>();
 		ArrayList<Point3D> arrPoints = new ArrayList<>();
 		
 		Vector v1 = new Vector(r.getDirection().get().getX().get()/this._a, r.getDirection().get().getY().get()/this._b, r.getDirection().get().getZ().get()/this._c);
@@ -110,7 +115,7 @@ public class Ellipsoid extends Geometry {
 		if(Coordinate.isToCloseToZero(discriminant))
 			discriminant = 0;
 		if(discriminant < 0)
-			return arrPoints;
+			return intersections;
 		
 		double discriminantRoot = Math.sqrt(discriminant);
 		double t1 = (-B + discriminantRoot)/(2*A);
@@ -120,7 +125,12 @@ public class Ellipsoid extends Geometry {
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
 		if(t2 > 0 && discriminant!=0)
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
-		return arrPoints;
+		
+		if(arrPoints.size() != 0)
+			intersections.put(this, arrPoints);
+		
+		return intersections;
+
 	}
 
 }

@@ -1,76 +1,77 @@
 package primitives;
 
 public class Color {
-	private int red;
-	private int green;
-	private int blue;
+	private int _red;
+	private int _green;
+	private int _blue;
 	
 	// ***************** Constructors ********************** //
 	/**
-	 * Default Constructors
+	 * Default Constructor
 	 */
 	public Color() {
-		red = 0;
-		green = 0;
-		blue = 0;
+		_red = 0;
+		_green = 0;
+		_blue = 0;
 	}
 	/**
-	 * Constructors that get red green and blue
+	 * Constructor that get red green and blue
 	 * @param r
 	 * @param g
 	 * @param b
 	 */
 	public Color(int r,int g,int b) {
-		red = r;
-		green = g;
-		blue = b;
+		_red = r;
+		_green = g;
+		_blue = b;
 	}
-	public void scale(double d) {
-		if(d < 0) {
-			throw new IllegalArgumentException("number must be more then 0");
-		}
-		red *= d;
-		green *= d;
-		blue *= d;
+	/**
+	 * Copy Constructor
+	 * @param other
+	 */
+	public Color(Color other) {
+		_red = other._red;
+		_green = other._green;
+		_blue = other._blue;
 	}
-	public void add(Color c) {
-		red += c.red;
-		green += c.green;
-		blue += c.blue;
+	/**
+	 * Copy Constructor
+	 * @param color
+	 */
+	public Color(java.awt.Color color) {
+		_red = color.getRed();
+		_green = color.getGreen();
+		_blue = color.getBlue();
 	}
-	public void reduce(double d) {
-		if(d <= 0) {
-			throw new IllegalArgumentException("number must be more then 0");
-		}
-		scale(1/d);
-	}
-	
+
 	// ***************** Getters/Setters ********************** //
 	public int getRed() {
-		return red;
+		return _red;
 	}
 	public void setRed(int red) {
-		this.red = red;
+		this._red = red;
 	}
 	public int getGreen() {
-		return green;
+		return _green;
 	}
 	public void setGreen(int green) {
-		this.green = green;
+		this._green = green;
 	}
 	public int getBlue() {
-		return blue;
+		return _blue;
 	}
 	public void setBlue(int blue) {
-		this.blue = blue;
+		this._blue = blue;
 	}
 	public java.awt.Color getColor() {
 		int r,g,b;
-		r = (red > 255) ? 255 : red;
-		g = (green > 255) ? 255 : green;
-		b = (blue > 255) ? 255 : blue;
+		r = (_red > 255) ? 255 : _red;
+		g = (_green > 255) ? 255 : _green;
+		b = (_blue > 255) ? 255 : _blue;
 		return new java.awt.Color(r, g, b);
 	}
+	
+	// ***************** Administration  ******************** // 
 
 	@Override
 	public boolean equals(Object obj) {
@@ -81,12 +82,61 @@ public class Color {
 		if (getClass() != obj.getClass())
 			return false;
 		Color other = (Color) obj;
-		if (blue != other.blue)
+		if (_blue != other._blue)
 			return false;
-		if (green != other.green)
+		if (_green != other._green)
 			return false;
-		if (red != other.red)
+		if (_red != other._red)
 			return false;
 		return true;
+	}
+	
+	// ***************** Operations  ******************** // 
+	/**
+	 * @param AWT colors to add to our color
+	 * @return our color with adding colors
+	 */
+	public Color add(java.awt.Color... colors) {
+		for (java.awt.Color color : colors) {
+			_red = color.getRed();
+			_green = color.getGreen();
+			_blue = color.getBlue();
+		}
+		
+		return this;
+	}
+
+	/**
+	 * @param colors to add to our color
+	 * @return our color with adding colors
+	 */
+	public Color add(Color... colors) {
+		for (Color color : colors) {
+			_red += color._red;
+			_green += color._green;
+			_blue += color._blue;
+		}
+		
+		return this;
+	}
+
+	public Color scale(double d) {
+		if(d < 0) {
+			throw new IllegalArgumentException("number must be more then 0");
+		}
+		_red *= d;
+		_green *= d;
+		_blue *= d;
+		
+		return this;
+	}
+	
+	public Color reduce(double d) {
+		if(d <= 0) {
+			throw new IllegalArgumentException("number must be more then 0");
+		}
+		scale(1/d);
+		
+		return this;
 	}
 }

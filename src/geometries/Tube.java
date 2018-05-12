@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 import primitives.*;
@@ -9,8 +12,8 @@ public class Tube extends RadialGeometry {
 	protected Vector _axisDirection;
   
 	// ***************** Constructors ********************** // 
-	public Tube(double r, Point3D _axisPoint, Vector _axisDirection) {
-		super(r);
+	public Tube(double r, Point3D _axisPoint, Vector _axisDirection, Color emission) {
+		super(r, emission);
 		if(_axisDirection.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("axis direction must not be the a zero vector");
 		this._axisPoint = new Point3D(_axisPoint);
@@ -18,7 +21,7 @@ public class Tube extends RadialGeometry {
 	}
 	 
 	public Tube(Tube t) {
-		super(t._radius);
+		super(t._radius, t._emission);
 		this._axisPoint = new Point3D(t._axisPoint);
 		this._axisDirection = new Vector(t._axisDirection);
 	}
@@ -93,7 +96,8 @@ public class Tube extends RadialGeometry {
 	}
 
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>();
 		ArrayList<Point3D> arrPoints = new ArrayList<>();
 
 		Vector deltaP = r.getP3D().subtract(this._axisPoint);
@@ -110,7 +114,7 @@ public class Tube extends RadialGeometry {
 		if(Coordinate.isToCloseToZero(discriminant))
 			discriminant = 0;
 		if(discriminant < 0)
-			return arrPoints;
+			return intersections;
 		
 		double discriminantRoot = Math.sqrt(discriminant);
 		double t1 = (-B + discriminantRoot)/(2*A);
@@ -120,7 +124,11 @@ public class Tube extends RadialGeometry {
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
 		if(t2 > 0 && discriminant!=0)
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
-		return arrPoints;
+
+		if(arrPoints.size() != 0)
+			intersections.put(this, arrPoints);
+			 
+		return intersections;
 	}
 
 }

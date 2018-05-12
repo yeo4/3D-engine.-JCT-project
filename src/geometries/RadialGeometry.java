@@ -1,20 +1,24 @@
 package geometries;
 
+import primitives.*;
+
 public abstract class RadialGeometry extends Geometry {
 	protected double _radius;
 	
 	// ***************** Constructors ********************** //
 	
-	public RadialGeometry(double r){
+	public RadialGeometry(double r, Color emission){
 		super();
 		if(r<=0)
 			throw new IllegalArgumentException("Radius must be positive");
 		_radius = r;
+		this._emission = emission;
 	}
 	
 	public RadialGeometry(RadialGeometry rg){
 		super();
 		_radius = rg._radius;
+		this._emission = new Color(rg._emission);
 	}
 
 	// ***************** Getters/Setters ********************** // 

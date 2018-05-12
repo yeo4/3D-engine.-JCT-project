@@ -9,6 +9,10 @@ public class AmbientLight extends Light{
 		super(_color);
 		this.Ka = ka;
 	}
+	public AmbientLight(AmbientLight ambientLight) {
+		super(ambientLight._color);
+		this.Ka = ambientLight.Ka;
+	}
 	public AmbientLight() {
 		super(new Color(25,100,100));
 		this.Ka = 0.8;
@@ -17,7 +21,7 @@ public class AmbientLight extends Light{
 	@Override
 	public Color getIntensity() {
 		_color.scale(Ka);
-		return _color;
+		return new Color(_color);
 	}
 	
 	public double getKa() {

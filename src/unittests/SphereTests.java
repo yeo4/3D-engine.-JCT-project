@@ -3,6 +3,7 @@ package unittests;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -22,11 +23,11 @@ public class SphereTests {
 	   new Vector(0.0, 1.0, 0.0),
 	   new Vector(0.0, 0.0, -1.0));
 	  
-	  Sphere sphere = new Sphere(1, new Point3D(0.0, 0.0, -3.0));
-	  Sphere sphere2 = new Sphere(10, new Point3D(0.0, 0.0, -3.0));
+	  Sphere sphere = new Sphere(1, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0));
+	  Sphere sphere2 = new Sphere(10, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0));
 	  //Special Case Test: Tangent Line
-	  Sphere sphere3 = new Sphere(1, new Point3D(1.0, 0.0, -4.0));
-	  Sphere sphere4 = new Sphere(1, new Point3D(5.0, 0.0, -20.0));
+	  Sphere sphere3 = new Sphere(1, new Point3D(1.0, 0.0, -4.0), new Color(0,0,0));
+	  Sphere sphere4 = new Sphere(1, new Point3D(5.0, 0.0, -20.0), new Color(0,0,0));
 
 	  // Only the center ray intersect the sphere in two locations
 	  List <Point3D> intersectionPointsSphere = new ArrayList <Point3D> ();
@@ -42,20 +43,25 @@ public class SphereTests {
 		     for (int j = 0; j < WIDTH; j++) {
 			      rays[i][j] = camera.constructRayThroughPixel(
 			       WIDTH, HEIGHT, j, i, 1, 3 * WIDTH, 3 * HEIGHT);
-			      List < Point3D > rayIntersectionPoints = sphere.findIntersections(rays[i][j]);
-			      List < Point3D > rayIntersectionPoints2 = sphere2.findIntersections(rays[i][j]);
-			      List < Point3D > rayIntersectionPoints3 = sphere3.findIntersections(rays[i][j]);
-			      List < Point3D > rayIntersectionPoints4 = sphere4.findIntersections(rays[i][j]);
+			      
+			      Map<Geometry, List<Point3D>> rayIntersectionPoints = sphere.findIntersections(rays[i][j]);
+			      Map<Geometry, List<Point3D>> rayIntersectionPoints2 = sphere2.findIntersections(rays[i][j]);
+			      Map<Geometry, List<Point3D>> rayIntersectionPoints3 = sphere3.findIntersections(rays[i][j]);
+			      Map<Geometry, List<Point3D>> rayIntersectionPoints4 = sphere4.findIntersections(rays[i][j]);
 
-			      for (Point3D iPoint: rayIntersectionPoints)
-			       intersectionPointsSphere.add(iPoint);
-			      for (Point3D iPoint: rayIntersectionPoints2)
-			       intersectionPointsSphere2.add(iPoint);
-			      for (Point3D iPoint: rayIntersectionPoints3)
-				       intersectionPointsSphere3.add(iPoint);
-			      for (Point3D iPoint: rayIntersectionPoints4)
-				       intersectionPointsSphere4.add(iPoint);
-
+				  if(rayIntersectionPoints.size() !=0)
+				      for (Point3D iPoint: rayIntersectionPoints.get(sphere))
+				       intersectionPointsSphere.add(iPoint);
+				  if(rayIntersectionPoints2.size() !=0)
+				      for (Point3D iPoint: rayIntersectionPoints2.get(sphere2))
+				       intersectionPointsSphere2.add(iPoint);
+				  if(rayIntersectionPoints3.size() !=0)
+				      for (Point3D iPoint: rayIntersectionPoints3.get(sphere3))
+					       intersectionPointsSphere3.add(iPoint);
+				  if(rayIntersectionPoints4.size() !=0)
+				      for (Point3D iPoint: rayIntersectionPoints4.get(sphere4))
+					       intersectionPointsSphere4.add(iPoint);
+				      
 		     }
 	    }
 
