@@ -52,32 +52,30 @@ public class Render {
 		return color;
 	}
 	
-	double minDisSquare; // find alternative;
-	
 	private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints ) {
 		/*if(Points3D.size() == 0) {
 			throw new NullPointerException("Array can't be null");
 		}*/
-		//double d[] = {Integer.MAX_VALUE};
 		Point3D From = _scene.getCamera().get_p0();
-	    minDisSquare = Integer.MAX_VALUE;
+	    double minDisSquare = Integer.MAX_VALUE;
 		Map<Geometry, Point3D> closest = new HashMap<>();
 		
-		intersectionPoints.forEach((geometry, list) -> {
-			for (int i = 0; i < list.size(); i++) {
-				if(list.get(i) != null) {
-					if(From.distanceSquare(list.get(i)) <= minDisSquare) {
+		for(Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet())
+			for (Point3D p : entry.getValue()) {
+				
+				double dSquare = From.distanceSquare(p);
+				
+					if(dSquare <= minDisSquare) {
 						 closest.clear();
-						 closest.put(geometry, new Point3D(list.get(i)));
-						 minDisSquare = From.distanceSquare(list.get(i));
+						 closest.put(entry.getKey(), new Point3D(p));
+						 minDisSquare = dSquare;
 					}
 				}
-			}
-		});
 		
 		if(closest.size() == 1)
 			return closest;
 		return null;
+		
 	}
 	public Scene get_scene() {
 		return _scene;
