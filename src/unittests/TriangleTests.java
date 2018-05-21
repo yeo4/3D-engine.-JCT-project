@@ -22,13 +22,13 @@ public class TriangleTests {
             Camera camera = new Camera(new Point3D(0.0, 0.0, 0.0),
                 new Vector(0.0, 1.0, 0.0),
                 new Vector(0.0, 0.0, -1.0));
-            Triangle triangle = new Triangle(new Point3D(0, 1, -2),new Point3D(1, -1, -2),new Point3D(-1, -1, -2), new Color(0,0,0));
-            Triangle triangle2 = new Triangle(new Point3D(0, 10, -2),new Point3D(1, -1, -2),new Point3D(-1, -1, -2), new Color(0,0,0));
+            Triangle triangle = new Triangle(new Point3D(0, 1, -2),new Point3D(1, -1, -2),new Point3D(-1, -1, -2), new Color(0,0,0), new Material(1,1,1));
+            Triangle triangle2 = new Triangle(new Point3D(0, 10, -2),new Point3D(1, -1, -2),new Point3D(-1, -1, -2), new Color(0,0,0), new Material(1,1,1));
             // special case test: one ray goes through a vertex and another through an edge of the triangle
             //so i expect ZERO intersection points
-            Triangle triangle3 = new Triangle(new Point3D(3, 3, -1), new Point3D(2, 0, -1),new Point3D(4, 0, -1), new Color(0,0,0));
+            Triangle triangle3 = new Triangle(new Point3D(3, 3, -1), new Point3D(2, 0, -1),new Point3D(4, 0, -1), new Color(0,0,0), new Material(1,1,1));
             // special case test: one ray is encompassed in triangle so i expect ZERO intersection points
-            Triangle triangle4 = new Triangle(new Point3D(0, 0, -1), new Point3D(2, 0, -2),new Point3D(-2, 0, -2), new Color(0,0,0));
+            Triangle triangle4 = new Triangle(new Point3D(0, 0, -1), new Point3D(2, 0, -2),new Point3D(-2, 0, -2), new Color(0,0,0), new Material(1,1,1));
             
             List <Point3D> intersectionPointsTriangle = new ArrayList < Point3D > ();
             List <Point3D> intersectionPointsTriangle2 = new ArrayList < Point3D > ();
