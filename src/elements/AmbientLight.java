@@ -18,7 +18,6 @@ public class AmbientLight extends Light{
 		this.Ka = 0.8;
 	}
 	
-	@Override
 	public Color getIntensity() {
 		_color.scale(Ka);
 		return new Color(_color);

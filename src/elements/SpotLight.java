@@ -2,7 +2,7 @@ package elements;
 
 import primitives.*;
 
-public class SpotLight extends PointLight{	
+public class SpotLight extends PointLight implements LightSource{	
 	private Vector _direction;
 
 	// ***************** Constructors ********************** //
@@ -16,14 +16,25 @@ public class SpotLight extends PointLight{
 		this(SPL._color,SPL._position,SPL._Kc,SPL._Kl,SPL._Kq,SPL._direction);
 	}
 	
-	// ***************** Operations ******************** //
+	// ***************** Operations ******************** //	
 	
 	@Override
-	public Color getIntensity() {
+	public Color getIntensity(Point3D point) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public Vector getL(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getD(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	// ***************** Getters/Setters ********************** // 
@@ -35,7 +46,8 @@ public class SpotLight extends PointLight{
 	public void set_direction(Vector _direction) {
 		this._direction = _direction;
 	}
-	
+
+
 
 
 }

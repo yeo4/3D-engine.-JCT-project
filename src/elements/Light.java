@@ -4,7 +4,6 @@ import primitives.Color;
 
 public abstract class Light {
 	protected Color _color;
-	public abstract Color getIntensity();
 
 	public Light(Color _color) {
 		super();

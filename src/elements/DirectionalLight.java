@@ -2,7 +2,7 @@ package elements;
 
 import primitives.*;
 
-public class DirectionalLight extends Light{
+public class DirectionalLight extends Light implements LightSource{
 	Vector _direction;
 	
 	// ***************** Constructors ********************** //
@@ -29,8 +29,21 @@ public class DirectionalLight extends Light{
 		this._direction = _direction;
 	}
 
+
 	@Override
-	public Color getIntensity() {
+	public Color getIntensity(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getL(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getD(Point3D point) {
 		// TODO Auto-generated method stub
 		return null;
 	}

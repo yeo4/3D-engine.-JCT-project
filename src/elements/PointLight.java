@@ -2,7 +2,7 @@ package elements;
 
 import primitives.*;
 
-public class PointLight extends Light{
+public class PointLight extends Light implements LightSource{
 
 	protected Point3D _position;
 	protected double _Kc, _Kl, _Kq;
@@ -24,12 +24,13 @@ public class PointLight extends Light{
 	
 	// ***************** Operations ******************** //
 	
+	
 	@Override
-	public Color getIntensity() {
+	public Color getIntensity(Point3D point) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	// ***************** Getters/Setters ********************** // 
 	
 	public Point3D get_position() {
@@ -64,5 +65,16 @@ public class PointLight extends Light{
 		this._Kq = _Kq;
 	}
 
+	@Override
+	public Vector getL(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getD(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
