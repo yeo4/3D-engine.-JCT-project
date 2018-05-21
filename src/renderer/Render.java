@@ -49,6 +49,7 @@ public class Render {
 	private Color calcColor(Geometry g, Point3D p3d) {
 		Color color = _scene.getAmbientLight().getIntensity();
 		color = color.add(g.get_emission());
+		
 		return color;
 	}
 	

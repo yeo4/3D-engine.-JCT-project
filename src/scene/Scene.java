@@ -1,4 +1,5 @@
 package scene;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class Scene {
 	private String _sceneName;
 	private Color _background;
 	private AmbientLight _ambientLight;
+	private List<LightSource> _lights;
 	private Geometries _geometries;
 	private Camera _camera;
 	private double _screenDistance;
@@ -21,9 +23,10 @@ public class Scene {
 		this._geometries = new Geometries();
 		this._camera = new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1));
 		this._screenDistance = 50;
+		this._lights = new ArrayList<>();
 	}
 	
-	public Scene(String sceneName, Color background, AmbientLight ambientLight, Geometries geometries, Camera camera, double screenDistance) throws Exception {
+	public Scene(String sceneName, Color background, AmbientLight ambientLight, Geometries geometries, Camera camera, double screenDistance, List<LightSource> lightsSource) throws Exception {
 		super();
 		this._sceneName = sceneName;
 		this._background = new Color(background);
@@ -31,6 +34,7 @@ public class Scene {
 		this._geometries = new Geometries(_geometries);
 		this._camera = new Camera(camera);
 		this._screenDistance = screenDistance;
+		this._lights = lightsSource;
 	}
 	
 	public Scene(Scene s) throws IllegalArgumentException {
@@ -91,6 +95,26 @@ public class Scene {
 	}
 	public Map<Geometry,List<Point3D>> getRayIntersections(Ray r){
 		return _geometries.findIntersections(r);
+	}
+
+	public int size() {
+		return _lights.size();
+	}
+
+	public boolean add(LightSource e) {
+		return _lights.add(e);
+	}
+
+	public boolean remove(Object o) {
+		return _lights.remove(o);
+	}
+
+	public LightSource get(int index) {
+		return _lights.get(index);
+	}
+
+	public LightSource remove(int index) {
+		return _lights.remove(index);
 	}
 
 }
