@@ -53,9 +53,6 @@ public class Render {
 	}
 	
 	private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints ) {
-		/*if(Points3D.size() == 0) {
-			throw new NullPointerException("Array can't be null");
-		}*/
 		Point3D From = _scene.getCamera().get_p0();
 	    double minDisSquare = Integer.MAX_VALUE;
 		Map<Geometry, Point3D> closest = new HashMap<>();

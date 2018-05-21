@@ -21,6 +21,9 @@ public class Color {
 	 * @param b
 	 */
 	public Color(int r,int g,int b) {
+		if(r <0 || g <0 || b < 0){
+			throw new IllegalArgumentException("R:" + (r<0) + "G:" + (g<0) + "B:" + (b<0));
+		}
 		_red = r;
 		_green = g;
 		_blue = b;

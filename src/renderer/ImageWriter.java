@@ -45,6 +45,8 @@ public class ImageWriter {
 
 	public void setNy(int _Ny) { this._Ny = _Ny; }
 	public void setNx(int _Nx) { this._Nx = _Nx; }
+	
+	public String getName(){return this._imageName;};
 		
 	// ***************** Operations ******************** // 
 	
