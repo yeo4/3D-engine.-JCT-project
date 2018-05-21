@@ -96,24 +96,26 @@ public class Scene {
 	public Map<Geometry,List<Point3D>> getRayIntersections(Ray r){
 		return _geometries.findIntersections(r);
 	}
-
-	public int size() {
+	public List<LightSource> getLights() {
+		return _lights;
+	}
+	public int lightsSize() {
 		return _lights.size();
 	}
 
-	public boolean add(LightSource e) {
+	public boolean addLight(LightSource e) {
 		return _lights.add(e);
 	}
 
-	public boolean remove(Object o) {
+	public boolean removeLight(Object o) {
 		return _lights.remove(o);
 	}
 
-	public LightSource get(int index) {
+	public LightSource getLightByIndex(int index) {
 		return _lights.get(index);
 	}
 
-	public LightSource remove(int index) {
+	public LightSource removeLightByIndex(int index) {
 		return _lights.remove(index);
 	}
 
