@@ -20,20 +20,17 @@ public class SpotLight extends PointLight implements LightSource{
 	
 	@Override
 	public Color getIntensity(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getIntensity(point).scale(this._direction.dot_product(this.getL(point)));
 	}
 
 	@Override
 	public Vector getL(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getL(point);
 	}
 
 	@Override
 	public Vector getD(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		return this._direction;
 	}
 	
 	

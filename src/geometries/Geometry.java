@@ -7,8 +7,15 @@ import primitives.*;
 
 public abstract class Geometry {
 	protected Color _emission;
+	protected Material _material;
 	
 	// ***************** Constructors ********************** //
+	
+	public Geometry(Color emission, Material material)
+	{
+		this._emission = emission;
+		this._material = material;
+	}
 	
 	// ***************** Getters/Setters ********************** // 
 
@@ -16,6 +23,9 @@ public abstract class Geometry {
 		return _emission;
 	}
 	
+	public Material get_material() {
+		return _material;
+	}
 	// ***************** Administration ******************** //
 
 	@Override
