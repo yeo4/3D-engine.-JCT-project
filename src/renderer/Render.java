@@ -82,11 +82,11 @@ public class Render {
 
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
 		Vector r = new Vector(l.add(n.multiply(2 * l.dot_product(n))));
-		return lightIntensity.scale(ks * Math.abs(Math.pow(v.dot_product(r),nShininess)));
+		return new Color(lightIntensity).scale(ks * Math.abs(Math.pow(v.dot_product(r),nShininess)));
 	}
 
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
-		return lightIntensity.scale(kd * Math.abs(l.dot_product(n)));
+		return new Color(lightIntensity).scale(kd * Math.abs(l.dot_product(n)));
 	}
 
 	private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
