@@ -12,13 +12,13 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Constructors ********************** //
 
-	public Sphere(double _r, Point3D _center, Color emission) {
-		super(_r, emission);
+	public Sphere(double _r, Point3D _center, Color emission, Material material) {
+		super(_r, emission, material);
 		this._center = new Point3D(_center);
 	}
 
 	public Sphere(Sphere s) {
-		super(s._radius, s._emission);
+		super(s._radius, s._emission, s._material);
 		this._center = new Point3D(s._center);
 	}
 

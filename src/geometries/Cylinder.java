@@ -16,19 +16,19 @@ public class Cylinder extends Tube {
 	
 	// ***************** Constructors ********************** //
 	
-	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight, Color emission){
-		super(r, _axisPoint, _axisDirection, emission);
+	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight, Color emission, Material material){
+		super(r, _axisPoint, _axisDirection, emission, material);
 		if(_hight <= 0)
 			throw new IllegalArgumentException("Hight must be positive");
 		this._hight = _hight;
 		this._Pcenter1 = this._axisPoint.add(this._axisDirection.multiply(this._hight / 2));
 		this._Pcenter2 = this._axisPoint.add(this._axisDirection.multiply(-this._hight / 2));
-		this._plane1 = new Plane(this._Pcenter1, this._axisDirection, this._emission);
-		this._plane2 = new Plane(this._Pcenter2, this._axisDirection, this._emission);
+		this._plane1 = new Plane(this._Pcenter1, this._axisDirection, this._emission, this._material);
+		this._plane2 = new Plane(this._Pcenter2, this._axisDirection, this._emission, this._material);
 	}
 		
 	public Cylinder(Cylinder c) {
-		super(c._radius, c._axisPoint, c._axisDirection, c._emission);
+		super(c._radius, c._axisPoint, c._axisDirection, c._emission, c._material);
 		this._hight = c._hight;
 		this._Pcenter1 = new Point3D (c._Pcenter1);
 		this._Pcenter2 = new Point3D (c._Pcenter2);

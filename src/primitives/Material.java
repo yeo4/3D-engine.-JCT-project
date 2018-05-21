@@ -9,10 +9,14 @@ public class Material {
 	// ***************** Constructors ********************** //
 
 	public Material(double _Kd, double _Ks, int nShininess) {
-		super();
 		this._Kd = _Kd;
 		this._Ks = _Ks;
 		this.nShininess = nShininess;
+	}
+	public Material(Material material) {
+		this._Kd = material._Kd;
+		this._Ks = material._Ks;
+		this.nShininess = material.nShininess;
 	}
 	// ***************** Operations ******************** // 
 	// ***************** Getters/Setters ********************** //

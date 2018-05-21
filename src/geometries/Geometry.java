@@ -11,12 +11,6 @@ public abstract class Geometry {
 	
 	// ***************** Constructors ********************** //
 	
-	public Geometry(Color emission, Material material)
-	{
-		this._emission = emission;
-		this._material = material;
-	}
-	
 	// ***************** Getters/Setters ********************** // 
 
 	public Color get_emission() {

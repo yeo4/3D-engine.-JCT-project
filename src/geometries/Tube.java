@@ -12,8 +12,8 @@ public class Tube extends RadialGeometry {
 	protected Vector _axisDirection;
   
 	// ***************** Constructors ********************** // 
-	public Tube(double r, Point3D _axisPoint, Vector _axisDirection, Color emission) {
-		super(r, emission);
+	public Tube(double r, Point3D _axisPoint, Vector _axisDirection, Color emission, Material material) {
+		super(r, emission, material);
 		if(_axisDirection.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("axis direction must not be the a zero vector");
 		this._axisPoint = new Point3D(_axisPoint);
@@ -21,7 +21,7 @@ public class Tube extends RadialGeometry {
 	}
 	 
 	public Tube(Tube t) {
-		super(t._radius, t._emission);
+		super(t._radius, t._emission, t._material);
 		this._axisPoint = new Point3D(t._axisPoint);
 		this._axisDirection = new Vector(t._axisDirection);
 	}
