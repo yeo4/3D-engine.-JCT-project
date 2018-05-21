@@ -12,6 +12,7 @@ import elements.Camera;
 import geometries.Geometry;
 import geometries.Tube;
 import primitives.Color;
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -26,15 +27,15 @@ public class TubeTests {
 		  Camera camera = new Camera(new Point3D(0.0, 0.0, 0.0),
 		   new Vector(0.0, 1.0, 0.0),
 		   new Vector(0.0, 0.0, -1.0));
-		  Tube tube = new Tube(1, new Point3D(1, 0.0, -3.0), new Vector(0,0,1), new Color(0,0,0));
-		  Tube tube2 = new Tube(10, new Point3D(0.0, 0.0, -3.0), new Vector(0,0,1), new Color(0,0,0));
-		  Tube tube3 = new Tube(1, new Point3D(0.0, 0.0, -3.0), new Vector(1,0,0), new Color(0,0,0));
-		  Tube tube4 = new Tube(5, new Point3D(0.0, 0.0, 0), new Vector(1,0,0), new Color(0,0,0));
+		  Tube tube = new Tube(1, new Point3D(1, 0.0, -3.0), new Vector(0,0,1), new Color(0,0,0), new Material(1,1,1));
+		  Tube tube2 = new Tube(10, new Point3D(0.0, 0.0, -3.0), new Vector(0,0,1), new Color(0,0,0), new Material(1,1,1));
+		  Tube tube3 = new Tube(1, new Point3D(0.0, 0.0, -3.0), new Vector(1,0,0), new Color(0,0,0), new Material(1,1,1));
+		  Tube tube4 = new Tube(5, new Point3D(0.0, 0.0, 0), new Vector(1,0,0), new Color(0,0,0), new Material(1,1,1));
 		  //special case: tangent to tube
-		  Tube tube5 = new Tube(1, new Point3D(4, 1, 0), new Vector(0,0,1), new Color(0,0,0));
+		  Tube tube5 = new Tube(1, new Point3D(4, 1, 0), new Vector(0,0,1), new Color(0,0,0), new Material(1,1,1));
 		  //special case: middle ray is encompassed in tube 
 		  //three other rays still intersect so THREE intersection points are expected
-		  Tube tube6 = new Tube(1, new Point3D(0, 1, 0), new Vector(0,0,1), new Color(0,0,0));
+		  Tube tube6 = new Tube(1, new Point3D(0, 1, 0), new Vector(0,0,1), new Color(0,0,0), new Material(1,1,1));
 		  
 		  List <Point3D> intersectionPointsTube = new ArrayList <Point3D> ();
 		  List <Point3D> intersectionPointsTube2 = new ArrayList <Point3D> ();

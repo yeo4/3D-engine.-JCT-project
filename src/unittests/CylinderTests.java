@@ -13,9 +13,6 @@ import elements.Camera;
 import geometries.Cylinder;
 import geometries.Geometry;
 import geometries.Tube;
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
 
 public class CylinderTests {
 
@@ -28,15 +25,15 @@ public class CylinderTests {
 		   new Vector(0.0, 1.0, 0.0),
 		   new Vector(0.0, 0.0, -1.0));
 		  
-		  Cylinder c = new Cylinder(15,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),5, new Color(0,0,0));
+		  Cylinder c = new Cylinder(15,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),5, new Color(0,0,0), new Material(1,1,1));
 		  //only one ray intersects and it goes through both caps
-		  Cylinder c1 = new Cylinder(1,new Point3D(-4.5, 0.0, -1.5),new Vector(-3,0,-1),3, new Color(0,0,0));
+		  Cylinder c1 = new Cylinder(1,new Point3D(-4.5, 0.0, -1.5),new Vector(-3,0,-1),3, new Color(0,0,0), new Material(1,1,1));
 		  //special case test: ray intersects between cylinder and cap
-		  Cylinder c2 = new Cylinder(3,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),2, new Color(0,0,0));
+		  Cylinder c2 = new Cylinder(3,new Point3D(0.0, 0.0, 0),new Vector(0,0,1),2, new Color(0,0,0), new Material(1,1,1));
 		  //special case: middle ray is encompassed in side of cylinder 
 		  //so ZERO intersection points are expected (because no other rays intersect the cylinder)
-		  Cylinder c3 = new Cylinder(1, new Point3D(1, 0, -6), new Vector(0,0,1), 2, new Color(0,0,0));
-		  Cylinder c4 = new Cylinder(1, new Point3D(1, 0, -8), new Vector(1,0,0),2, new Color(0,0,0));
+		  Cylinder c3 = new Cylinder(1, new Point3D(1, 0, -6), new Vector(0,0,1), 2, new Color(0,0,0), new Material(1,1,1));
+		  Cylinder c4 = new Cylinder(1, new Point3D(1, 0, -8), new Vector(1,0,0),2, new Color(0,0,0), new Material(1,1,1));
 
 		  List <Point3D> intersectionPointsC = new ArrayList <Point3D> ();
 		  List <Point3D> intersectionPointsC1 = new ArrayList <Point3D> ();

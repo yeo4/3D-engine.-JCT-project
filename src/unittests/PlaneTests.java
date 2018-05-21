@@ -25,13 +25,13 @@ public class PlaneTests {
 		 new Vector(0.0, 1.0, 0.0),
 		 new Vector(0.0, 0.0, -1.0));
 		// plane orthogonal to the view plane
-		Plane plane = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.0, -1.0), new Color(0,0,0));
+		Plane plane = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.0, -1.0), new Color(0,0,0), new Material(1,1,1));
 		// 45 degrees to the view plane
-		Plane plane2 = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.25, -1.0), new Color(0,0,0));
+		Plane plane2 = new Plane(new Point3D(0.0, 0.0, -3.0), new Vector(0.0, 0.25, -1.0), new Color(0,0,0), new Material(1,1,1));
 		// special case: all points intersect at cameras point so i expect ZERO intersection points
-		Plane plane3 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 0, -1.0), new Color(0,0,0));
+		Plane plane3 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 0, -1.0), new Color(0,0,0), new Material(1,1,1));
 		// rays either intersect at cameras point or are encompassed by the plane so i expect ZERO intersection points 
-		Plane plane4 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 1, 0), new Color(0,0,0));
+		Plane plane4 = new Plane(new Point3D(0.0, 0.0, 0), new Vector(0.0, 1, 0), new Color(0,0,0), new Material(1,1,1));
 		List < Point3D > intersectionPointsPlane = new ArrayList < Point3D > ();
 		List < Point3D > intersectionPointsPlane2 = new ArrayList < Point3D > ();
 		List < Point3D > intersectionPointsPlane3 = new ArrayList < Point3D > ();
