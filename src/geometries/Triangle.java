@@ -14,14 +14,14 @@ public class Triangle extends Plane {
 
 	// ***************** Constructors ********************** // 
 	
-	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3, Color emission){
-		super(_p1,_p2,_p3, emission);
+	public Triangle(Point3D _p1, Point3D _p2, Point3D _p3, Color emission,Material material){
+		super(_p1,_p2,_p3, emission,material);
 		this._p1 = new Point3D (_p1);
 		this._p2 = new Point3D (_p2);
 		this._p3 = new Point3D (_p3);
 	}
 	public Triangle(Triangle t) {
-		super(t._p,t._normal, t._emission);
+		super(t._p,t._normal, t._emission,t._material);
 		this._p1 = new Point3D (t._p1);
 		this._p2 = new Point3D (t._p2);
 		this._p3 = new Point3D (t._p3);
