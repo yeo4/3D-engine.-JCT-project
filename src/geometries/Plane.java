@@ -14,26 +14,32 @@ public class Plane extends Geometry {
 	// ***************** Constructors ********************** //
 
 	public Plane(Point3D _p, Vector _normal, Color emission, Material material) {
-		super(emission, material);
 		if (_normal.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("Normal to plane must not be the a zero vector");
 		this._p = new Point3D(_p);
 		this._normal = new Vector(_normal).normalization();
+		this._emission = new Color(emission);
+		this._material = new Material(material);
+
 	}
 
 	public Plane(Plane p) {
-		super(p._emission, p._material);
 		this._p = new Point3D(p._p);
 		this._normal = new Vector(p._normal);
+		this._emission = new Color(p._emission);
+		this._material = new Material(p._material);
+
 	}
 
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3, Color emission, Material material) {
-		super(emission, material);
 		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 		if (v.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("planes and triangles points must not be colliniar");
 		this._p = new Point3D(_p1);
 		this._normal = new Vector(v);
+		this._emission = new Color(emission);
+		this._material = new Material(material);
+
 	}
 
 	// ***************** Getters/Setters ********************** //
