@@ -4,7 +4,7 @@ import primitives.*;
 
 public class AmbientLight extends Light{
 	private double Ka;
-
+	
 	public AmbientLight(Color _color,double ka) {
 		super(_color);
 		this.Ka = ka;

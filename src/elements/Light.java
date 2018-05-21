@@ -8,7 +8,7 @@ public abstract class Light {
 
 	public Light(Color _color) {
 		super();
-		this._color = _color;
+		this._color = new Color(_color);
 	}
 
 	public Color get_color() {
