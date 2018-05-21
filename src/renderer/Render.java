@@ -73,7 +73,7 @@ public class Render {
 			if (n.dot_product(l) * n.dot_product(v) > 0) {
 				Color lightIntensity = lightSource.getIntensity(point);
 				color.add(calcDiffusive(kd, l, n, lightIntensity),
-						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				calcSpecular(ks, l, n, v, nShininess, lightIntensity));
 			}
 		}
 
@@ -81,8 +81,8 @@ public class Render {
 	}
 
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-		Vector r = new Vector(l.add(n.multiply(2 * l.dot_product(n))));
-		return new Color(lightIntensity).scale(ks * Math.abs(Math.pow(v.dot_product(r),nShininess)));
+		Vector r = l.add(n.multiply(2 * l.dot_product(n)));
+		return new Color(lightIntensity).scale(ks * Math.pow(Math.abs(v.dot_product(r)),nShininess));
 	}
 
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
