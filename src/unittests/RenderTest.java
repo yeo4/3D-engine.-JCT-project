@@ -12,7 +12,7 @@ import renderer.Render;
 import scene.Scene;
 
 public class RenderTest {
-	@Test
+	/*@Test
 	public void basicRenderingTest(){
 			int X = 500;
 			int Y = 500;
@@ -39,7 +39,7 @@ public class RenderTest {
 			System.out.println("Finish");
 	
 	}
-	
+	*/
 	@Test
 	public void PointLightTest(){
 			int X = 500;
@@ -47,13 +47,13 @@ public class RenderTest {
 			Date d = new Date();
 			ImageWriter _imageWriter = new ImageWriter("PointLightTest", X, Y, X, Y);
 			Scene _scene = new Scene("s");
-			_scene.setScreenDistance(120);
+			_scene.setScreenDistance(50);
 			_scene.setBackground(new Color(0,0,0));
 			_scene.setCamera(new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1)));
-			_scene.setAmbientLight(new AmbientLight(new Color(30,30,30), 1));
+			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
 			
-			_scene.addLight(new PointLight(new Color(255,100,255),new Point3D(-3,-3,0), 1, 0, 0.05));
-			_scene.addGeometry(new Sphere(6, new Point3D(0, 0, -10), new Color(0,0,100), new Material(1,1,2)));
+			_scene.addLight(new PointLight(new Color(255,175,255),new Point3D(-6,-6,0), 1, 0, 0));
+			_scene.addGeometry(new Sphere(10, new Point3D(0,0, -15), new Color(30,0,100), new Material(1,1,10)));
 			
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));

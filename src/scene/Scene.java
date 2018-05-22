@@ -21,7 +21,7 @@ public class Scene {
 		this._sceneName = _sceneName;
 		this._background = new Color(100, 100, 100);
 		this._geometries = new Geometries();
-		this._camera = new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1));
+		this._camera = new Camera(new Point3D(0,0,5), new Vector(0,1,0), new Vector(0,0,-1));
 		this._screenDistance = 50;
 		this._lights = new ArrayList<>();
 	}

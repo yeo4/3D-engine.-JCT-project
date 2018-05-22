@@ -55,6 +55,7 @@ public class Camera {
 	}
 	
 	// ***************** Operations ******************** // 
+	
 	public Ray constructRayThroughPixel(int Nx, int Ny, int i, int j, double screenDistance, double screenWidth, double screenHeight)
 	{
 		Point3D Pc = this._p0.add(_vTo.multiply(screenDistance));
