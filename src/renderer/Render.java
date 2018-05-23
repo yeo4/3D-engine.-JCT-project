@@ -71,21 +71,34 @@ public class Render {
 		for (LightSource lightSource : this._scene.getLights()) {
 			Vector l = lightSource.getL(point);
 			if (n.dot_product(l) * n.dot_product(v) > 0) {
-				Color lightIntensity = lightSource.getIntensity(point);
-				color.add(calcDiffusive(kd, l, n, lightIntensity),
-				calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				if (!occluded(l, point, geometry)) {
+					Color lightIntensity = lightSource.getIntensity(point);
+					color.add(calcDiffusive(kd, l, n, lightIntensity),
+					calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+				}
 			}
 		}
 		
 		return color;
 	}
 
+	private boolean occluded(Vector l, Point3D point, Geometry geometry) {
+		Vector lightDirection = l.multiply(-1); // from point to light source
+		Vector normal = geometry.getNormal(point);
+		Vector epsVector = normal.multiply((normal.dot_product(lightDirection) > 0) ? 2 : -2);
+		Point3D geometryPoint = point.add(epsVector);
+		Ray lightRay = new Ray(geometryPoint, lightDirection);
+		Map<Geometry, List<Point3D>> intersectionPoints =
+		_scene.getGeometries().findIntersections(lightRay);
+		return !intersectionPoints.isEmpty();
+	}
+
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
 		Vector r = l.add(n.multiply(-2 * l.dot_product(n))).normalization();
 		double vr = v.dot_product(r);
-		if(vr > 0 )
-			return new Color(0,0,0);
-		return new Color(lightIntensity).scale(ks * Math.pow(Math.abs(vr),nShininess));
+		if (vr > 0)
+			return new Color(0, 0, 0);
+		return new Color(lightIntensity).scale(ks * Math.pow(Math.abs(vr), nShininess));
 	}
 
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
