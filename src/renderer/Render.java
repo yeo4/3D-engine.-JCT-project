@@ -82,7 +82,10 @@ public class Render {
 
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
 		Vector r = l.add(n.multiply(-2 * l.dot_product(n))).normalization();
-		return new Color(lightIntensity).scale(ks * Math.pow(Math.abs(v.dot_product(r)),nShininess));
+		double vr = v.dot_product(r);
+		if(vr > 0 )
+			return new Color(0,0,0);
+		return new Color(lightIntensity).scale(ks * Math.pow(Math.abs(vr),nShininess));
 	}
 
 	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
