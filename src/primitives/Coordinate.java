@@ -31,6 +31,10 @@ public class Coordinate {
 	public double get() {
 		return _coord;
 	}
+	
+	public static double getACCURACY() {
+		return ACCURACY;
+	}
 
 	/*************** Admin *****************/
 	/**
