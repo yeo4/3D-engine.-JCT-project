@@ -27,9 +27,7 @@ public class Geometries extends Geometry {
 	}
 	
 	
-	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {
-		//_intersections = new CopyOnWriteArrayList<>();
-		
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {		
 		Map<Geometry,List<Point3D>> intersectionPoints = new HashMap<Geometry,List<Point3D>>();
 		
 		for (Geometry geometry : _geometries) {
@@ -42,6 +40,26 @@ public class Geometries extends Geometry {
 		}
 		return intersectionPoints;
 	}
+	
+	boolean has;
+	public boolean hasIntersections(Ray r) {
+		Map<Geometry,List<Point3D>> intersectionPoints = new HashMap<Geometry,List<Point3D>>();
+		has = false;
+		for (Geometry geometry : _geometries) {
+			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry,List<Point3D>>(geometry.findIntersections(r));
+			
+			geometryIntersectionPoints.forEach((g,list) -> {
+				if(list.size() > 0) {
+					has = true;
+				}
+			});
+			if(has) {
+				break;
+			}
+		}
+		return has;
+	}
+	
 	public boolean add(Geometry e) {
 		return _geometries.add(e);
 	}

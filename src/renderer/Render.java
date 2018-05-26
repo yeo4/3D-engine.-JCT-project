@@ -88,9 +88,7 @@ public class Render {
 		Vector epsVector = normal.multiply((normal.dot_product(lightDirection) > 0) ? 2*Math.pow(2,Coordinate.getACCURACY()) : -2*Math.pow(2,Coordinate.getACCURACY()));
 		Point3D geometryPoint = point.add(epsVector);
 		Ray lightRay = new Ray(geometryPoint, lightDirection);
-		Map<Geometry, List<Point3D>> intersectionPoints =
-		_scene.getGeometries().findIntersections(lightRay);
-		return !intersectionPoints.isEmpty();
+		return _scene.getGeometries().hasIntersections(lightRay);
 	}
 
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
