@@ -25,41 +25,40 @@ public class Geometries extends Geometry {
 			this._geometries = g._geometries;
 		}
 	}
-	
-	
-	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {		
-		Map<Geometry,List<Point3D>> intersectionPoints = new HashMap<Geometry,List<Point3D>>();
-		
+
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
+
 		for (Geometry geometry : _geometries) {
-			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry,List<Point3D>>(geometry.findIntersections(r));
-			
-			geometryIntersectionPoints.forEach((g,list) -> {
-				if(list.size() > 0)
+			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
+					geometry.findIntersections(r));
+
+			geometryIntersectionPoints.forEach((g, list) -> {
+				if (list.size() > 0)
 					intersectionPoints.put(g, list);
 			});
 		}
 		return intersectionPoints;
 	}
-	
-	boolean has;
+
 	public boolean hasIntersections(Ray r) {
-		Map<Geometry,List<Point3D>> intersectionPoints = new HashMap<Geometry,List<Point3D>>();
-		has = false;
+		boolean has = false;
 		for (Geometry geometry : _geometries) {
-			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry,List<Point3D>>(geometry.findIntersections(r));
-			
-			geometryIntersectionPoints.forEach((g,list) -> {
-				if(list.size() > 0) {
+			Map<Geometry, List<Point3D>> geometryIntersectionPoints = new HashMap<Geometry, List<Point3D>>(geometry.findIntersections(r));
+			for (Map.Entry<Geometry, List<Point3D>> entry : geometryIntersectionPoints.entrySet()) {
+				List<Point3D> list = entry.getValue();
+				if (list.size() > 0) {
 					has = true;
+					break;
 				}
-			});
-			if(has) {
+			}
+			if (has) {
 				break;
 			}
 		}
 		return has;
 	}
-	
+
 	public boolean add(Geometry e) {
 		return _geometries.add(e);
 	}
