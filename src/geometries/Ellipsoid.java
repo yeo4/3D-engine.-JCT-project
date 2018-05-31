@@ -93,10 +93,11 @@ public class Ellipsoid extends Geometry {
 
 	@Override
 	public Vector getNormal(Point3D p) {
-		Point3D temp = new Point3D(p.getX().get()/this._a, p.getY().get()/this._b, p.getZ().get()/this._c);
-		temp = temp.add(new Vector(p));
-		
-		return new Vector(temp).normalization();
+		Vector temp = p.subtract(this._center);
+		temp.get().getX().scale(this._a*this._a);
+		temp.get().getY().scale(this._b*this._b);
+		temp.get().getZ().scale(this._c*this._c);
+		return temp.normalization();
 	}
 
 	@Override

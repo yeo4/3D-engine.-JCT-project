@@ -91,7 +91,7 @@ public class Tube extends RadialGeometry {
 		//if(is not on Tube)
 		//	throw new...
 		double d = (this._axisDirection.dot_product(p.subtract(this._axisPoint)));
-		Point3D o = this._axisPoint.add(p.subtract(this._axisPoint).normalization().multiply(d));
+		Point3D o = this._axisPoint.add(this._axisDirection.multiply(d));
 		return p.subtract(o).normalization();
 	}
 
