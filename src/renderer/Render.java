@@ -15,6 +15,7 @@ import scene.*;
 public class Render {
 	private Scene _scene;
 	private ImageWriter _imageWriter;
+	private final int MAX_CALC_COLOR_LEVEL = 4;
 
 	public Render(ImageWriter _imageWriter, Scene _scene) {
 		this._scene = _scene;
@@ -34,7 +35,7 @@ public class Render {
 				} else {
 					Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
 					Map.Entry<Geometry, Point3D> onlyEntry = closestPoint.entrySet().iterator().next();
-					_imageWriter.writePixel(i, j, calcColor(onlyEntry.getKey(), onlyEntry.getValue()).getColor());
+					_imageWriter.writePixel(i, j, calcColor(onlyEntry.getKey(), onlyEntry.getValue(), r).getColor());
 				}
 			}
 			System.out.println(i + "/" + _imageWriter.getNx());
@@ -58,37 +59,117 @@ public class Render {
 		_imageWriter.writeToimage();
 	}
 
-	private Color calcColor(Geometry geometry, Point3D point) {
+	private Color calcColor(Geometry geometry, Point3D point, Ray r) {
+		return calcColor(geometry, point, r, MAX_CALC_COLOR_LEVEL, 1);
+		/*
+		 * Color color = _scene.getAmbientLight().getIntensity(); color =
+		 * color.add(geometry.get_emission());
+		 * 
+		 * Vector v = point.subtract(_scene.getCamera().get_p0()).normalization();
+		 * Vector n = geometry.getNormal(point); int nShininess =
+		 * geometry.get_material().getnShininess(); double kd =
+		 * geometry.get_material().get_Kd(); double ks =
+		 * geometry.get_material().get_Ks();
+		 * 
+		 * for (LightSource lightSource : this._scene.getLights()) { Vector l =
+		 * lightSource.getL(point); if (n.dot_product(l) * n.dot_product(v) > 0) { if
+		 * (!occluded(l, point, geometry)) { Color lightIntensity =
+		 * lightSource.getIntensity(point); color.add(calcDiffusive(kd, l, n,
+		 * lightIntensity), calcSpecular(ks, l, n, v, nShininess, lightIntensity)); } }
+		 * }
+		 * 
+		 * return color;
+		 */
+	}
+
+	private Color calcColor(Geometry geometry, Point3D point, Ray r, int level, double k) {
+		if (level == 0 || Coordinate.isToCloseToZero(k))
+			return new Color(0, 0, 0);
 		Color color = _scene.getAmbientLight().getIntensity();
 		color = color.add(geometry.get_emission());
 
-		Vector v = point.subtract(_scene.getCamera().get_p0()).normalization();
+		Vector v = r.getDirection();
 		Vector n = geometry.getNormal(point);
 		int nShininess = geometry.get_material().getnShininess();
 		double kd = geometry.get_material().get_Kd();
 		double ks = geometry.get_material().get_Ks();
-		
+
 		for (LightSource lightSource : this._scene.getLights()) {
 			Vector l = lightSource.getL(point);
 			if (n.dot_product(l) * n.dot_product(v) > 0) {
-				if (!occluded(l, point, geometry)) {
-					Color lightIntensity = lightSource.getIntensity(point);
+				double o = occluded(l, point, geometry);
+				if (!Coordinate.isToCloseToZero(o * k)) {
+					Color lightIntensity = new Color(lightSource.getIntensity(point)).scale(o);
 					color.add(calcDiffusive(kd, l, n, lightIntensity),
 					calcSpecular(ks, l, n, v, nShininess, lightIntensity));
 				}
 			}
 		}
+
+		// Recursive call for a reflected ray
+		Ray reflectedRay = constructReflectedRay(n, point, r);
+
+		Map<Geometry, List<Point3D>> reflectedRayIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
+				_scene.getRayIntersections(r));
+		Color reflectedLight;
 		
-		return color;
+		if (reflectedRayIntersectionPoints.isEmpty()) {
+			reflectedLight = _scene.getBackground();
+		} else {
+			Map<Geometry, Point3D> reflectedPoint = getClosestPoint(reflectedRayIntersectionPoints);
+			double kr = geometry.get_material().get_Kr();
+			Map.Entry<Geometry, Point3D> onlyEntryReflected = reflectedPoint.entrySet().iterator().next();
+			reflectedLight = calcColor(onlyEntryReflected.getKey(), onlyEntryReflected.getValue(), reflectedRay,
+					level - 1, k * kr).scale(kr);
+		}
+
+		// Recursive call for a refracted ray
+		Map<Geometry, List<Point3D>> refractedRayIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
+				_scene.getRayIntersections(r));
+		
+		Ray refractedRay = constructRefractedRay(point, r);
+
+		Color refractedLight;
+
+		if (refractedRayIntersectionPoints.isEmpty()) {
+			refractedLight = _scene.getBackground();
+		} else {
+			Map<Geometry, Point3D> refractedPoint = getClosestPoint(refractedRayIntersectionPoints);
+			double kt = geometry.get_material().get_Kt();
+			Map.Entry<Geometry, Point3D> onlyEntryRefracted = refractedPoint.entrySet().iterator().next();
+			refractedLight = calcColor(onlyEntryRefracted.getKey(), onlyEntryRefracted.getValue(), refractedRay,
+					level - 1, k * kt).scale(kt);
+		}
+
+		return color.add(reflectedLight, refractedLight);
+
 	}
 
-	private boolean occluded(Vector l, Point3D point, Geometry geometry) {
+	private Ray constructRefractedRay(Point3D point, Ray r) {
+		return new Ray(point, r.getDirection());
+	}
+
+	private Ray constructReflectedRay(Vector n, Point3D point, Ray r) {
+		return new Ray(point, r.getDirection().add(n.multiply(-2 * r.getDirection().dot_product(n))));
+	}
+
+	private double occluded(Vector l, Point3D point, Geometry geometry) {
 		Vector lightDirection = l.multiply(-1); // from point to light source
 		Vector normal = geometry.getNormal(point);
-		Vector epsVector = normal.multiply((normal.dot_product(lightDirection) > 0) ? 2*Math.pow(2,Coordinate.getACCURACY()) : -2*Math.pow(2,Coordinate.getACCURACY()));
+		Vector epsVector = normal
+				.multiply((normal.dot_product(lightDirection) > 0) ? 2 * Math.pow(2, Coordinate.getACCURACY())
+						: -2 * Math.pow(2, Coordinate.getACCURACY()));
 		Point3D geometryPoint = point.add(epsVector);
 		Ray lightRay = new Ray(geometryPoint, lightDirection);
-		return _scene.getGeometries().hasIntersections(lightRay);
+
+		double shadowK = 1;
+		Map<Geometry, List<Point3D>> intersectionsPoints = _scene.getGeometries().findIntersections(lightRay);
+
+		for (Map.Entry<Geometry, List<Point3D>> entry : intersectionsPoints.entrySet()) {
+			shadowK *= entry.getKey().get_material().get_Kt();
+		}
+
+		return shadowK;
 	}
 
 	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
