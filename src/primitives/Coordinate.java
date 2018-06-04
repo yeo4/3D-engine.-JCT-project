@@ -1,7 +1,8 @@
 package primitives;
 
 public class Coordinate {
-	public static final Coordinate ZERO = new Coordinate(0);
+	
+	private static final Coordinate ZERO = new Coordinate(0);
 	
 	private double _coord;
 	
@@ -106,7 +107,7 @@ public class Coordinate {
 	
 	/************** Helpers ***************/
 
-	// double store format (bit level): seee eeee eeee (1.)mmmm … mmmm
+	// double store format (bit level): seee eeee eeee (1.)mmmm ï¿½ mmmm
 	// 1 bit sign, 11 bits exponent, 53 bits (52 stored) normalized mantissa
 	// the number is m+2^e where 1<=m<2
 	// NB: exponent is stored "normalized" (i.e. always positive by adding 1023)

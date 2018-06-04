@@ -3,19 +3,23 @@ package primitives;
 public class Material {
 	//final?
 	
-	private double _Kd,_Ks;
+	private double _Kd,_Ks,_Kr,_Kt;
 	private int nShininess;
 	
 	// ***************** Constructors ********************** //
 
-	public Material(double _Kd, double _Ks, int nShininess) {
+	public Material(double _Kd, double _Ks,double _Kr, double _Kt, int nShininess) {
 		this._Kd = _Kd;
 		this._Ks = _Ks;
+		this._Kr = _Kr;
+		this._Kt = _Kt;
 		this.nShininess = nShininess;
 	}
 	public Material(Material material) {
 		this._Kd = material._Kd;
 		this._Ks = material._Ks;
+		this._Kr = material._Kr;
+		this._Kt = material._Kt;
 		this.nShininess = material.nShininess;
 	}
 	// ***************** Operations ******************** // 
@@ -42,6 +46,18 @@ public class Material {
 
 	public void setnShininess(int nShininess) {
 		this.nShininess = nShininess;
+	}
+	public double get_Kr() {
+		return _Kr;
+	}
+	public void set_Kr(double _Kr) {
+		this._Kr = _Kr;
+	}
+	public double get_Kt() {
+		return _Kt;
+	}
+	public void set_Kt(double _Kt) {
+		this._Kt = _Kt;
 	}
 	
 }
