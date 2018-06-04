@@ -32,7 +32,7 @@ public class SpotLightTest {
 			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
 			
 			_scene.addLight(new SpotLight(new Color(255,175,255),new Point3D(-6,-6,0), 1, 0, 0.2, new Vector(6,6,-15)));
-			_scene.addGeometry(new Sphere(10, new Point3D(0,0, -15), new Color(30,0,100), new Material(1,1,10)));
+			_scene.addGeometry(new Sphere(10, new Point3D(0,0, -15), new Color(30,0,100), new Material(1,1,10,0,0)));
 			
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
@@ -60,7 +60,7 @@ public class SpotLightTest {
 			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
 			
 			_scene.addLight(new SpotLight(new Color(255,255,255),new Point3D(0,0,0), 1, 0, 0.01,new Vector(0,0,-1)));
-			_scene.addGeometry(new Plane(new Point3D(0,0, -5), new Vector(0,0,-1), new Color(00,0,0), new Material(1,1,5)));
+			_scene.addGeometry(new Plane(new Point3D(0,0, -5), new Vector(0,0,-1), new Color(00,0,0), new Material(1,1,5,0,0)));
 			
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));

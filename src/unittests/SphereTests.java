@@ -23,11 +23,11 @@ public class SphereTests {
 	   new Vector(0.0, 1.0, 0.0),
 	   new Vector(0.0, 0.0, -1.0));
 	  
-	  Sphere sphere = new Sphere(1, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0), new Material(1,1,1));
-	  Sphere sphere2 = new Sphere(10, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0), new Material(1,1,1));
+	  Sphere sphere = new Sphere(1, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0), new Material(1,1,1,0,0));
+	  Sphere sphere2 = new Sphere(10, new Point3D(0.0, 0.0, -3.0), new Color(0,0,0), new Material(1,1,1,0,0));
 	  //Special Case Test: Tangent Line
-	  Sphere sphere3 = new Sphere(1, new Point3D(1.0, 0.0, -4.0), new Color(0,0,0), new Material(1,1,1));
-	  Sphere sphere4 = new Sphere(1, new Point3D(5.0, 0.0, -20.0), new Color(0,0,0), new Material(1,1,1));
+	  Sphere sphere3 = new Sphere(1, new Point3D(1.0, 0.0, -4.0), new Color(0,0,0), new Material(1,1,1,0,0));
+	  Sphere sphere4 = new Sphere(1, new Point3D(5.0, 0.0, -20.0), new Color(0,0,0), new Material(1,1,1,0,0));
 
 	  // Only the center ray intersect the sphere in two locations
 	  List <Point3D> intersectionPointsSphere = new ArrayList <Point3D> ();

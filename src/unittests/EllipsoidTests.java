@@ -23,12 +23,12 @@ public class EllipsoidTests {
 	   new Vector(0.0, 1.0, 0.0),
 	   new Vector(0.0, 0.0, -1.0));
 	  
-	  Ellipsoid ellipsoid = new Ellipsoid(new Point3D(0.0, 0.0, 0.0), 1, 2, 3, new Color(0,0,0), new Material(1,1,1));
-	  Ellipsoid ellipsoid2 = new Ellipsoid(new Point3D(0.0, 0.0, -4), 1, 2, 3, new Color(0,0,0), new Material(1,1,1));
+	  Ellipsoid ellipsoid = new Ellipsoid(new Point3D(0.0, 0.0, 0.0), 1, 2, 3, new Color(0,0,0), new Material(1,1,1,0,0));
+	  Ellipsoid ellipsoid2 = new Ellipsoid(new Point3D(0.0, 0.0, -4), 1, 2, 3, new Color(0,0,0), new Material(1,1,1,0,0));
 	  //Special Case Test: Tangent Line
-	  Ellipsoid ellipsoid3 = new Ellipsoid(new Point3D(1, 0.0, -6), 1, 2, 3, new Color(0,0,0), new Material(1,1,1));
+	  Ellipsoid ellipsoid3 = new Ellipsoid(new Point3D(1, 0.0, -6), 1, 2, 3, new Color(0,0,0), new Material(1,1,1,0,0));
 	  
-	  Ellipsoid ellipsoid4 = new Ellipsoid(new Point3D(6, 0.0, -8), 5, 2, 3, new Color(0,0,0), new Material(1,1,1));
+	  Ellipsoid ellipsoid4 = new Ellipsoid(new Point3D(6, 0.0, -8), 5, 2, 3, new Color(0,0,0), new Material(1,1,1,0,0));
 
 	  // The ellipsoid encapsulates the view plane - all rays intersect with the ellipsoid once
 	  List <Point3D> intersectionPointsEllipse = new ArrayList <Point3D> ();

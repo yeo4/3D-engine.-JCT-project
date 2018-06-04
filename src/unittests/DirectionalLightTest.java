@@ -34,7 +34,7 @@ public class DirectionalLightTest {
 			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
 			
 			_scene.addLight(new DirectionalLight(new Vector(15,3,1),new Color(200,175,200).scale(0.2)));
-			_scene.addGeometry(new Sphere(10, new Point3D(0,0, -15), new Color(30,0,100), new Material(1,1,1)));
+			_scene.addGeometry(new Sphere(10, new Point3D(0,0, -15), new Color(30,0,100), new Material(1,1,1,0,0)));
 			
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
 		  	//_scene.addGeometry(new Triangle(new Point3D(0, -4, -4), new Point3D(4, 0, -4),new Point3D(4, -4, -4), new Color(30,100,30), new Material(1,1,1)));
