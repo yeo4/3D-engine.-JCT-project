@@ -157,8 +157,8 @@ public class Render {
 		Vector lightDirection = l.multiply(-1); // from point to light source
 		Vector normal = geometry.getNormal(point);
 		Vector epsVector = normal
-				.multiply((normal.dot_product(lightDirection) > 0) ? 2 * Math.pow(2, Coordinate.getACCURACY())
-						: -2 * Math.pow(2, Coordinate.getACCURACY()));
+				.multiply((normal.dot_product(lightDirection) > 0) ? 1/10000
+						: -1/10000);
 		Point3D geometryPoint = point.add(epsVector);
 		Ray lightRay = new Ray(geometryPoint, lightDirection);
 
