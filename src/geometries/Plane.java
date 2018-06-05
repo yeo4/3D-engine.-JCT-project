@@ -116,7 +116,7 @@ public class Plane extends Geometry {
 		double mone = this._normal.dot_product(this._p.subtract(r.getP3D()));
 		double t = mone / mechane;
 
-		if (t <= 0)
+		if (t <= 0 || Coordinate.isToCloseToZero(t))
 			return intersections;
 
 		arrPoints.add(r.getP3D().add(r.getDirection().multiply(t)));

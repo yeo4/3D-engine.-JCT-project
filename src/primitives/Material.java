@@ -8,7 +8,7 @@ public class Material {
 	
 	// ***************** Constructors ********************** //
 
-	public Material(double _Kd, double _Ks,double _Kr, double _Kt, int nShininess) {
+	public Material(double _Kd, double _Ks, int nShininess, double _Kr, double _Kt) {
 		this._Kd = _Kd;
 		this._Ks = _Ks;
 		this._Kr = _Kr;

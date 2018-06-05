@@ -15,7 +15,7 @@ import scene.*;
 public class Render {
 	private Scene _scene;
 	private ImageWriter _imageWriter;
-	private final int MAX_CALC_COLOR_LEVEL = 4;
+	private final int MAX_CALC_COLOR_LEVEL = 2;
 
 	public Render(ImageWriter _imageWriter, Scene _scene) {
 		this._scene = _scene;
@@ -110,7 +110,7 @@ public class Render {
 		Ray reflectedRay = constructReflectedRay(n, point, r);
 
 		Map<Geometry, List<Point3D>> reflectedRayIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
-				_scene.getRayIntersections(r));
+				_scene.getRayIntersections(reflectedRay));
 		Color reflectedLight;
 		
 		if (reflectedRayIntersectionPoints.isEmpty()) {
@@ -124,10 +124,10 @@ public class Render {
 		}
 
 		// Recursive call for a refracted ray
-		Map<Geometry, List<Point3D>> refractedRayIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
-				_scene.getRayIntersections(r));
-		
 		Ray refractedRay = constructRefractedRay(point, r);
+		
+		Map<Geometry, List<Point3D>> refractedRayIntersectionPoints = new HashMap<Geometry, List<Point3D>>(
+				_scene.getRayIntersections(refractedRay));
 
 		Color refractedLight;
 
