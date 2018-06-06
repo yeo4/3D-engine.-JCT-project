@@ -120,9 +120,9 @@ public class Tube extends RadialGeometry {
 		double t1 = (-B + discriminantRoot)/(2*A);
 		double t2 = (-B - discriminantRoot)/(2*A);
 		
-		if(t1 > 0)
+		if(t1 > 0 && !Coordinate.isToCloseToZero(t1))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
-		if(t2 > 0 && discriminant!=0)
+		if(t2 > 0 && discriminant!=0 && !Coordinate.isToCloseToZero(t2))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
 
 		if(arrPoints.size() != 0)

@@ -15,7 +15,7 @@ import scene.*;
 public class Render {
 	private Scene _scene;
 	private ImageWriter _imageWriter;
-	private final int MAX_CALC_COLOR_LEVEL = 2;
+	private final int MAX_CALC_COLOR_LEVEL = 3;
 
 	public Render(ImageWriter _imageWriter, Scene _scene) {
 		this._scene = _scene;
@@ -188,7 +188,13 @@ public class Render {
 		Point3D From = _scene.getCamera().get_p0();
 		double minDisSquare = Integer.MAX_VALUE;
 		Map<Geometry, Point3D> closest = new HashMap<>();
-
+		
+		if(intersectionPoints.size() == 1 && intersectionPoints.entrySet().iterator().next().getValue().size() == 1) {
+			Map.Entry<Geometry, List<Point3D>> onlyEntry = intersectionPoints.entrySet().iterator().next();
+			closest.put(onlyEntry.getKey(), onlyEntry.getValue().get(0));
+			return closest;
+		}
+		
 		for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet())
 			for (Point3D p : entry.getValue()) {
 
@@ -200,7 +206,7 @@ public class Render {
 					minDisSquare = dSquare;
 				}
 			}
-
+		
 		if (closest.size() == 1)
 			return closest;
 		return null;
