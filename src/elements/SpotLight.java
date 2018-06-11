@@ -21,6 +21,8 @@ public class SpotLight extends PointLight implements LightSource{
 	@Override
 	public Color getIntensity(Point3D point) {
 		double d = this._direction.dot_product(this.getL(point));
+		if(d <= 0)
+			d = 0;
 		return super.getIntensity(point).scale(d);
 	}
 
