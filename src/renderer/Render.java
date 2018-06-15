@@ -86,7 +86,7 @@ public class Render {
 		if (level == 0 || Coordinate.isToCloseToZero(k))
 			return new Color(0, 0, 0);
 		Color color = _scene.getAmbientLight().getIntensity();
-		color = color.add(geometry.get_emission());
+		color = color.add(geometry.get_emission(point));
 
 		Vector v = r.getDirection();
 		Vector n = geometry.getNormal(point);

@@ -13,7 +13,7 @@ public abstract class Geometry {
 	
 	// ***************** Getters/Setters ********************** // 
 
-	public Color get_emission() {
+	public Color get_emission(Point3D p) {
 		return _emission;
 	}
 	
