@@ -85,6 +85,14 @@ public class Color {
 		b = (_blue > 255) ? 255 : _blue;
 		return new java.awt.Color(r, g, b);
 	}
+	
+	public Color getWrapperColor() {
+		int r, g, b;
+		r = (_red > 255) ? 255 : _red;
+		g = (_green > 255) ? 255 : _green;
+		b = (_blue > 255) ? 255 : _blue;
+		return new Color(r, g, b);
+	}
 
 	// ***************** Administration ******************** //
 
@@ -114,9 +122,9 @@ public class Color {
 	 */
 	public Color add(java.awt.Color... colors) {
 		for (java.awt.Color color : colors) {
-			_red = color.getRed();
-			_green = color.getGreen();
-			_blue = color.getBlue();
+			_red += color.getRed();
+			_green += color.getGreen();
+			_blue += color.getBlue();
 		}
 
 		return this;

@@ -15,6 +15,8 @@ public class Scene {
 	private Geometries _geometries;
 	private Camera _camera;
 	private double _screenDistance;
+	private double _focalLength;
+	private double _aperatureRadius;
 
 	public Scene(String _sceneName) throws IllegalArgumentException  {
 		this._ambientLight = new AmbientLight();
@@ -24,9 +26,11 @@ public class Scene {
 		this._camera = new Camera(new Point3D(0,0,5), new Vector(0,1,0), new Vector(0,0,-1));
 		this._screenDistance = 50;
 		this._lights = new ArrayList<>();
+		this._focalLength = 50;
+		this._aperatureRadius = 10;
 	}
 	
-	public Scene(String sceneName, Color background, AmbientLight ambientLight, Geometries geometries, Camera camera, double screenDistance, List<LightSource> lightsSource) throws Exception {
+	public Scene(String sceneName, Color background, AmbientLight ambientLight, Geometries geometries, Camera camera, double screenDistance, List<LightSource> lightsSource, double focalLength,double aperatureRadius) throws Exception {
 		super();
 		this._sceneName = sceneName;
 		this._background = new Color(background);
@@ -35,6 +39,8 @@ public class Scene {
 		this._camera = new Camera(camera);
 		this._screenDistance = screenDistance;
 		this._lights = lightsSource;
+		this._focalLength = focalLength;
+		this._aperatureRadius = aperatureRadius;
 	}
 	
 	public Scene(Scene s) throws IllegalArgumentException {
@@ -45,6 +51,9 @@ public class Scene {
 		this._geometries = new Geometries(s._geometries);
 		this._camera = new Camera(s._camera);
 		this._screenDistance = s._screenDistance;
+		this._focalLength = s._focalLength;
+		this._aperatureRadius = s._aperatureRadius;
+
 	}
 
 	public String getSceneName() {
@@ -86,6 +95,22 @@ public class Scene {
 		return _geometries;
 	}
 	
+	public double get_focalLength() {
+		return _focalLength;
+	}
+
+	public void set_focalLength(double _focalLength) {
+		this._focalLength = _focalLength;
+	}
+
+	public double get_aperatureRadius() {
+		return _aperatureRadius;
+	}
+
+	public void set_aperatureRadius(double _aperatureRadius) {
+		this._aperatureRadius = _aperatureRadius;
+	}
+
 	public void setGeomtries(Geometries _geometries) {
 		this._geometries = _geometries;
 	}
