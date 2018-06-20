@@ -94,10 +94,10 @@ public class Ellipsoid extends Geometry {
 	@Override
 	public Vector getNormal(Point3D p) {
 		Vector temp = p.subtract(this._center);
-		temp.get().getX().scale(this._a*this._a);
-		temp.get().getY().scale(this._b*this._b);
-		temp.get().getZ().scale(this._c*this._c);
-		return temp.normalization();
+		Vector v = new Vector(temp.get().getX().scale(1/this._a*this._a).get(),
+				temp.get().getY().scale(1/this._b*this._b).get(),
+				temp.get().getZ().scale(1/this._c*this._c).get());
+		return v.normalization();
 	}
 
 	@Override
@@ -124,9 +124,9 @@ public class Ellipsoid extends Geometry {
 		double t1 = (-B + discriminantRoot)/(2*A);
 		double t2 = (-B - discriminantRoot)/(2*A);
 		
-		if(t1 > 0)
+		if(t1 > 0  && !Coordinate.isToCloseToZero(t1))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t1)));
-		if(t2 > 0 && discriminant!=0)
+		if(t2 > 0 && discriminant!=0  && !Coordinate.isToCloseToZero(t2))
 			arrPoints.add(r.getP3D().add(r.getDirection().multiply(t2)));
 		
 		if(arrPoints.size() != 0)

@@ -8,13 +8,7 @@ import elements.AmbientLight;
 import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
-import geometries.Cylinder;
-import geometries.Plane;
-import geometries.Rectangle;
-import geometries.FramedStraightRectangles;
-import geometries.Sphere;
-import geometries.Triangle;
-import geometries.Tube;
+import geometries.*;
 import primitives.Color;
 import primitives.Material;
 import primitives.Point3D;
@@ -124,43 +118,43 @@ public class ComboTest {
 //			System.out.println("Finish");
 //	}
 	
-	@Test
-	public void Combo4(){
-			int X = 500;
-			int Y = 500;
-			Date d = new Date();
-			ImageWriter _imageWriter = new ImageWriter("Combo4", X, Y, X, Y);
-			Scene _scene = new Scene("s");
-			_scene.setScreenDistance(300);
-			_scene.setBackground(new Color(0,0,0));
-			_scene.setCamera(new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1)));
-			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
-			_scene.set_aperatureRadius(20);
-			_scene.set_focalLength(500);
-			_scene.addLight(new PointLight(new Color(100,30,30),new Point3D(0, 0,0), 1, 0,0));
-			_scene.addGeometry(new Sphere(200, new Point3D(100, 0, -1500), new Color(100, 0, 200), new Material(1, 1, 20, 0, 0.2)));
-			_scene.addGeometry(new Sphere(200, new Point3D(400, 0, -1500), new Color(100, 0, 100), new Material(1, 1, 20, 0, 0.2)));
-			_scene.addGeometry(new Sphere(200, new Point3D(250, -200, -1500), new Color(150, 100, 50), new Material(1, 1, 20, 0, 0.2)));
-//			_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -500, 500, -10000, 10000, new Point3D(200,0,-2000), new Vector(0,0,1), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-//			_scene.addGeometry(new FramedStraightRectangles(-10000 , 10000, -500, 500, -2000, -1000, new Point3D(800,0,-2000), new Vector(1,0,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-//			_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -10000, 10000, -2000, -1000, new Point3D(200,-500,-2000), new Vector(0,1,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-			//_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -500, 500, -10000, 10000, new Point3D(200,0,-2000), new Vector(0,0,1), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-			//_scene.addGeometry(new FramedStraightRectangles(-10000 , 10000, -500, 500, -2000, -1000, new Point3D(800,0,-2000), new Vector(1,0,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-			//_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -10000, 10000, -2000, -1000, new Point3D(200,500,-2000), new Vector(0,1,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-
-			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-			_scene.addGeometry(new Rectangle( new Point3D(800,-500,-2000), new Point3D(800,-500,-1000), new Point3D(800,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,-500,-1000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
-
-			
-			Render r = new Render(_imageWriter,_scene);
-
-			r.renderImage();
-			r.writeToImage();
-			Date d2 = new Date();
-			System.out.println(d2.getTime() - d.getTime());
-			System.out.println("Finish");
-	}
+//	@Test
+//	public void Combo4(){
+//			int X = 500;
+//			int Y = 500;
+//			Date d = new Date();
+//			ImageWriter _imageWriter = new ImageWriter("Combo4", X, Y, X, Y);
+//			Scene _scene = new Scene("s");
+//			_scene.setScreenDistance(300);
+//			_scene.setBackground(new Color(0,0,0));
+//			_scene.setCamera(new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1)));
+//			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
+//			_scene.set_aperatureRadius(20);
+//			_scene.set_focalLength(500);
+//			_scene.addLight(new PointLight(new Color(100,30,30),new Point3D(0, 0,0), 1, 0,0));
+//			_scene.addGeometry(new Sphere(200, new Point3D(100, 0, -1500), new Color(100, 0, 200), new Material(1, 1, 20, 0, 0.2)));
+//			_scene.addGeometry(new Sphere(200, new Point3D(400, 0, -1500), new Color(100, 0, 100), new Material(1, 1, 20, 0, 0.2)));
+//			_scene.addGeometry(new Sphere(200, new Point3D(250, -200, -1500), new Color(150, 100, 50), new Material(1, 1, 20, 0, 0.2)));
+////			_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -500, 500, -10000, 10000, new Point3D(200,0,-2000), new Vector(0,0,1), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+////			_scene.addGeometry(new FramedStraightRectangles(-10000 , 10000, -500, 500, -2000, -1000, new Point3D(800,0,-2000), new Vector(1,0,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+////			_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -10000, 10000, -2000, -1000, new Point3D(200,-500,-2000), new Vector(0,1,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			//_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -500, 500, -10000, 10000, new Point3D(200,0,-2000), new Vector(0,0,1), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			//_scene.addGeometry(new FramedStraightRectangles(-10000 , 10000, -500, 500, -2000, -1000, new Point3D(800,0,-2000), new Vector(1,0,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			//_scene.addGeometry(new FramedStraightRectangles(-200 , 800, -10000, 10000, -2000, -1000, new Point3D(200,500,-2000), new Vector(0,1,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//
+//			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			_scene.addGeometry(new Rectangle( new Point3D(800,-500,-2000), new Point3D(800,-500,-1000), new Point3D(800,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,-500,-1000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//
+//			
+//			Render r = new Render(_imageWriter,_scene);
+//
+//			r.renderImage();
+//			r.writeToImage();
+//			Date d2 = new Date();
+//			System.out.println(d2.getTime() - d.getTime());
+//			System.out.println("Finish");
+//	}
 	
 //	@Test
 //	public void Combo5(){
@@ -232,15 +226,49 @@ public class ComboTest {
 			System.out.println(d2.getTime() - d.getTime());
 			System.out.println("Finish");
 	}*/
+	
+	@Test
+	public void Board(){
+			int X = 500;
+			int Y = 500;
+			Date d = new Date();
+			ImageWriter _imageWriter = new ImageWriter("Board", X, Y, X, Y);
+			Scene _scene = new Scene("s");
+			_scene.setScreenDistance(300);
+			_scene.set_aperatureRadius(10);
+			_scene.set_focalLength(1300);
+			_scene.setBackground(new Color(0,0,0));
+			_scene.setCamera(new Camera(new Point3D(0,0,0), new Vector(0,1,0), new Vector(0,0,-1)));
+			_scene.setAmbientLight(new AmbientLight(new Color(0,0,0), 1));
+			
+			_scene.addLight(new PointLight(new Color(100,30,30),new Point3D(0,1000,0), 1, 0,0));
+
+			
+			_scene.addGeometry(new XZboard(new Point3D(0,-600,0), new Vector(0,1,0), new Color(0,0,0), new Material(0.5,1,20,0.5,0), new Color(0,0,0), new Color(55,55,55),150));
+			
+			
+//			_scene.addGeometry(new Sphere(200, new Point3D(100, 0, -1500), new Color(100, 0, 200), new Material(1, 1, 20, 0, 0.2)));
+//			_scene.addGeometry(new Sphere(200, new Point3D(400, 0, -1500), new Color(100, 0, 100), new Material(1, 1, 20, 0, 0.2)));
+//			_scene.addGeometry(new Sphere(200, new Point3D(250, -200, -1500), new Color(150, 100, 50), new Material(1, 1, 20, 0, 0.2)));
+//
+//			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			_scene.addGeometry(new Rectangle( new Point3D(800,-500,-2000), new Point3D(800,-500,-1000), new Point3D(800,500,-2000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+//			_scene.addGeometry(new Rectangle( new Point3D(-200,-500,-2000), new Point3D(800,-500,-2000),new Point3D(-200,-500,-1000), new Color(0,0,0), new Material(0.5,1,20,0.5,0) ));
+
+			
+			
+			_scene.addGeometry(new Sphere(30, new Point3D(-90, 0, -200), new Color(150, 0, 100), new Material(1, 1, 20, 0, 0.2)));
+			_scene.addGeometry(new Cylinder(50, new Point3D(-90, 0, -200), new Vector(0,1,0), 120 , new Color(100, 0, 200), new Material(1, 1, 20, 0, 0.5)));
+			
+			
+			
+			Render r = new Render(_imageWriter,_scene);
+
+			r.renderImage();
+			r.writeToImage();
+			Date d2 = new Date();
+			System.out.println(d2.getTime() - d.getTime());
+			System.out.println("Finish");
+	}
 }
 
-
-//@Override
-//public Color get_emission(Point3D p) {
-//	if(Math.abs(Math.floor(p.getX().get())) % 2 == 1 ^ Math.abs(Math.floor(p.getY().get())) % 2 == 1)
-//	{
-//		return new Color(55,55,55);
-//	}
-//	
-//	return super.get_emission(p);
-//}
