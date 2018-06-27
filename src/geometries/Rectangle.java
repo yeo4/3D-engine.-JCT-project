@@ -10,7 +10,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 public class Rectangle extends Plane {
-	private final static double FRAMESIZE = 10;
+	private final static double FRAMESIZE = 15;
 	private Ray _r1;
 	private Ray _r2;
 	// ***************** Constructors ********************** // 

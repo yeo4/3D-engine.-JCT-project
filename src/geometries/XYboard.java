@@ -5,7 +5,7 @@ import primitives.Material;
 import primitives.Point3D;
 import primitives.Vector;
 
-public class XZboard extends Plane {
+public class XYboard extends Plane {
 	private Color _c1;
 	private Color _c2;
 	private int _l;
@@ -13,20 +13,20 @@ public class XZboard extends Plane {
 	// ***************** Constructors ********************** //
 
 	
-	public XZboard(XZboard b) {
+	public XYboard(XYboard b) {
 		super(b._p, b._normal, b._emission, b._material);
 		_c1 = new Color(b._c1);
 		_c2 = new Color(b._c2);
 		_l = b._l;
 		
 	}
-	public XZboard(Point3D _p1, Point3D _p2, Point3D _p3, Color emission, Material material, Color c1, Color c2, int l) {
+	public XYboard(Point3D _p1, Point3D _p2, Point3D _p3, Color emission, Material material, Color c1, Color c2, int l) {
 		super(_p1, _p2, _p3, emission, material);
 		_c1 = new Color(c1);
 		_c2 = new Color(c2);
 		_l = l;
 	}
-	public XZboard(Point3D _p, Vector _normal, Color emission, Material material, Color c1, Color c2, int l) {
+	public XYboard(Point3D _p, Vector _normal, Color emission, Material material, Color c1, Color c2, int l) {
 		super(_p, _normal, emission, material);
 		_c1 = new Color(c1);
 		_c2 = new Color(c2);
@@ -37,28 +37,28 @@ public class XZboard extends Plane {
 	public Color get_emission(Point3D p) {
 		double i1 = 0;
 		double i2 = 0;
-		if(p.getX().get() < 0 && p.getZ().get() > 0)
+		if(p.getX().get() < 0 && p.getY().get() > 0)
 		{
 			i1 = Math.abs(Math.floor(p.getX().get()) - _l/2);
-			i2 = Math.floor(p.getZ().get());
+			i2 = Math.floor(p.getY().get());
 			
 		}else
 		{
-			if(p.getZ().get() < 0 && p.getX().get() > 0)
+			if(p.getY().get() < 0 && p.getX().get() > 0)
 			{
 				i1 = Math.floor(p.getX().get());
-				i2 = Math.abs(Math.floor(p.getZ().get()) - _l/2);
+				i2 = Math.abs(Math.floor(p.getY().get()) - _l/2);
 				
 			}else
 			{
-				if(p.getZ().get() < 0 && p.getX().get() < 0)
+				if(p.getY().get() < 0 && p.getX().get() < 0)
 				{
 					i1 = Math.abs(Math.floor(p.getX().get()) - _l/2);
-					i2 = Math.abs(Math.floor(p.getZ().get()) - _l/2);
+					i2 = Math.abs(Math.floor(p.getY().get()) - _l/2);
 				}else
 				{
 					i1 = Math.floor(p.getX().get());
-					i2 = Math.floor(p.getZ().get());
+					i2 = Math.floor(p.getY().get());
 				}
 			}
 		}

@@ -3,6 +3,8 @@ package renderer;
 import java.util.Map;
 
 import elements.LightSource;
+import elements.PointLight;
+import elements.SpotLight;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +17,7 @@ import scene.*;
 public class Render {
 	private Scene _scene;
 	private ImageWriter _imageWriter;
-	private final int MAX_CALC_COLOR_LEVEL = 5;
+	private final int MAX_CALC_COLOR_LEVEL = 3;
 	private final int NUM_RAYS_PER_PIXEL = 15;
 
 	public Render(ImageWriter _imageWriter, Scene _scene) {
@@ -26,6 +28,10 @@ public class Render {
 	public void renderImage() {
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
+				if(i == 50 && j == 339)
+				{
+					System.out.println();
+				}
 				Ray r = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(), i, j,
 						_scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight());
 				// Map<Geometry, List<Point3D>> intersectionPoints = new
@@ -143,7 +149,7 @@ public class Render {
 		for (LightSource lightSource : this._scene.getLights()) {
 			Vector l = lightSource.getL(point);
 			if (n.dot_product(l) * n.dot_product(v) > 0) {
-				double o = occluded(l, point, geometry);
+				double o = occluded(l, point, geometry, lightSource);
 				if (!Coordinate.isToCloseToZero(o * k)) {
 					Color lightIntensity = new Color(lightSource.getIntensity(point)).scale(o);
 					color.add(calcDiffusive(kd, l, n, lightIntensity),
@@ -199,17 +205,35 @@ public class Render {
 		return new Ray(point, r.getDirection().add(n.multiply(-2 * r.getDirection().dot_product(n))));
 	}
 
-	private double occluded(Vector l, Point3D point, Geometry geometry) {
+	private double occluded(Vector l, Point3D point, Geometry geometry, LightSource light) {
 		Vector lightDirection = l.multiply(-1); // from point to light source
 		Vector normal = geometry.getNormal(point);
 		Vector epsVector = normal.multiply((normal.dot_product(lightDirection) > 0) ? 1 / 10000 : -1 / 10000);
 		Point3D geometryPoint = point.add(epsVector);
 		Ray lightRay = new Ray(geometryPoint, lightDirection);
-
+		
+		boolean b = light instanceof PointLight || light instanceof SpotLight;
+		
+		double dSquared = 0;
+		
+		if(b)
+			dSquared = point.distanceSquare(((PointLight) light).getPosition());
+			
+		
 		double shadowK = 1;
 		Map<Geometry, List<Point3D>> intersectionsPoints = _scene.getGeometries().findIntersections(lightRay);
 
 		for (Map.Entry<Geometry, List<Point3D>> entry : intersectionsPoints.entrySet()) {
+			int count = 0;
+			for(Point3D p : entry.getValue())
+			{
+				if(p.distanceSquare(point) >= dSquared)
+					count ++;
+			}
+			
+			if(entry.getValue().size() == count)
+				continue;
+			
 			shadowK *= entry.getKey().get_material().get_Kt();
 		}
 
@@ -230,7 +254,7 @@ public class Render {
 
 	private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 		Point3D From = _scene.getCamera().get_p0();
-		double minDisSquare = Integer.MAX_VALUE;
+		double minDisSquare = Double.MAX_VALUE;
 		Map<Geometry, Point3D> closest = new HashMap<>();
 
 		if (intersectionPoints.size() == 1 && intersectionPoints.entrySet().iterator().next().getValue().size() == 1) {
@@ -240,6 +264,7 @@ public class Render {
 		}
 
 		for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet())
+		{
 			for (Point3D p : entry.getValue()) {
 
 				double dSquare = From.distanceSquare(p);
@@ -250,7 +275,7 @@ public class Render {
 					minDisSquare = dSquare;
 				}
 			}
-
+		}
 		if (closest.size() == 1)
 			return closest;
 		return null;
