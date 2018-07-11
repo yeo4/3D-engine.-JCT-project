@@ -3,13 +3,25 @@ package elements;
 import primitives.*;
 
 public class Camera { 
-		
+	
+
+	//cameras origin point
 	private Point3D _p0;
+	
+	//three vectors defining the camera
 	private Vector _vUp;
 	private Vector _vTo;
 	private Vector _vRight;
 	
 	// ***************** Constructors ********************** //
+	
+	/**
+	 * regular constructor, calculates vRight using the other two vectors received
+	 * @param _p0
+	 * @param _vUp
+	 * @param _vTo
+	 * @throws IllegalArgumentException
+	 */
 	public Camera(Point3D _p0, Vector _vUp, Vector _vTo) throws IllegalArgumentException {
 		if(_vUp.equals(Vector.ZeroVector) || _vTo.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("All vectors must not be zero");
@@ -22,6 +34,10 @@ public class Camera {
 		
 	}
 	
+	/**
+	 * copy constructor
+	 * @param c
+	 */
 	public Camera(Camera c)
 	{
 		this._p0 = c._p0;
@@ -56,6 +72,19 @@ public class Camera {
 	
 	// ***************** Operations ******************** // 
 	
+	/**
+	 * constructs a ray through the given pixel 
+	 * and returns that ray
+	 * 
+	 * @param Nx
+	 * @param Ny
+	 * @param i
+	 * @param j
+	 * @param screenDistance
+	 * @param screenWidth
+	 * @param screenHeight
+	 * @return
+	 */
 	public Ray constructRayThroughPixel(int Nx, int Ny, int i, int j, double screenDistance, double screenWidth, double screenHeight)
 	{
 		Point3D Pc = this._p0.add(_vTo.multiply(screenDistance));

@@ -11,7 +11,15 @@ public class Tube extends RadialGeometry {
 	protected Point3D _axisPoint; 
 	protected Vector _axisDirection;
   
-	// ***************** Constructors ********************** // 
+	// ***************** Constructors ********************** //
+	/**
+	 * 
+	 * @param r
+	 * @param _axisPoint
+	 * @param _axisDirection
+	 * @param emission
+	 * @param material
+	 */
 	public Tube(double r, Point3D _axisPoint, Vector _axisDirection, Color emission, Material material) {
 		super(r, emission, material);
 		if(_axisDirection.equals(Vector.ZeroVector))
@@ -20,6 +28,10 @@ public class Tube extends RadialGeometry {
 		this._axisDirection = _axisDirection.normalization();
 	}
 	 
+	/**
+	 * 
+	 * @param t
+	 */
 	public Tube(Tube t) {
 		super(t._radius, t._emission, t._material);
 		this._axisPoint = new Point3D(t._axisPoint);
@@ -78,6 +90,11 @@ public class Tube extends RadialGeometry {
 
 	// ***************** Operations ******************** // 
 	
+	/**
+	 * checks is given point is on tube
+	 * @param p1
+	 * @return
+	 */
 	public boolean is_on_tube(Point3D p1) {
 		/*if() {
 			return true;

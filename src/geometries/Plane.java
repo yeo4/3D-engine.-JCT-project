@@ -13,6 +13,13 @@ public class Plane extends Geometry {
 
 	// ***************** Constructors ********************** //
 
+	/**
+	 * 
+	 * @param _p
+	 * @param _normal
+	 * @param emission
+	 * @param material
+	 */
 	public Plane(Point3D _p, Vector _normal, Color emission, Material material) {
 		if (_normal.equals(Vector.ZeroVector))
 			throw new IllegalArgumentException("Normal to plane must not be the a zero vector");
@@ -23,6 +30,10 @@ public class Plane extends Geometry {
 
 	}
 
+	/**
+	 * 
+	 * @param p
+	 */
 	public Plane(Plane p) {
 		this._p = new Point3D(p._p);
 		this._normal = new Vector(p._normal);
@@ -31,6 +42,14 @@ public class Plane extends Geometry {
 
 	}
 
+	/**
+	 * 
+	 * @param _p1
+	 * @param _p2
+	 * @param _p3
+	 * @param emission
+	 * @param material
+	 */
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3, Color emission, Material material) {
 		Vector v = Vector.calc_perpendicular(_p1, _p2, _p3).normalization();
 		if (v.equals(Vector.ZeroVector))
@@ -60,6 +79,11 @@ public class Plane extends Geometry {
 	 * public void set_normal(Vector _normal) { this._normal = _normal; }
 	 */
 
+	/**
+	 * checks if given point is in plane
+	 * @param p1
+	 * @return boolean
+	 */
 	public boolean is_on_plane(Point3D p1) {
 		if (Coordinate.isToCloseToZero(new Vector(p1.subtract(this._p)).dot_product(_normal)))
 			return true;

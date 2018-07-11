@@ -8,7 +8,10 @@ import primitives.Vector;
 
 public class Geometries extends Geometry {
 	private List<Geometry> _geometries;
-
+	
+	/**
+	 * default constructor
+	 */
 	public Geometries() {
 		_geometries = new ArrayList<>();
 	}
@@ -41,6 +44,11 @@ public class Geometries extends Geometry {
 		return intersectionPoints;
 	}
 
+	/**
+	 * checks if ray has any intersections with geometry
+	 * @param r
+	 * @return boolean
+	 */
 	public boolean hasIntersections(Ray r) {
 		boolean has = false;
 		for (Geometry geometry : _geometries) {

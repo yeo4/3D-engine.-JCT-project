@@ -8,6 +8,14 @@ public class Material {
 	
 	// ***************** Constructors ********************** //
 
+	/**
+	 * 
+	 * @param _Kd
+	 * @param _Ks
+	 * @param nShininess
+	 * @param _Kr
+	 * @param _Kt
+	 */
 	public Material(double _Kd, double _Ks, int nShininess, double _Kr, double _Kt) {
 		this._Kd = _Kd;
 		this._Ks = _Ks;
@@ -15,6 +23,11 @@ public class Material {
 		this._Kt = _Kt;
 		this.nShininess = nShininess;
 	}
+	
+	/**
+	 * 
+	 * @param material
+	 */
 	public Material(Material material) {
 		this._Kd = material._Kd;
 		this._Ks = material._Ks;

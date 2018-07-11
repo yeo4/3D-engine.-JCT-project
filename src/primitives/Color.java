@@ -145,6 +145,11 @@ public class Color {
 		return this;
 	}
 
+	/**
+	 * scales this color by given d
+	 * @param d
+	 * @return this
+	 */
 	public Color scale(double d) {
 		if (d < 0) {
 			throw new IllegalArgumentException("number must be more then 0");
@@ -156,6 +161,11 @@ public class Color {
 		return this;
 	}
 
+	/**
+	 * reduces this color by given d
+	 * @param d
+	 * @return this
+	 */
 	public Color reduce(double d) {
 		if (d <= 0) {
 			throw new IllegalArgumentException("number must be more then 0");

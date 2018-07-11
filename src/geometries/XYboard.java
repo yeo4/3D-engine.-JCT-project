@@ -12,7 +12,10 @@ public class XYboard extends Plane {
 	
 	// ***************** Constructors ********************** //
 
-	
+	/**
+	 * 
+	 * @param b
+	 */
 	public XYboard(XYboard b) {
 		super(b._p, b._normal, b._emission, b._material);
 		_c1 = new Color(b._c1);
@@ -20,12 +23,33 @@ public class XYboard extends Plane {
 		_l = b._l;
 		
 	}
+	/**
+	 * 
+	 * @param _p1
+	 * @param _p2
+	 * @param _p3
+	 * @param emission
+	 * @param material
+	 * @param c1
+	 * @param c2
+	 * @param l
+	 */
 	public XYboard(Point3D _p1, Point3D _p2, Point3D _p3, Color emission, Material material, Color c1, Color c2, int l) {
 		super(_p1, _p2, _p3, emission, material);
 		_c1 = new Color(c1);
 		_c2 = new Color(c2);
 		_l = l;
 	}
+	/**
+	 * 
+	 * @param _p
+	 * @param _normal
+	 * @param emission
+	 * @param material
+	 * @param c1
+	 * @param c2
+	 * @param l
+	 */
 	public XYboard(Point3D _p, Vector _normal, Color emission, Material material, Color c1, Color c2, int l) {
 		super(_p, _normal, emission, material);
 		_c1 = new Color(c1);

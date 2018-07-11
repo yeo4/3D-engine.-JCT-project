@@ -17,6 +17,15 @@ public class Ellipsoid extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
+	/**
+	 * 
+	 * @param center
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @param emission
+	 * @param material
+	 */
 	public Ellipsoid(Point3D center, double a, double b, double c, Color emission, Material material) {
 		if(a <= 0 || b <= 0 || c <= 0)
 			throw new IllegalArgumentException("Radius must be positive");
@@ -29,6 +38,10 @@ public class Ellipsoid extends Geometry {
 		this._material = new Material(material);
 	}
 	
+	/**
+	 * 
+	 * @param e
+	 */
 	public Ellipsoid(Ellipsoid e) {
 		this._center = new Point3D(e._center);
 		this._a = e._a;

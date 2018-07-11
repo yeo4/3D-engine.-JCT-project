@@ -5,12 +5,23 @@ public class Ray {
 	private Vector _direction;
 	private double _t;
 	
-	// ***************** Constructors ********************** // 
+	// ***************** Constructors ********************** //
+	
+	/**
+	 * 
+	 * @param P3D
+	 * @param direction
+	 */
 	public Ray(Point3D P3D, Vector direction) {
 		_P3D = new Point3D(P3D);
 		_direction = direction.normalization();
 		_t = direction.length();
 	}
+	
+	/**
+	 * 
+	 * @param ray
+	 */
 	public Ray(Ray ray) {
 		_P3D = new Point3D(ray.getP3D());
 		_direction = new Vector(ray.getDirection());

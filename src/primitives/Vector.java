@@ -63,7 +63,13 @@ public class Vector {
 	}
 	
 	// ***************** Operations ******************** // 
-	
+	/**
+	 * returns the normal vector to the plane that goes through all three points 
+	 * @param _p1
+	 * @param _p2
+	 * @param _p3
+	 * @return Vector
+	 */
 	public static Vector calc_perpendicular(Point3D _p1, Point3D _p2, Point3D _p3) {
 		return new Vector(_p2.subtract(_p1)).cross_product(new Vector(_p3.subtract(_p1))).normalization();
 	}

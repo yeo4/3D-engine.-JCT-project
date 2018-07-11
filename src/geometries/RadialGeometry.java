@@ -7,6 +7,12 @@ public abstract class RadialGeometry extends Geometry {
 	
 	// ***************** Constructors ********************** //
 	
+	/**
+	 * 
+	 * @param r
+	 * @param emission
+	 * @param material
+	 */
 	public RadialGeometry(double r, Color emission, Material material){
 		if(r<=0)
 			throw new IllegalArgumentException("Radius must be positive");
@@ -15,6 +21,10 @@ public abstract class RadialGeometry extends Geometry {
 		this._material = new Material(material);
 	}
 	
+	/**
+	 * 
+	 * @param rg
+	 */
 	public RadialGeometry(RadialGeometry rg){
 		_radius = rg._radius;
 		this._emission = new Color(rg._emission);

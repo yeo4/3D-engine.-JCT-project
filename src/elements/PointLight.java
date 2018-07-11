@@ -9,6 +9,14 @@ public class PointLight extends Light implements LightSource {
 
 	// ***************** Constructors ********************** //
 
+	/**
+	 * regular constructor
+	 * @param _color
+	 * @param _position
+	 * @param _Kc
+	 * @param _Kl
+	 * @param _Kq
+	 */
 	public PointLight(Color _color, Point3D _position, double _Kc, double _Kl, double _Kq) {
 		super(_color);
 
@@ -20,17 +28,27 @@ public class PointLight extends Light implements LightSource {
 		this._Kq = _Kq;
 	}
 
+	/**
+	 * copy constructor
+	 * @param PL
+	 */
 	public PointLight(PointLight PL) {
 		this(PL._color, PL._position, PL._Kc, PL._Kl, PL._Kq);
 	}
 
 	// ***************** Operations ******************** //
 
+	/**
+	 * returns the vector between the point and the light
+	 */
 	@Override
 	public Vector getL(Point3D point) {
 		return point.subtract(this._position).normalization();
 	}
 
+	/**
+	 * returns the vector between the point and the light
+	 */
 	@Override
 	public Vector getD(Point3D point) {
 		return getL(point);

@@ -11,12 +11,22 @@ public class Sphere extends RadialGeometry {
 	private Point3D _center;
 
 	// ***************** Constructors ********************** //
-
+	/**
+	 * 
+	 * @param _r
+	 * @param _center
+	 * @param emission
+	 * @param material
+	 */
 	public Sphere(double _r, Point3D _center, Color emission, Material material) {
 		super(_r, emission, material);
 		this._center = new Point3D(_center);
 	}
 
+	/**
+	 * 
+	 * @param s
+	 */
 	public Sphere(Sphere s) {
 		super(s._radius, s._emission, s._material);
 		this._center = new Point3D(s._center);
@@ -58,6 +68,11 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Operations ******************** //
 
+	/**
+	 * checks if given point is on sphere
+	 * @param p1
+	 * @return boolean
+	 */
 	public boolean is_on_sphere(Point3D p1) {
 		if (Coordinate.isToCloseToZero(this._radius - _center.distance(p1)))
 			return true;

@@ -16,6 +16,15 @@ public class Cylinder extends Tube {
 	
 	// ***************** Constructors ********************** //
 	
+	/**
+	 * regular constructor
+	 * @param r
+	 * @param _axisPoint
+	 * @param _axisDirection
+	 * @param _hight
+	 * @param emission
+	 * @param material
+	 */
 	public Cylinder(double r, Point3D _axisPoint, Vector _axisDirection, double _hight, Color emission, Material material){
 		super(r, _axisPoint, _axisDirection, emission, material);
 		if(_hight <= 0)
@@ -26,7 +35,11 @@ public class Cylinder extends Tube {
 		this._plane1 = new Plane(this._Pcenter1, this._axisDirection, this._emission, this._material);
 		this._plane2 = new Plane(this._Pcenter2, this._axisDirection, this._emission, this._material);
 	}
-		
+	
+	/**
+	 * copy constructor
+	 * @param c
+	 */
 	public Cylinder(Cylinder c) {
 		super(c._radius, c._axisPoint, c._axisDirection, c._emission, c._material);
 		this._hight = c._hight;
@@ -69,6 +82,11 @@ public class Cylinder extends Tube {
 	
 	// ***************** Operations ******************** // 
 	
+	/**
+	 * checks if the point is on the first cap of the cylinder
+	 * @param p
+	 * @return boolean
+	 */
 	public boolean is_on_cap1(Point3D p) {
 		Vector v = p.subtract(_Pcenter1);
 		if(Coordinate.isToCloseToZero(p.subtract(this._Pcenter1).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
@@ -77,6 +95,11 @@ public class Cylinder extends Tube {
 			
 	}
 	
+	/**
+	 * checks if the point is on the second cap of the cylinder
+	 * @param p
+	 * @return boolean
+	 */
 	public boolean is_on_cap2(Point3D p) {
 		Vector v = p.subtract(_Pcenter2);
 		if(Coordinate.isToCloseToZero(p.subtract(this._Pcenter2).dot_product(this._axisDirection)) && v.dot_product(v) < this._radius * this._radius)
@@ -85,6 +108,12 @@ public class Cylinder extends Tube {
 			
 	}
 	
+	/**
+	 * checks if the point is on the first cap of the cylinder
+	 * given that is definitely on the plane of the cap
+	 * @param p
+	 * @return boolean
+	 */
 	public boolean is_on_cap1_given_on_plane(Point3D p) {
 		Vector v = p.subtract(_Pcenter1);
 		double a = Math.sqrt(v.dot_product(v));
@@ -97,6 +126,12 @@ public class Cylinder extends Tube {
 			
 	}
 	
+	/**
+	 * checks if the point is on the second cap of the cylinder
+	 * given that is definitely on the plane of the cap
+	 * @param p
+	 * @return boolean
+	 */
 	public boolean is_on_cap2_given_on_plane(Point3D p) {
 		Vector v = p.subtract(_Pcenter2);
 		double a = Math.sqrt(v.dot_product(v));
@@ -111,9 +146,7 @@ public class Cylinder extends Tube {
 	
 	@Override
 	public Vector getNormal(Point3D p) {
-		//if(is not on Cylinder)
-		//	throw new...
-		
+
 		if(this.is_on_cap1(p))
 			return p.subtract(this._axisPoint.add(p.subtract(this._Pcenter1))).normalization();
 		if(this.is_on_cap2(p))
